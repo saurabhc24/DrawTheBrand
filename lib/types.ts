@@ -51,8 +51,8 @@ export type Brand = {
   excludeFromModes?: GameMode[];
 };
 
-/** Modes that are actually playable in v1 (Phase 1: A colors, B shade, C crop). */
-export const PLAYABLE_MODES = ["colors", "shade", "crop"] as const;
+/** Modes that are actually playable. */
+export const PLAYABLE_MODES = ["colors", "shade", "crop", "draw"] as const;
 export type PlayableMode = (typeof PLAYABLE_MODES)[number];
 
 export type Pack = "all" | "indian" | "global";
@@ -76,6 +76,9 @@ export type RoundResult = {
   skipped: boolean;
   /** What the player picked: a brand id or a hex, depending on mode. */
   picked?: string;
+  /** Draw mode: the sketch as a PNG data URL, and its 0–100 similarity score. */
+  drawing?: string;
+  score?: number;
 };
 
 export type Session = {

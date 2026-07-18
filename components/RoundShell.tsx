@@ -6,6 +6,7 @@ const MODE_LABELS: Record<string, string> = {
   colors: "Name the palette",
   shade: "Exact shade",
   crop: "Close-up",
+  draw: "Draw from memory",
 };
 
 export function RoundShell({

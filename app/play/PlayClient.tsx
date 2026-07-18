@@ -8,10 +8,12 @@ import { Results } from "@/components/Results";
 import { ColorsRound } from "@/components/modes/ColorsRound";
 import { ShadeRound } from "@/components/modes/ShadeRound";
 import { CropRound } from "@/components/modes/CropRound";
+import { DrawRound } from "@/components/modes/DrawRound";
+import { DRAW_PASS_SCORE } from "@/lib/drawScore";
 import { buildSession } from "@/lib/session";
 import type { Pack, PlayableMode, RoundResult, Session } from "@/lib/types";
 
-const VALID_MODES = ["colors", "shade", "crop", "mixed"];
+const VALID_MODES = ["colors", "shade", "crop", "draw", "mixed"];
 const VALID_PACKS = ["all", "indian", "global"];
 
 export function PlayClient() {
@@ -86,6 +88,21 @@ export function PlayClient() {
     setPhase("reveal");
   };
 
+  const submitDrawing = (drawing: string, score: number) => {
+    setResults((prev) => [
+      ...prev,
+      {
+        brand: round.brand,
+        mode: round.mode,
+        correct: score >= DRAW_PASS_SCORE,
+        skipped: false,
+        drawing,
+        score,
+      },
+    ]);
+    setPhase("reveal");
+  };
+
   const next = () => {
     if (index + 1 >= rounds.length) {
       setPhase("done");
@@ -125,6 +142,8 @@ export function PlayClient() {
             round={round}
             onPick={(hex) => answer(hex, hex === round.brand.colors[0].hex.toUpperCase())}
           />
+        ) : round.mode === "draw" ? (
+          <DrawRound round={round} onDone={submitDrawing} onSkip={skip} />
         ) : (
           <CropRound round={round} onPick={(id) => answer(id, id === round.brand.id)} />
         )

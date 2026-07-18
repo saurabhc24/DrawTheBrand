@@ -51,7 +51,13 @@ export function Results({
                 r.correct ? "text-proof" : "text-flag"
               }`}
             >
-              {r.correct ? "OK" : r.skipped ? "Skip" : "Miss"}
+              {r.mode === "draw" && r.score != null
+                ? `${r.score}/100`
+                : r.correct
+                  ? "OK"
+                  : r.skipped
+                    ? "Skip"
+                    : "Miss"}
             </span>
           </li>
         ))}

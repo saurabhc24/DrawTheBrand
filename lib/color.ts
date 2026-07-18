@@ -90,3 +90,19 @@ export function inkOn(hex: string): string {
   const { l } = hexToHsl(hex);
   return l > 0.6 ? "#141416" : "#FFFFFF";
 }
+
+/**
+ * Mix a color toward white. Used for the crop-mode backdrop: the brand hue
+ * must only wash the empty areas — a dark hex used raw would multiply the
+ * whole crop into an unreadable dark square.
+ */
+export function paperTint(hex: string, whiteAmount = 0.85): string {
+  const n = hex.replace("#", "");
+  const mix = (i: number) => {
+    const channel = parseInt(n.slice(i, i + 2), 16);
+    return Math.round(channel + (255 - channel) * whiteAmount)
+      .toString(16)
+      .padStart(2, "0");
+  };
+  return `#${mix(0)}${mix(2)}${mix(4)}`.toUpperCase();
+}

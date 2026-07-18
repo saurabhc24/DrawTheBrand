@@ -45,7 +45,8 @@ const DOMAINS = {
 
 // Optional brand ids after the key restrict the run: node ... KEY mcdonalds zomato
 // `--missing` restricts to brands that have no asset in public/logos yet.
-const args = process.argv.slice(keyFromEnv ? 2 : 3);
+// The key is filtered out so `BRANDFETCH_KEY=x node ... x ids` still works.
+const args = process.argv.slice(2).filter((a) => a !== API_KEY);
 const missingOnly = args.includes("--missing");
 const only = new Set(args.filter((a) => a !== "--missing"));
 

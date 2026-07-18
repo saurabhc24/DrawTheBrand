@@ -11,7 +11,7 @@ export function isEligible(brand: Brand, mode: GameMode): boolean {
   if (brand.excludeFromModes?.includes(mode)) return false;
   switch (mode) {
     case "draw":
-      return !!brand.assets.drawReference;
+      return !!brand.assets.drawReference || !!brand.assets.logoFull;
     case "crop":
       return !!brand.assets.logoFull;
     case "wordmark":

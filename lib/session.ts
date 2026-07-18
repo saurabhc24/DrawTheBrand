@@ -1,4 +1,4 @@
-import { shadeSwatches } from "./color";
+import { paperTint, shadeSwatches } from "./color";
 import { getBrandsForMode, getBrandsForPack } from "./data";
 import { createRng, pick, shuffle, type Rng } from "./rng";
 import {
@@ -52,7 +52,7 @@ function buildRound(brand: Brand, mode: PlayableMode, pool: Brand[], rng: Rng): 
       scale: 3.2 + rng() * 1.2,
       fx: focus.fx + (rng() - 0.5) * 0.05,
       fy: focus.fy + (rng() - 0.5) * 0.05,
-      backdrop: brand.colors[0].hex,
+      backdrop: paperTint(brand.colors[0].hex),
     };
   }
   return round;

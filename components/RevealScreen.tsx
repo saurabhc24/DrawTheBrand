@@ -44,11 +44,19 @@ export function RevealScreen({
   isLast: boolean;
   onNext: () => void;
 }) {
-  const { brand, correct, skipped, mode, picked } = result;
-  const verdict = correct ? "Correct" : skipped ? "Skipped" : "Not quite";
+  const { brand, correct, skipped, mode, picked, score } = result;
+  const verdict =
+    mode === "draw" && score != null
+      ? `${score}/100`
+      : correct
+        ? "Correct"
+        : skipped
+          ? "Skipped"
+          : "Not quite";
 
   return (
-    <div className="animate-rise flex min-h-0 flex-1 flex-col">
+    // Scrolls on short screens so the Next button can never be clipped away.
+    <div className="animate-rise flex min-h-0 flex-1 flex-col overflow-y-auto">
       <div className="flex items-center gap-3">
         <span
           className={`animate-stamp inline-block rounded-sm border-2 px-2.5 py-1 font-mono text-xs font-semibold tracking-[0.18em] uppercase ${
@@ -60,10 +68,29 @@ export function RevealScreen({
         <h2 className="text-2xl font-extrabold tracking-tight">{brand.name}</h2>
       </div>
 
-      <div className="mt-4 mx-auto w-full max-w-80 overflow-hidden rounded-lg border border-rule bg-card">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={brand.assets.logoFull} alt={`${brand.name} logo`} className="aspect-square w-full" />
-      </div>
+      {mode === "draw" && result.drawing ? (
+        <div className="mt-4 grid grid-cols-2 gap-3">
+          <figure className="overflow-hidden rounded-lg border border-rule bg-card">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={result.drawing} alt="Your drawing" className="aspect-square w-full" />
+            <figcaption className="border-t border-rule px-2 py-1.5 font-mono text-[10px] tracking-widest text-ink-muted uppercase">
+              Yours
+            </figcaption>
+          </figure>
+          <figure className="overflow-hidden rounded-lg border border-rule bg-card">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={brand.assets.logoFull} alt={`${brand.name} logo`} className="aspect-square w-full" />
+            <figcaption className="border-t border-rule px-2 py-1.5 font-mono text-[10px] tracking-widest text-ink-muted uppercase">
+              Actual
+            </figcaption>
+          </figure>
+        </div>
+      ) : (
+        <div className="mt-4 mx-auto w-full max-w-80 overflow-hidden rounded-lg border border-rule bg-card">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={brand.assets.logoFull} alt={`${brand.name} logo`} className="aspect-square w-full" />
+        </div>
+      )}
 
       {mode === "shade" && picked && !correct && !skipped && (
         <div className="mt-4 flex items-center gap-3">

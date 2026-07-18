@@ -16,7 +16,7 @@ const MODES = [
     id: "mixed",
     tag: "Mix",
     name: "Mixed",
-    blurb: "All three challenges, shuffled. The full test.",
+    blurb: "All four challenges, shuffled. The full test.",
     primary: true,
   },
   {
@@ -36,6 +36,12 @@ const MODES = [
     tag: "Mode C",
     name: "Close-up",
     blurb: "Call the brand from one zoomed-in sliver of its logo.",
+  },
+  {
+    id: "draw",
+    tag: "Mode D",
+    name: "Draw",
+    blurb: "Sketch the logo from memory — scored against the real mark.",
   },
 ];
 
@@ -84,7 +90,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mt-4 flex flex-col gap-2.5" aria-label="Pick a mode">
+      <section className="mt-4 flex min-h-0 flex-1 flex-col gap-2.5 overflow-y-auto pr-1" aria-label="Pick a mode">
         {MODES.map((m) => (
           <Link
             key={m.id}
@@ -111,7 +117,7 @@ export default function Home() {
       </section>
 
       <p className="mt-4 font-mono text-[11px] tracking-[0.2em] text-ink-muted uppercase">
-        In the works: wordmark · real or fake · draw from memory
+        In the works: wordmark · real or fake
       </p>
 
       <footer className="mt-auto pt-4 text-xs leading-relaxed text-ink-muted">
