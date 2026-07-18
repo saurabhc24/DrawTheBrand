@@ -1,15 +1,6 @@
-"use client";
-
 import Link from "next/link";
-import { useState } from "react";
+import { Intro } from "@/components/Intro";
 import { brands } from "@/lib/data";
-import type { Pack } from "@/lib/types";
-
-const PACKS: { id: Pack; label: string }[] = [
-  { id: "all", label: "All brands" },
-  { id: "indian", label: "Indian" },
-  { id: "global", label: "Global" },
-];
 
 const MODES = [
   {
@@ -60,60 +51,39 @@ const MODES = [
   },
 ];
 
-export default function Home() {
-  const [pack, setPack] = useState<Pack>("all");
+// A steady sample keeps the calibration strip chunky at any dataset size.
+const STRIP_STEP = Math.max(1, Math.ceil(brands.length / 22));
+const STRIP = brands.filter((_, i) => i % STRIP_STEP === 0);
 
+export default function Home() {
   return (
-    <div className="mx-auto flex min-h-dvh w-full max-w-md flex-col px-4 pb-6 pt-10">
+    <div className="mx-auto flex min-h-dvh w-full max-w-md flex-col px-4 pb-6 pt-8 sm:pt-10">
+      <Intro />
       <header>
         <p className="text-[11px] font-bold tracking-[0.25em] text-ink-muted uppercase">
           A brand memory test
         </p>
-        <h1 className="mt-1 text-6xl font-extrabold tracking-tight">Brandr</h1>
-        {/* Calibration strip: a sample of the pack's brands, by real primary color. */}
+        <h1 className="mt-1 text-5xl font-extrabold tracking-tight sm:text-6xl">Brandr</h1>
+        {/* Calibration strip: a sample of the roster, by real primary color. */}
         <div className="mt-4 flex h-2.5 gap-[3px]" aria-hidden>
-          {(() => {
-            const pool = brands.filter((b) => pack === "all" || b.region === pack);
-            const step = Math.max(1, Math.ceil(pool.length / 22));
-            return pool
-              .filter((_, i) => i % step === 0)
-              .map((b) => (
-                <span
-                  key={b.id}
-                  className="flex-1 rounded-full"
-                  style={{ backgroundColor: b.colors[0].hex }}
-                />
-              ));
-          })()}
+          {STRIP.map((b) => (
+            <span
+              key={b.id}
+              className="flex-1 rounded-full"
+              style={{ backgroundColor: b.colors[0].hex }}
+            />
+          ))}
         </div>
         <p className="mt-4 text-base leading-relaxed text-ink-muted">
           You&apos;ve seen these logos ten thousand times. This measures what actually stuck.
         </p>
       </header>
 
-      <section className="mt-6" aria-label="Pick a pack">
-        <div className="flex gap-2">
-          {PACKS.map((p) => (
-            <button
-              key={p.id}
-              onClick={() => setPack(p.id)}
-              className={`pressable rounded-full px-4 py-2 text-sm font-bold ${
-                pack === p.id
-                  ? "bg-ink text-paper"
-                  : "border border-ink/20 bg-card text-ink hover:border-ink"
-              }`}
-            >
-              {p.label}
-            </button>
-          ))}
-        </div>
-      </section>
-
-      <section className="mt-4 grid grid-cols-2 gap-3" aria-label="Pick a mode">
+      <section className="mt-6 grid grid-cols-2 gap-3" aria-label="Pick a mode">
         {MODES.map((m) => (
           <Link
             key={m.id}
-            href={`/play?mode=${m.id}&pack=${pack}`}
+            href={`/play?mode=${m.id}`}
             className={`pressable flex min-h-36 flex-col justify-between rounded-3xl p-4 ${m.card} ${
               m.wide ? "col-span-2 min-h-28" : ""
             }`}

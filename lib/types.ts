@@ -93,6 +93,8 @@ export type RoundResult = {
   score?: number;
   /** Fake mode: what was shown — null means the real mark was shown. */
   shownFake?: FakeSpec | null;
+  /** The round clock ran out before an answer. */
+  timedOut?: boolean;
 };
 
 export type Session = {

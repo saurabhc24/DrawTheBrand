@@ -16,6 +16,14 @@ import type { Pack, PlayableMode, RoundResult, Session } from "@/lib/types";
 const VALID_MODES = ["colors", "shade", "fake", "draw", "mixed"];
 const VALID_PACKS = ["all", "indian", "global"];
 
+/** Round clock per mode. Guess modes are snap decisions; drawing needs longer. */
+const TIMER_SECONDS: Record<PlayableMode, number> = {
+  colors: 5,
+  shade: 5,
+  fake: 5,
+  draw: 30,
+};
+
 export function PlayClient() {
   const params = useSearchParams();
   const mode = (VALID_MODES.includes(params.get("mode") ?? "")
@@ -30,10 +38,54 @@ export function PlayClient() {
   const [index, setIndex] = useState(0);
   const [phase, setPhase] = useState<"question" | "reveal" | "done">("question");
   const [results, setResults] = useState<RoundResult[]>([]);
+  const [timerFrac, setTimerFrac] = useState(1);
+  const [timeUp, setTimeUp] = useState(false);
 
   useEffect(() => {
     setSession(buildSession(mode, pack));
   }, [mode, pack]);
+
+  const currentMode = session?.rounds[index]?.mode;
+
+  // The round clock: ticks only while a question is on screen.
+  useEffect(() => {
+    if (!currentMode || phase !== "question") return;
+    setTimeUp(false);
+    setTimerFrac(1);
+    const total = TIMER_SECONDS[currentMode] * 1000;
+    const deadline = Date.now() + total;
+    const tick = setInterval(() => {
+      const frac = (deadline - Date.now()) / total;
+      if (frac <= 0) {
+        clearInterval(tick);
+        setTimerFrac(0);
+        setTimeUp(true);
+      } else {
+        setTimerFrac(frac);
+      }
+    }, 100);
+    return () => clearInterval(tick);
+  }, [currentMode, phase, index]);
+
+  // Clock expiry for the tap modes; draw handles its own via the timeUp prop
+  // (it scores whatever is on the canvas instead of forfeiting).
+  useEffect(() => {
+    if (!timeUp || phase !== "question") return;
+    const round = session?.rounds[index];
+    if (!round || round.mode === "draw") return;
+    setResults((prev) => [
+      ...prev,
+      {
+        brand: round.brand,
+        mode: round.mode,
+        correct: false,
+        skipped: false,
+        timedOut: true,
+        ...(round.mode === "fake" ? { shownFake: round.fake ?? null } : {}),
+      },
+    ]);
+    setPhase("reveal");
+  }, [timeUp, phase, session, index]);
 
   const streak = useMemo(() => {
     let n = 0;
@@ -149,6 +201,14 @@ export function PlayClient() {
       streak={streak}
       onSkip={skip}
       showSkip={phase === "question"}
+      timer={
+        phase === "question"
+          ? {
+              frac: timerFrac,
+              seconds: Math.ceil(timerFrac * TIMER_SECONDS[round.mode]),
+            }
+          : undefined
+      }
     >
       {phase === "question" ? (
         round.mode === "colors" ? (
@@ -159,7 +219,7 @@ export function PlayClient() {
             onPick={(hex) => answer(hex, hex === round.brand.colors[0].hex.toUpperCase())}
           />
         ) : round.mode === "draw" ? (
-          <DrawRound round={round} onDone={submitDrawing} onSkip={skip} />
+          <DrawRound round={round} onDone={submitDrawing} onSkip={skip} timeUp={timeUp} />
         ) : (
           <FakeRound round={round} onPick={submitFakeCall} />
         )

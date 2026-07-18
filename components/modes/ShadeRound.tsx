@@ -16,15 +16,16 @@ export function ShadeRound({
         Which one is the real {colorName}?
       </h1>
       <div className="mx-auto mt-4 w-40 overflow-hidden rounded-2xl border border-rule bg-card">
+        {/* Drained of color on purpose: the shade must come from memory. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={round.brand.assets.logoFull}
-          alt={`${round.brand.name} logo`}
-          className="aspect-square w-full"
+          alt={`${round.brand.name} logo in black and white`}
+          className="aspect-square w-full grayscale"
         />
       </div>
       <p className="mt-3 text-center text-sm text-ink-muted">
-        Three of these are impostors, nudged just a little.
+        No peeking — the logo&apos;s been drained. Pick the shade from memory.
       </p>
       <div className="mt-auto grid grid-cols-2 gap-3 pt-6">
         {round.swatches!.map((hex, i) => (

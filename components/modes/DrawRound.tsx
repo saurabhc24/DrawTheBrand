@@ -10,10 +10,13 @@ export function DrawRound({
   round,
   onDone,
   onSkip,
+  timeUp = false,
 }: {
   round: Round;
   onDone: (drawing: string, score: number) => void;
   onSkip: () => void;
+  /** Clock expiry: pens down — score whatever is on the canvas. */
+  timeUp?: boolean;
 }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const drawingRef = useRef(false);
@@ -34,6 +37,12 @@ export function DrawRound({
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
   }, []);
+
+  // Pens down when the round clock expires.
+  useEffect(() => {
+    if (timeUp) void done();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [timeUp]);
 
   const point = (event: React.PointerEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current!;
@@ -117,7 +126,7 @@ export function DrawRound({
 
   const done = async () => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas || scoring) return;
     if (!hasDrawing) {
       onSkip();
       return;

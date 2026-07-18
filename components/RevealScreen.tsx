@@ -49,15 +49,16 @@ export function RevealScreen({
   const verdict =
     mode === "draw" && score != null
       ? `${score}/100`
-      : correct
-        ? "Correct"
-        : skipped
-          ? "Skipped"
-          : "Not quite";
+      : result.timedOut
+        ? "Time's up"
+        : correct
+          ? "Correct"
+          : skipped
+            ? "Skipped"
+            : "Not quite";
 
   return (
-    // Scrolls on short screens so the Next button can never be clipped away.
-    <div className="animate-rise flex min-h-0 flex-1 flex-col overflow-y-auto">
+    <div className="animate-rise flex min-h-0 flex-1 flex-col">
       <div className="flex items-center gap-3">
         <span
           className={`animate-stamp inline-block rounded-full px-3 py-1.5 text-xs font-bold tracking-[0.18em] text-white uppercase ${
