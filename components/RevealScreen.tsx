@@ -58,8 +58,10 @@ export function RevealScreen({
             : "Not quite";
 
   return (
-    <div className="animate-rise flex min-h-0 flex-1 flex-col">
-      <div className="flex items-center gap-3">
+    // No min-h-0 here: the column must keep its natural height so the shell's
+    // scroll area takes over on short screens instead of crushing the content.
+    <div className="animate-rise flex flex-1 flex-col">
+      <div className="flex shrink-0 items-center gap-3">
         <span
           className={`animate-stamp inline-block rounded-full px-3 py-1.5 text-xs font-bold tracking-[0.18em] text-white uppercase ${
             correct ? "bg-proof" : "bg-flag"
@@ -72,7 +74,7 @@ export function RevealScreen({
 
       {mode === "fake" && result.shownFake ? (
         <>
-          <div className="mt-4 grid grid-cols-2 gap-3">
+          <div className="mt-4 grid shrink-0 grid-cols-2 gap-3">
             <figure className="overflow-hidden rounded-2xl border border-flag bg-card">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -119,7 +121,7 @@ export function RevealScreen({
           </figure>
         </div>
       ) : (
-        <div className="mt-4 mx-auto w-full max-w-80 overflow-hidden rounded-2xl border border-rule bg-card">
+        <div className="mt-4 mx-auto w-full max-w-80 shrink-0 overflow-hidden rounded-2xl border border-rule bg-card">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={brand.assets.logoFull} alt={`${brand.name} logo`} className="aspect-square w-full" />
         </div>
@@ -144,10 +146,10 @@ export function RevealScreen({
         </div>
       )}
 
-      <p className="mt-4 text-[11px] font-bold tracking-[0.2em] text-ink-muted uppercase">
+      <p className="mt-4 shrink-0 text-[11px] font-bold tracking-[0.2em] text-ink-muted uppercase">
         The exact colors — tap to copy
       </p>
-      <div className="mt-2 flex gap-2 overflow-x-auto pb-1">
+      <div className="mt-2 flex shrink-0 gap-2 overflow-x-auto pb-1">
         {brand.colors.map((c) => (
           <HexChip key={c.hex} hex={c.hex} name={c.name} />
         ))}
@@ -157,7 +159,7 @@ export function RevealScreen({
         {brand.funFact}
       </p>
 
-      <div className="mt-auto pt-4">
+      <div className="mt-auto shrink-0 pt-4">
         <button
           onClick={onNext}
           className="pressable w-full rounded-full bg-ink py-4 text-base font-bold text-paper"

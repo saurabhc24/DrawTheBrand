@@ -160,7 +160,7 @@ export function DrawRound({
         </select>
       </div>
 
-      <div className="mt-3 flex items-center gap-2 overflow-x-auto pb-1">
+      <div className="mt-3 flex shrink-0 items-center gap-2 overflow-x-auto pb-1">
         {[
           ...new Set([
             ...round.brand.colors.map((c) => c.hex.toUpperCase()),
@@ -196,7 +196,7 @@ export function DrawRound({
         />
       </div>
 
-      <div className="mt-3 grid grid-cols-[1fr_1fr_1.5fr] gap-2">
+      <div className="mt-3 grid shrink-0 grid-cols-[1fr_1fr_1.5fr] gap-2">
         <button
           onClick={undo}
           disabled={!canUndo}
