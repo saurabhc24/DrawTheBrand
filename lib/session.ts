@@ -13,6 +13,15 @@ import {
 export const DEFAULT_ROUNDS = 10;
 export const OPTION_COUNT = 4;
 
+const CROP_FOCUS_POINTS = [
+  { fx: 0.32, fy: 0.42 },
+  { fx: 0.5, fy: 0.42 },
+  { fx: 0.68, fy: 0.42 },
+  { fx: 0.32, fy: 0.58 },
+  { fx: 0.5, fy: 0.58 },
+  { fx: 0.68, fy: 0.58 },
+];
+
 function playableModesFor(brand: Brand): PlayableMode[] {
   return PLAYABLE_MODES.filter((m) => getBrandsForMode(m, [brand]).length === 1);
 }
@@ -38,10 +47,12 @@ function buildRound(brand: Brand, mode: PlayableMode, pool: Brand[], rng: Rng): 
     round.swatches = shadeSwatches(brand.colors[0].hex, rng);
   }
   if (mode === "crop") {
+    const focus = pick(CROP_FOCUS_POINTS, rng);
     round.crop = {
-      scale: 4 + rng() * 3, // 4x–7x zoom
-      fx: 0.25 + rng() * 0.5, // focal point biased toward the middle,
-      fy: 0.32 + rng() * 0.36, // where the distinctive detail lives
+      scale: 3.2 + rng() * 1.2,
+      fx: focus.fx + (rng() - 0.5) * 0.05,
+      fy: focus.fy + (rng() - 0.5) * 0.05,
+      backdrop: brand.colors[0].hex,
     };
   }
   return round;

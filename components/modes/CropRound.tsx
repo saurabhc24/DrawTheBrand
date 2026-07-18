@@ -12,7 +12,7 @@ export function CropRound({
   round: Round;
   onPick: (brandId: string) => void;
 }) {
-  const { scale, fx, fy } = round.crop!;
+  const { scale, fx, fy, backdrop } = round.crop!;
   // Position the focal point at the viewport center, clamped so the image
   // always covers the whole window.
   const offset = (f: number) => Math.max((1 - scale) * 100, Math.min(0, (0.5 - f * scale) * 100));
@@ -20,17 +20,22 @@ export function CropRound({
   return (
     <div className="animate-fade flex flex-1 flex-col">
       <h1 className="text-xl font-extrabold tracking-tight">Whose logo is this a piece of?</h1>
-      <div className="relative mx-auto mt-4 aspect-square w-full max-w-72 overflow-hidden rounded-lg border border-rule bg-card">
+      <div
+        className="relative mx-auto mt-4 aspect-square w-full max-w-72 overflow-hidden rounded-lg border border-rule"
+        style={{ backgroundColor: backdrop }}
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.34),rgba(20,20,22,0.18))]" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={round.brand.assets.logoFull}
           alt="A zoomed-in piece of a logo"
-          className="absolute max-w-none"
+          className="absolute max-w-none contrast-125 saturate-125"
           style={{
             width: `${scale * 100}%`,
             height: `${scale * 100}%`,
             left: `${offset(fx)}%`,
             top: `${offset(fy)}%`,
+            mixBlendMode: "multiply",
           }}
         />
       </div>

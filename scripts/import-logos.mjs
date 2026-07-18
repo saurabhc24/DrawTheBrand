@@ -4,6 +4,7 @@
  * Usage:
  *   node scripts/import-logos.mjs <BRANDFETCH_API_KEY>
  *   (or set BRANDFETCH_KEY in the environment)
+ *   node scripts/import-logos.mjs hyundai ikea
  *
  * For each brand in data/brands.json this fetches the brand's best
  * light-background logo (SVG preferred, largest PNG as fallback) and wraps it
@@ -16,7 +17,8 @@ import { readFile, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 
-const API_KEY = process.argv[2] ?? process.env.BRANDFETCH_KEY;
+const keyFromEnv = process.env.BRANDFETCH_KEY;
+const API_KEY = keyFromEnv ?? process.argv[2];
 if (!API_KEY) {
   console.error("Missing key. Run: node scripts/import-logos.mjs <BRANDFETCH_API_KEY>");
   process.exit(1);
@@ -43,7 +45,7 @@ const DOMAINS = {
 
 // Optional brand ids after the key restrict the run: node ... KEY mcdonalds zomato
 // `--missing` restricts to brands that have no asset in public/logos yet.
-const args = process.argv.slice(3);
+const args = process.argv.slice(keyFromEnv ? 2 : 3);
 const missingOnly = args.includes("--missing");
 const only = new Set(args.filter((a) => a !== "--missing"));
 
@@ -60,17 +62,22 @@ if (missingOnly) {
  * game quizzes on.
  */
 const PREFER_ICON = new Set([
-  "mcdonalds", "zomato", "flipkart",
+  "mcdonalds", "zomato", "flipkart", "hyundai",
   // These brands' wordmark asset is monochrome; their symbol carries the color.
   "instagram", "snapchat", "mastercard", "kfc", "myntra", "paypal",
   "rolex", "ferrari", "porsche", "mercedes",
 ]);
 
+const PREFER_LOGO = new Set(["ikea"]);
+
 /** Prefer the full logo over icon/symbol, for-light-background over dark. */
 function pickLogo(logos, brandId) {
   const iconFirst = PREFER_ICON.has(brandId);
+  const logoFirst = PREFER_LOGO.has(brandId);
   const score = (l) => {
-    const type = iconFirst
+    const type = logoFirst
+      ? { logo: 30, symbol: 10, icon: 0 }
+      : iconFirst
       ? { symbol: 20, icon: 15, logo: 5 }
       : { logo: 20, symbol: 10, icon: 0 };
     return (type[l.type] ?? 0) + (l.theme === "dark" ? 5 : 0);

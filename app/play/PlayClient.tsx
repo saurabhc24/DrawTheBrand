@@ -62,7 +62,7 @@ export function PlayClient() {
 
   if (!round) {
     return (
-      <div className="mx-auto flex min-h-dvh max-w-md flex-col items-center justify-center px-4 text-center">
+      <div className="mx-auto flex h-dvh max-w-md flex-col items-center justify-center overflow-hidden px-4 text-center">
         <p className="text-sm text-ink-muted">
           This pack doesn't have enough brands for that mode yet.
         </p>

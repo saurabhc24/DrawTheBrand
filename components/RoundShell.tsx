@@ -27,7 +27,7 @@ export function RoundShell({
 }) {
   const round = rounds[index];
   return (
-    <div className="mx-auto flex min-h-dvh w-full max-w-md flex-col px-4 pb-6 pt-4">
+    <div className="mx-auto flex h-dvh w-full max-w-md flex-col overflow-hidden px-4 pb-4 pt-4">
       <header className="flex items-center justify-between gap-4">
         <Link
           href="/"
@@ -68,7 +68,7 @@ export function RoundShell({
         )}
       </div>
 
-      <main className="mt-3 flex flex-1 flex-col">{children}</main>
+      <main className="mt-3 flex min-h-0 flex-1 flex-col">{children}</main>
     </div>
   );
 }

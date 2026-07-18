@@ -66,7 +66,7 @@ export type Round = {
   /** 4 hex swatches (shade mode). Includes the true hex, pre-shuffled. */
   swatches?: string[];
   /** Crop window (crop mode). */
-  crop?: { scale: number; fx: number; fy: number };
+  crop?: { scale: number; fx: number; fy: number; backdrop: string };
 };
 
 export type RoundResult = {

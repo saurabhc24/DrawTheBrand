@@ -48,7 +48,7 @@ export function RevealScreen({
   const verdict = correct ? "Correct" : skipped ? "Skipped" : "Not quite";
 
   return (
-    <div className="animate-rise flex flex-1 flex-col">
+    <div className="animate-rise flex min-h-0 flex-1 flex-col">
       <div className="flex items-center gap-3">
         <span
           className={`animate-stamp inline-block rounded-sm border-2 px-2.5 py-1 font-mono text-xs font-semibold tracking-[0.18em] uppercase ${
@@ -60,7 +60,7 @@ export function RevealScreen({
         <h2 className="text-2xl font-extrabold tracking-tight">{brand.name}</h2>
       </div>
 
-      <div className="mt-4 overflow-hidden rounded-lg border border-rule bg-card">
+      <div className="mt-4 mx-auto w-full max-w-80 overflow-hidden rounded-lg border border-rule bg-card">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={brand.assets.logoFull} alt={`${brand.name} logo`} className="aspect-square w-full" />
       </div>
@@ -84,7 +84,7 @@ export function RevealScreen({
         </div>
       )}
 
-      <p className="mt-5 font-mono text-[11px] tracking-[0.2em] text-ink-muted uppercase">
+      <p className="mt-4 font-mono text-[11px] tracking-[0.2em] text-ink-muted uppercase">
         The exact colors — tap to copy
       </p>
       <div className="mt-2 flex gap-2 overflow-x-auto pb-1">
@@ -93,11 +93,11 @@ export function RevealScreen({
         ))}
       </div>
 
-      <p className="mt-5 border-l-2 border-rule pl-3 text-sm leading-relaxed text-ink-muted">
+      <p className="mt-4 line-clamp-3 border-l-2 border-rule pl-3 text-sm leading-relaxed text-ink-muted">
         {brand.funFact}
       </p>
 
-      <div className="mt-auto pt-6">
+      <div className="mt-auto pt-4">
         <button
           onClick={onNext}
           className="pressable w-full rounded-md bg-ink py-4 text-base font-bold text-paper"

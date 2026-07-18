@@ -43,7 +43,7 @@ export default function Home() {
   const [pack, setPack] = useState<Pack>("all");
 
   return (
-    <div className="mx-auto flex min-h-dvh w-full max-w-md flex-col px-4 pb-8 pt-14">
+    <div className="mx-auto flex h-dvh w-full max-w-md flex-col overflow-hidden px-4 pb-4 pt-8">
       <header>
         <p className="font-mono text-[11px] tracking-[0.3em] text-ink-muted uppercase">
           A brand memory test
@@ -66,7 +66,7 @@ export default function Home() {
         </p>
       </header>
 
-      <section className="mt-8" aria-label="Pick a pack">
+      <section className="mt-6" aria-label="Pick a pack">
         <div className="flex gap-2">
           {PACKS.map((p) => (
             <button
@@ -84,12 +84,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mt-4 flex flex-col gap-3" aria-label="Pick a mode">
+      <section className="mt-4 flex flex-col gap-2.5" aria-label="Pick a mode">
         {MODES.map((m) => (
           <Link
             key={m.id}
             href={`/play?mode=${m.id}&pack=${pack}`}
-            className={`pressable rounded-lg border p-4 ${
+            className={`pressable rounded-lg border p-3.5 ${
               m.primary
                 ? "border-ink bg-ink text-paper"
                 : "border-rule bg-card hover:border-ink-muted"
@@ -110,11 +110,11 @@ export default function Home() {
         ))}
       </section>
 
-      <p className="mt-6 font-mono text-[11px] tracking-[0.2em] text-ink-muted uppercase">
+      <p className="mt-4 font-mono text-[11px] tracking-[0.2em] text-ink-muted uppercase">
         In the works: wordmark · real or fake · draw from memory
       </p>
 
-      <footer className="mt-auto pt-10 text-xs leading-relaxed text-ink-muted">
+      <footer className="mt-auto pt-4 text-xs leading-relaxed text-ink-muted">
         A memory game, not an affiliation. All marks belong to their owners and appear here to
         test how well we remember them. Something yours shown wrongly?{" "}
         <a href="mailto:takedown@example.com" className="underline underline-offset-2">

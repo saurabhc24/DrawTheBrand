@@ -17,7 +17,7 @@ export function Results({
   const correct = results.filter((r) => r.correct).length;
 
   return (
-    <div className="animate-rise mx-auto flex min-h-dvh w-full max-w-md flex-col px-4 pb-6 pt-10">
+    <div className="animate-rise mx-auto flex h-dvh w-full max-w-md flex-col overflow-hidden px-4 pb-4 pt-8">
       <p className="font-mono text-[11px] tracking-[0.25em] text-ink-muted uppercase">
         Your proof sheet
       </p>
@@ -38,7 +38,7 @@ export function Results({
         <ColorBar rounds={rounds} results={results} tall />
       </div>
 
-      <ul className="mt-6 divide-y divide-rule border-y border-rule">
+      <ul className="mt-6 min-h-0 flex-1 divide-y divide-rule overflow-y-auto border-y border-rule">
         {results.map((r, i) => (
           <li key={i} className="flex items-center gap-3 py-2.5">
             <span
@@ -57,7 +57,7 @@ export function Results({
         ))}
       </ul>
 
-      <div className="mt-auto flex flex-col gap-3 pt-8">
+      <div className="flex flex-col gap-3 pt-4">
         <button
           onClick={onReplay}
           className="pressable w-full rounded-md bg-ink py-4 text-base font-bold text-paper"
