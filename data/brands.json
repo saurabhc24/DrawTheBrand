@@ -5,8 +5,16 @@
     "category": "global-sportswear",
     "region": "global",
     "difficulty": "easy",
-    "assets": { "logoFull": "/logos/nike.svg" },
-    "colors": [{ "hex": "#111111", "name": "Nike Black", "proportion": 1.0 }],
+    "assets": {
+      "logoFull": "/logos/nike.svg"
+    },
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Nike Black",
+        "proportion": 1
+      }
+    ],
     "funFact": "The Nike swoosh was designed in 1971 by a design student for a reported flat fee of $35.",
     "excludeFromModes": []
   },
@@ -16,10 +24,20 @@
     "category": "global-food",
     "region": "global",
     "difficulty": "easy",
-    "assets": { "logoFull": "/logos/mcdonalds.svg" },
+    "assets": {
+      "logoFull": "/logos/mcdonalds.svg"
+    },
     "colors": [
-      { "hex": "#FFC72C", "name": "Golden Arches Yellow", "pantone": "Pantone 123 C", "proportion": 0.45 },
-      { "hex": "#DA291C", "name": "McDonald's Red", "pantone": "Pantone 485 C", "proportion": 0.55 }
+      {
+        "hex": "#FDBB20",
+        "name": "Golden Arches Yellow",
+        "proportion": 0.6
+      },
+      {
+        "hex": "#DB0007",
+        "name": "McDonald's Red",
+        "proportion": 0.4
+      }
     ],
     "funFact": "The Golden Arches started as real architecture — the actual arches built into 1950s McDonald's restaurants.",
     "excludeFromModes": []
@@ -30,11 +48,25 @@
     "category": "global-food",
     "region": "global",
     "difficulty": "medium",
-    "assets": { "logoFull": "/logos/pepsi.svg" },
+    "assets": {
+      "logoFull": "/logos/pepsi.svg"
+    },
     "colors": [
-      { "hex": "#004B93", "name": "Pepsi Blue", "proportion": 0.4 },
-      { "hex": "#E32934", "name": "Pepsi Red", "proportion": 0.3 },
-      { "hex": "#FFFFFF", "name": "White", "proportion": 0.3 }
+      {
+        "hex": "#004B93",
+        "name": "Pepsi Blue",
+        "proportion": 0.4
+      },
+      {
+        "hex": "#E32934",
+        "name": "Pepsi Red",
+        "proportion": 0.3
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.3
+      }
     ],
     "funFact": "Pepsi's 2008 globe redesign reportedly cost over a million dollars, backed by a design document invoking the Golden Ratio.",
     "excludeFromModes": []
@@ -45,10 +77,20 @@
     "category": "global-tech",
     "region": "global",
     "difficulty": "easy",
-    "assets": { "logoFull": "/logos/spotify.svg" },
+    "assets": {
+      "logoFull": "/logos/spotify.svg"
+    },
     "colors": [
-      { "hex": "#1DB954", "name": "Spotify Green", "proportion": 0.75 },
-      { "hex": "#191414", "name": "Spotify Black", "proportion": 0.25 }
+      {
+        "hex": "#1ED760",
+        "name": "Spotify Green",
+        "proportion": 0.75
+      },
+      {
+        "hex": "#191414",
+        "name": "Spotify Black",
+        "proportion": 0.25
+      }
     ],
     "funFact": "Spotify swapped its green for a much brighter shade in a 2015 rebrand — and designers argued about it for weeks.",
     "excludeFromModes": []
@@ -59,10 +101,21 @@
     "category": "global-food",
     "region": "global",
     "difficulty": "medium",
-    "assets": { "logoFull": "/logos/cadbury.svg" },
+    "assets": {
+      "logoFull": "/logos/cadbury.svg"
+    },
     "colors": [
-      { "hex": "#4B2E83", "name": "Cadbury Purple", "pantone": "Pantone 2685 C", "proportion": 0.8 },
-      { "hex": "#FFFFFF", "name": "White", "proportion": 0.2 }
+      {
+        "hex": "#4B2E83",
+        "name": "Cadbury Purple",
+        "pantone": "Pantone 2685 C",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
     ],
     "funFact": "Cadbury has fought multi-year legal battles to trademark its exact shade of purple.",
     "excludeFromModes": []
@@ -73,12 +126,30 @@
     "category": "global-tech",
     "region": "global",
     "difficulty": "easy",
-    "assets": { "logoFull": "/logos/google.svg" },
+    "assets": {
+      "logoFull": "/logos/google.svg"
+    },
     "colors": [
-      { "hex": "#4285F4", "name": "Google Blue", "proportion": 0.3 },
-      { "hex": "#EA4335", "name": "Google Red", "proportion": 0.25 },
-      { "hex": "#FBBC05", "name": "Google Yellow", "proportion": 0.2 },
-      { "hex": "#34A853", "name": "Google Green", "proportion": 0.25 }
+      {
+        "hex": "#4285F4",
+        "name": "Google Blue",
+        "proportion": 0.3
+      },
+      {
+        "hex": "#EA4335",
+        "name": "Google Red",
+        "proportion": 0.25
+      },
+      {
+        "hex": "#FBBC05",
+        "name": "Google Yellow",
+        "proportion": 0.2
+      },
+      {
+        "hex": "#34A853",
+        "name": "Google Green",
+        "proportion": 0.25
+      }
     ],
     "funFact": "The green 'l' in Google's logo deliberately breaks the primary-color pattern — a reminder that Google doesn't follow the rules.",
     "excludeFromModes": []
@@ -89,11 +160,25 @@
     "category": "global-auto",
     "region": "global",
     "difficulty": "medium",
-    "assets": { "logoFull": "/logos/bmw.svg" },
+    "assets": {
+      "logoFull": "/logos/bmw.svg"
+    },
     "colors": [
-      { "hex": "#0066B1", "name": "BMW Blue", "proportion": 0.4 },
-      { "hex": "#FFFFFF", "name": "White", "proportion": 0.3 },
-      { "hex": "#16171A", "name": "Black", "proportion": 0.3 }
+      {
+        "hex": "#0066B1",
+        "name": "BMW Blue",
+        "proportion": 0.4
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.3
+      },
+      {
+        "hex": "#16171A",
+        "name": "Black",
+        "proportion": 0.3
+      }
     ],
     "funFact": "The BMW roundel's blue and white come from the Bavarian flag — not a spinning propeller, despite the popular legend.",
     "excludeFromModes": []
@@ -104,10 +189,20 @@
     "category": "indian-legacy",
     "region": "indian",
     "difficulty": "easy",
-    "assets": { "logoFull": "/logos/amul.svg" },
+    "assets": {
+      "logoFull": "/logos/amul.svg"
+    },
     "colors": [
-      { "hex": "#ED1C24", "name": "Amul Red", "proportion": 0.6 },
-      { "hex": "#FFFFFF", "name": "White", "proportion": 0.4 }
+      {
+        "hex": "#ED1C24",
+        "name": "Amul Red",
+        "proportion": 0.6
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.4
+      }
     ],
     "funFact": "The polka-dotted Amul girl has fronted one of the world's longest-running ad campaigns — going since 1966.",
     "excludeFromModes": []
@@ -118,10 +213,20 @@
     "category": "indian-food",
     "region": "indian",
     "difficulty": "easy",
-    "assets": { "logoFull": "/logos/swiggy.svg" },
+    "assets": {
+      "logoFull": "/logos/swiggy.svg"
+    },
     "colors": [
-      { "hex": "#FC8019", "name": "Swiggy Orange", "proportion": 0.8 },
-      { "hex": "#FFFFFF", "name": "White", "proportion": 0.2 }
+      {
+        "hex": "#FE5005",
+        "name": "Swiggy Orange",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
     ],
     "funFact": "Swiggy launched in 2014 with a fleet of exactly six delivery partners in one Bengaluru neighbourhood.",
     "excludeFromModes": []
@@ -132,10 +237,20 @@
     "category": "indian-food",
     "region": "indian",
     "difficulty": "easy",
-    "assets": { "logoFull": "/logos/zomato.svg" },
+    "assets": {
+      "logoFull": "/logos/zomato.svg"
+    },
     "colors": [
-      { "hex": "#E23744", "name": "Zomato Red", "proportion": 0.75 },
-      { "hex": "#FFFFFF", "name": "White", "proportion": 0.25 }
+      {
+        "hex": "#E23744",
+        "name": "Zomato Red",
+        "proportion": 0.75
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.25
+      }
     ],
     "funFact": "Zomato began life in 2008 as 'Foodiebay' — a site for scanned office-canteen and restaurant menus in Delhi.",
     "excludeFromModes": []
@@ -146,10 +261,20 @@
     "category": "indian-d2c",
     "region": "indian",
     "difficulty": "hard",
-    "assets": { "logoFull": "/logos/zepto.svg" },
+    "assets": {
+      "logoFull": "/logos/zepto.svg"
+    },
     "colors": [
-      { "hex": "#6C2BD9", "name": "Zepto Purple", "proportion": 0.85 },
-      { "hex": "#FFFFFF", "name": "White", "proportion": 0.15 }
+      {
+        "hex": "#950EDB",
+        "name": "Zepto Purple",
+        "proportion": 0.85
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.15
+      }
     ],
     "funFact": "Zepto was founded in 2021 by two 19-year-old Stanford dropouts — a 'zepto' is 10⁻²¹, a very small unit of time.",
     "excludeFromModes": []
@@ -160,10 +285,20 @@
     "category": "indian-d2c",
     "region": "indian",
     "difficulty": "medium",
-    "assets": { "logoFull": "/logos/paytm.svg" },
+    "assets": {
+      "logoFull": "/logos/paytm.svg"
+    },
     "colors": [
-      { "hex": "#002E6E", "name": "Paytm Navy", "proportion": 0.55 },
-      { "hex": "#00BAF2", "name": "Paytm Blue", "proportion": 0.45 }
+      {
+        "hex": "#172B75",
+        "name": "Paytm Navy",
+        "proportion": 0.55
+      },
+      {
+        "hex": "#00BCF1",
+        "name": "Paytm Blue",
+        "proportion": 0.45
+      }
     ],
     "funFact": "Paytm started in 2010 as a website for prepaid mobile recharges — 'Paytm' is short for 'Pay through mobile'.",
     "excludeFromModes": []
@@ -174,10 +309,20 @@
     "category": "indian-legacy",
     "region": "indian",
     "difficulty": "medium",
-    "assets": { "logoFull": "/logos/tata.svg" },
+    "assets": {
+      "logoFull": "/logos/tata.svg"
+    },
     "colors": [
-      { "hex": "#486AAE", "name": "Tata Blue", "proportion": 0.8 },
-      { "hex": "#FFFFFF", "name": "White", "proportion": 0.2 }
+      {
+        "hex": "#486AAE",
+        "name": "Tata Blue",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
     ],
     "funFact": "The Tata mark's looping shape is meant to suggest a fountain of knowledge — and a tree you can trust to shelter under.",
     "excludeFromModes": []
@@ -188,10 +333,20 @@
     "category": "indian-auto",
     "region": "indian",
     "difficulty": "medium",
-    "assets": { "logoFull": "/logos/mrf.svg" },
+    "assets": {
+      "logoFull": "/logos/mrf.svg"
+    },
     "colors": [
-      { "hex": "#E31E24", "name": "MRF Red", "proportion": 0.7 },
-      { "hex": "#FFFFFF", "name": "White", "proportion": 0.3 }
+      {
+        "hex": "#EF4023",
+        "name": "MRF Red",
+        "proportion": 0.7
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.3
+      }
     ],
     "funFact": "MRF — Madras Rubber Factory — began in 1946 as a toy-balloon workshop, decades before it ruled Indian tyres and cricket bats.",
     "excludeFromModes": []
@@ -202,12 +357,2234 @@
     "category": "indian-d2c",
     "region": "indian",
     "difficulty": "easy",
-    "assets": { "logoFull": "/logos/flipkart.svg" },
+    "assets": {
+      "logoFull": "/logos/flipkart.svg"
+    },
     "colors": [
-      { "hex": "#2874F0", "name": "Flipkart Blue", "proportion": 0.75 },
-      { "hex": "#FFE500", "name": "Flipkart Yellow", "proportion": 0.25 }
+      {
+        "hex": "#F8D409",
+        "name": "Flipkart Yellow",
+        "proportion": 0.6
+      },
+      {
+        "hex": "#0664AE",
+        "name": "Flipkart Blue",
+        "proportion": 0.4
+      }
     ],
     "funFact": "Flipkart started in 2007 selling books out of a two-bedroom Bengaluru apartment, with a delivery fleet of two founders.",
     "excludeFromModes": []
+  },
+  {
+    "id": "zerodha",
+    "name": "Zerodha",
+    "category": "indian-finance",
+    "region": "indian",
+    "difficulty": "hard",
+    "domain": "zerodha.com",
+    "assets": {
+      "logoFull": "/logos/zerodha.svg"
+    },
+    "colors": [
+      {
+        "hex": "#387ED1",
+        "name": "Zerodha Blue",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "Zerodha mixes 'zero' with 'rodha' — Sanskrit for barrier — and became India's biggest broker without ever buying an ad."
+  },
+  {
+    "id": "cred",
+    "name": "CRED",
+    "category": "indian-finance",
+    "region": "indian",
+    "difficulty": "hard",
+    "domain": "cred.club",
+    "assets": {
+      "logoFull": "/logos/cred.svg"
+    },
+    "colors": [
+      {
+        "hex": "#0F0F0F",
+        "name": "CRED Black",
+        "proportion": 0.85
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.15
+      }
+    ],
+    "funFact": "CRED gates itself behind a 750+ credit score — a bill-payment app styled like a members-only club.",
+    "excludeFromModes": [
+      "colors"
+    ]
+  },
+  {
+    "id": "phonepe",
+    "name": "PhonePe",
+    "category": "indian-finance",
+    "region": "indian",
+    "difficulty": "easy",
+    "domain": "phonepe.com",
+    "assets": {
+      "logoFull": "/logos/phonepe.svg"
+    },
+    "colors": [
+      {
+        "hex": "#5F259F",
+        "name": "PhonePe Purple",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "'Pe' is Hindi for 'on' — PhonePe literally reads 'on the phone', a pun that stuck across India's payment apps."
+  },
+  {
+    "id": "razorpay",
+    "name": "Razorpay",
+    "category": "indian-finance",
+    "region": "indian",
+    "difficulty": "hard",
+    "domain": "razorpay.com",
+    "assets": {
+      "logoFull": "/logos/razorpay.svg"
+    },
+    "colors": [
+      {
+        "hex": "#3395FF",
+        "name": "Razorpay Blue",
+        "proportion": 0.6
+      },
+      {
+        "hex": "#0C2651",
+        "name": "Navy",
+        "proportion": 0.4
+      }
+    ],
+    "funFact": "Razorpay went through Y Combinator in 2015, back when Indian fintech was a hard sell in Silicon Valley."
+  },
+  {
+    "id": "ola",
+    "name": "Ola",
+    "category": "indian-tech",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "olacabs.com",
+    "assets": {
+      "logoFull": "/logos/ola.svg"
+    },
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ola Black",
+        "proportion": 0.7
+      },
+      {
+        "hex": "#BCD63E",
+        "name": "Ola Green",
+        "proportion": 0.3
+      }
+    ],
+    "funFact": "Ola began after its founder was stranded mid-trip by a rented car and driver — he rebuilt the idea as cabs you could trust."
+  },
+  {
+    "id": "jio",
+    "name": "Jio",
+    "category": "indian-tech",
+    "region": "indian",
+    "difficulty": "easy",
+    "domain": "jio.com",
+    "assets": {
+      "logoFull": "/logos/jio.svg"
+    },
+    "colors": [
+      {
+        "hex": "#2B3990",
+        "name": "Jio Blue",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "Jio's 2016 launch made mobile data so cheap that India's average price per GB fell to among the lowest on Earth."
+  },
+  {
+    "id": "airtel",
+    "name": "Airtel",
+    "category": "indian-tech",
+    "region": "indian",
+    "difficulty": "easy",
+    "domain": "airtel.in",
+    "assets": {
+      "logoFull": "/logos/airtel.svg"
+    },
+    "colors": [
+      {
+        "hex": "#FF0000",
+        "name": "Airtel Red",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "Airtel's signature tune was composed by A.R. Rahman — for years one of the most-downloaded ringtones in India."
+  },
+  {
+    "id": "mahindra",
+    "name": "Mahindra",
+    "category": "indian-auto",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "mahindra.com",
+    "assets": {
+      "logoFull": "/logos/mahindra.svg"
+    },
+    "colors": [
+      {
+        "hex": "#E51636",
+        "name": "Mahindra Red",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "Mahindra began in 1945 assembling Willys Jeeps for Indian roads — the SUV obsession never left."
+  },
+  {
+    "id": "bajaj",
+    "name": "Bajaj",
+    "category": "indian-auto",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "bajajauto.com",
+    "assets": {
+      "logoFull": "/logos/bajaj.svg"
+    },
+    "colors": [
+      {
+        "hex": "#006AD0",
+        "name": "Bajaj Blue",
+        "proportion": 0.5
+      },
+      {
+        "hex": "#041C4A",
+        "name": "Navy",
+        "proportion": 0.3
+      },
+      {
+        "hex": "#ED1C24",
+        "name": "Red",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "The Bajaj Chetak scooter once had a waiting list so long that families reportedly booked one at a child's birth."
+  },
+  {
+    "id": "hero",
+    "name": "Hero",
+    "category": "indian-auto",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "heromotocorp.com",
+    "assets": {
+      "logoFull": "/logos/hero.svg"
+    },
+    "colors": [
+      {
+        "hex": "#D9241C",
+        "name": "Hero Red",
+        "proportion": 0.6
+      },
+      {
+        "hex": "#231F20",
+        "name": "Black",
+        "proportion": 0.4
+      }
+    ],
+    "funFact": "Hero became the world's largest two-wheeler maker by volume — having started as a bicycle-parts shop in Ludhiana."
+  },
+  {
+    "id": "royalenfield",
+    "name": "Royal Enfield",
+    "category": "indian-auto",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "royalenfield.com",
+    "assets": {
+      "logoFull": "/logos/royalenfield.svg"
+    },
+    "colors": [
+      {
+        "hex": "#DA291C",
+        "name": "Enfield Red",
+        "proportion": 0.5
+      },
+      {
+        "hex": "#000000",
+        "name": "Black",
+        "proportion": 0.5
+      }
+    ],
+    "funFact": "Royal Enfield is the oldest motorcycle brand in continuous production anywhere — born British in 1901, made in Chennai today."
+  },
+  {
+    "id": "maruti",
+    "name": "Maruti Suzuki",
+    "category": "indian-auto",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "marutisuzuki.com",
+    "assets": {
+      "logoFull": "/logos/maruti.svg"
+    },
+    "colors": [
+      {
+        "hex": "#2D3394",
+        "name": "Maruti Blue",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "The first Maruti 800 key was handed over by Indira Gandhi in 1983 — the little car put middle-class India on wheels."
+  },
+  {
+    "id": "ceat",
+    "name": "CEAT",
+    "category": "indian-auto",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "ceat.com",
+    "assets": {
+      "logoFull": "/logos/ceat.svg"
+    },
+    "colors": [
+      {
+        "hex": "#203F99",
+        "name": "CEAT Blue",
+        "proportion": 0.7
+      },
+      {
+        "hex": "#F04F23",
+        "name": "Orange",
+        "proportion": 0.3
+      }
+    ],
+    "funFact": "CEAT stands for Cavi Elettrici e Affini Torino — the tyre giant began life as an Italian electrical-cable company."
+  },
+  {
+    "id": "parle",
+    "name": "Parle",
+    "category": "indian-food",
+    "region": "indian",
+    "difficulty": "easy",
+    "domain": "parleproducts.com",
+    "assets": {
+      "logoFull": "/logos/parle.svg"
+    },
+    "colors": [
+      {
+        "hex": "#FF0000",
+        "name": "Parle Red",
+        "proportion": 0.7
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.3
+      }
+    ],
+    "funFact": "Parle-G is reportedly the world's best-selling biscuit brand — the 'G' meant glucose long before the 'genius' ads."
+  },
+  {
+    "id": "britannia",
+    "name": "Britannia",
+    "category": "indian-food",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "britannia.co.in",
+    "assets": {
+      "logoFull": "/logos/britannia.svg"
+    },
+    "colors": [
+      {
+        "hex": "#EB1923",
+        "name": "Britannia Red",
+        "proportion": 0.5
+      },
+      {
+        "hex": "#FDD700",
+        "name": "Yellow",
+        "proportion": 0.25
+      },
+      {
+        "hex": "#7FBD3F",
+        "name": "Green",
+        "proportion": 0.25
+      }
+    ],
+    "funFact": "Britannia has been baking since 1892 — it began in a small Calcutta house with a reported investment of ₹295."
+  },
+  {
+    "id": "haldirams",
+    "name": "Haldiram's",
+    "category": "indian-food",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "haldirams.com",
+    "assets": {
+      "logoFull": "/logos/haldirams.svg"
+    },
+    "colors": [
+      {
+        "hex": "#E3000F",
+        "name": "Haldiram's Red",
+        "proportion": 0.5
+      },
+      {
+        "hex": "#EFC85F",
+        "name": "Gold",
+        "proportion": 0.5
+      }
+    ],
+    "funFact": "Haldiram's began as a tiny bhujia shop in 1937 Bikaner — a thinner family-recipe sev that became its own category."
+  },
+  {
+    "id": "dabur",
+    "name": "Dabur",
+    "category": "indian-legacy",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "dabur.com",
+    "assets": {
+      "logoFull": "/logos/dabur.svg"
+    },
+    "colors": [
+      {
+        "hex": "#52B12F",
+        "name": "Dabur Green",
+        "proportion": 0.5
+      },
+      {
+        "hex": "#1B5C29",
+        "name": "Deep Green",
+        "proportion": 0.25
+      },
+      {
+        "hex": "#F4711F",
+        "name": "Orange",
+        "proportion": 0.25
+      }
+    ],
+    "funFact": "Dabur compresses its founder's name — 'Da' from Daktar Burman, who delivered Ayurvedic medicines by bicycle in 1884 Calcutta."
+  },
+  {
+    "id": "godrej",
+    "name": "Godrej",
+    "category": "indian-legacy",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "godrej.com",
+    "assets": {
+      "logoFull": "/logos/godrej.svg"
+    },
+    "colors": [
+      {
+        "hex": "#0077B8",
+        "name": "Godrej Blue",
+        "proportion": 0.4
+      },
+      {
+        "hex": "#B61E5D",
+        "name": "Pink",
+        "proportion": 0.3
+      },
+      {
+        "hex": "#8AB23F",
+        "name": "Green",
+        "proportion": 0.3
+      }
+    ],
+    "funFact": "Godrej made India's first springless lock in 1897 — and later the ballot boxes for independent India's first election."
+  },
+  {
+    "id": "bata",
+    "name": "Bata",
+    "category": "indian-legacy",
+    "region": "indian",
+    "difficulty": "easy",
+    "domain": "bata.in",
+    "assets": {
+      "logoFull": "/logos/bata.svg"
+    },
+    "colors": [
+      {
+        "hex": "#DD282E",
+        "name": "Bata Red",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "India's 'most Indian' shoe brand is actually Czech — Bata arrived from the town of Zlín in 1931 and never left."
+  },
+  {
+    "id": "asianpaints",
+    "name": "Asian Paints",
+    "category": "indian-legacy",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "asianpaints.com",
+    "assets": {
+      "logoFull": "/logos/asianpaints.svg"
+    },
+    "colors": [
+      {
+        "hex": "#ED1D24",
+        "name": "Asian Paints Red",
+        "proportion": 0.6
+      },
+      {
+        "hex": "#000000",
+        "name": "Black",
+        "proportion": 0.4
+      }
+    ],
+    "funFact": "Asian Paints' impish mascot Gattu, the boy with the paint tin, was sketched by cartoonist R.K. Laxman."
+  },
+  {
+    "id": "nirma",
+    "name": "Nirma",
+    "category": "indian-legacy",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "nirma.co.in",
+    "assets": {
+      "logoFull": "/logos/nirma.svg"
+    },
+    "colors": [
+      {
+        "hex": "#E31F24",
+        "name": "Nirma Red",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "The twirling girl on every Nirma pack is Nirupama, the founder's daughter — the brand carries her name."
+  },
+  {
+    "id": "indigo",
+    "name": "IndiGo",
+    "category": "indian-travel",
+    "region": "indian",
+    "difficulty": "easy",
+    "domain": "goindigo.in",
+    "assets": {
+      "logoFull": "/logos/indigo.svg"
+    },
+    "colors": [
+      {
+        "hex": "#001B94",
+        "name": "IndiGo Blue",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "IndiGo's name folds 'India' into 'go' — an on-time obsession made the low-cost airline the country's biggest."
+  },
+  {
+    "id": "airindia",
+    "name": "Air India",
+    "category": "indian-travel",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "airindia.com",
+    "assets": {
+      "logoFull": "/logos/airindia.svg"
+    },
+    "colors": [
+      {
+        "hex": "#DA0E29",
+        "name": "Air India Red",
+        "proportion": 0.6
+      },
+      {
+        "hex": "#ECC890",
+        "name": "Gold",
+        "proportion": 0.4
+      }
+    ],
+    "funFact": "Air India's first flight in 1932 was flown by JRD Tata himself, carrying airmail from Karachi to Bombay."
+  },
+  {
+    "id": "myntra",
+    "name": "Myntra",
+    "category": "indian-d2c",
+    "region": "indian",
+    "difficulty": "easy",
+    "domain": "myntra.com",
+    "assets": {
+      "logoFull": "/logos/myntra.svg"
+    },
+    "colors": [
+      {
+        "hex": "#FF3F6C",
+        "name": "Myntra Pink",
+        "proportion": 0.6
+      },
+      {
+        "hex": "#FF905A",
+        "name": "Orange",
+        "proportion": 0.4
+      }
+    ],
+    "funFact": "Myntra began by selling personalized mugs and T-shirts before pivoting into India's fashion giant."
+  },
+  {
+    "id": "nykaa",
+    "name": "Nykaa",
+    "category": "indian-d2c",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "nykaa.com",
+    "assets": {
+      "logoFull": "/logos/nykaa.svg"
+    },
+    "colors": [
+      {
+        "hex": "#FC2779",
+        "name": "Nykaa Pink",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "Nykaa — from 'nayika', the heroine — was founded by a 50-year-old investment banker who left banking to sell lipstick."
+  },
+  {
+    "id": "meesho",
+    "name": "Meesho",
+    "category": "indian-d2c",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "meesho.com",
+    "assets": {
+      "logoFull": "/logos/meesho.svg"
+    },
+    "colors": [
+      {
+        "hex": "#9F2089",
+        "name": "Meesho Magenta",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "Meesho is short for 'meri shop' — my shop — built for WhatsApp resellers before it ever sold anything itself."
+  },
+  {
+    "id": "lenskart",
+    "name": "Lenskart",
+    "category": "indian-d2c",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "lenskart.com",
+    "assets": {
+      "logoFull": "/logos/lenskart.svg"
+    },
+    "colors": [
+      {
+        "hex": "#010045",
+        "name": "Lenskart Navy",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "Lenskart's founder delivered early spectacle orders himself around Delhi — the company now makes millions of frames a year."
+  },
+  {
+    "id": "bigbasket",
+    "name": "BigBasket",
+    "category": "indian-food",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "bigbasket.com",
+    "assets": {
+      "logoFull": "/logos/bigbasket.svg"
+    },
+    "colors": [
+      {
+        "hex": "#A6CE39",
+        "name": "BigBasket Green",
+        "proportion": 0.5
+      },
+      {
+        "hex": "#ED1C24",
+        "name": "Red",
+        "proportion": 0.3
+      },
+      {
+        "hex": "#1268B3",
+        "name": "Blue",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "BigBasket's founders ran an online grocery back in 1999 — a decade too early — then returned and won the second time."
+  },
+  {
+    "id": "blinkit",
+    "name": "Blinkit",
+    "category": "indian-food",
+    "region": "indian",
+    "difficulty": "easy",
+    "domain": "blinkit.com",
+    "assets": {
+      "logoFull": "/logos/blinkit.svg"
+    },
+    "colors": [
+      {
+        "hex": "#F8CB46",
+        "name": "Blinkit Yellow",
+        "proportion": 0.7
+      },
+      {
+        "hex": "#54B226",
+        "name": "Green",
+        "proportion": 0.3
+      }
+    ],
+    "funFact": "Blinkit spent eight years as Grofers before rebranding around a single promise: groceries in the blink of an eye."
+  },
+  {
+    "id": "makemytrip",
+    "name": "MakeMyTrip",
+    "category": "indian-travel",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "makemytrip.com",
+    "assets": {
+      "logoFull": "/logos/makemytrip.svg"
+    },
+    "colors": [
+      {
+        "hex": "#EB2226",
+        "name": "MMT Red",
+        "proportion": 0.5
+      },
+      {
+        "hex": "#0055B7",
+        "name": "Blue",
+        "proportion": 0.5
+      }
+    ],
+    "funFact": "MakeMyTrip survived the dot-com crash by selling US–India tickets to NRIs, years before India booked travel online."
+  },
+  {
+    "id": "oyo",
+    "name": "OYO",
+    "category": "indian-travel",
+    "region": "indian",
+    "difficulty": "easy",
+    "domain": "oyorooms.com",
+    "assets": {
+      "logoFull": "/logos/oyo.svg"
+    },
+    "colors": [
+      {
+        "hex": "#EE2E24",
+        "name": "OYO Red",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "OYO stands for 'On Your Own' — its founder was a teenager cataloguing budget rooms on backpacking trips."
+  },
+  {
+    "id": "dream11",
+    "name": "Dream11",
+    "category": "indian-media",
+    "region": "indian",
+    "difficulty": "easy",
+    "domain": "dream11.in",
+    "assets": {
+      "logoFull": "/logos/dream11.svg"
+    },
+    "colors": [
+      {
+        "hex": "#E10000",
+        "name": "Dream11 Red",
+        "proportion": 0.6
+      },
+      {
+        "hex": "#1F2A44",
+        "name": "Navy",
+        "proportion": 0.4
+      }
+    ],
+    "funFact": "Dream11 became India's first gaming unicorn — and put its logo on the front of the Indian cricket team's jersey."
+  },
+  {
+    "id": "hdfc",
+    "name": "HDFC Bank",
+    "category": "indian-finance",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "hdfcbank.com",
+    "assets": {
+      "logoFull": "/logos/hdfc.svg"
+    },
+    "colors": [
+      {
+        "hex": "#004C8F",
+        "name": "HDFC Blue",
+        "proportion": 0.7
+      },
+      {
+        "hex": "#ED232A",
+        "name": "Red",
+        "proportion": 0.3
+      }
+    ],
+    "funFact": "HDFC Bank's red-and-blue box has gone essentially untouched since 1994 — one of India's most valuable brands never rebranded."
+  },
+  {
+    "id": "sbi",
+    "name": "SBI",
+    "category": "indian-finance",
+    "region": "indian",
+    "difficulty": "easy",
+    "domain": "sbi.co.in",
+    "assets": {
+      "logoFull": "/logos/sbi.svg"
+    },
+    "colors": [
+      {
+        "hex": "#00B5EF",
+        "name": "SBI Blue",
+        "proportion": 0.6
+      },
+      {
+        "hex": "#292075",
+        "name": "Navy",
+        "proportion": 0.4
+      }
+    ],
+    "funFact": "SBI's keyhole mark, introduced in 1971, was designed at NID Ahmedabad — a small circle standing for safe keeping."
+  },
+  {
+    "id": "icici",
+    "name": "ICICI Bank",
+    "category": "indian-finance",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "icicibank.com",
+    "assets": {
+      "logoFull": "/logos/icici.svg"
+    },
+    "colors": [
+      {
+        "hex": "#F58220",
+        "name": "ICICI Orange",
+        "proportion": 0.5
+      },
+      {
+        "hex": "#B02A30",
+        "name": "Maroon",
+        "proportion": 0.5
+      }
+    ],
+    "funFact": "ICICI began in 1955 as a World Bank-backed lender to Indian industry — retail banking came four decades later."
+  },
+  {
+    "id": "lic",
+    "name": "LIC",
+    "category": "indian-finance",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "licindia.in",
+    "assets": {
+      "logoFull": "/logos/lic.svg"
+    },
+    "colors": [
+      {
+        "hex": "#00529B",
+        "name": "LIC Blue",
+        "proportion": 0.5
+      },
+      {
+        "hex": "#FFCA05",
+        "name": "Flame Gold",
+        "proportion": 0.5
+      }
+    ],
+    "funFact": "LIC's hands-guarding-a-lamp logo pairs with a motto straight from the Bhagavad Gita: 'Yogakshemam Vahamyaham'."
+  },
+  {
+    "id": "boat",
+    "name": "boAt",
+    "category": "indian-d2c",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "boat-lifestyle.com",
+    "assets": {
+      "logoFull": "/logos/boat.svg"
+    },
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "boAt Black",
+        "proportion": 0.7
+      },
+      {
+        "hex": "#ED1C24",
+        "name": "Red",
+        "proportion": 0.3
+      }
+    ],
+    "funFact": "boAt started in 2016 selling tough charging cables from an apartment — and became one of the world's largest wearable brands."
+  },
+  {
+    "id": "titan",
+    "name": "Titan",
+    "category": "indian-legacy",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "titan.co.in",
+    "assets": {
+      "logoFull": "/logos/titan.svg"
+    },
+    "colors": [
+      {
+        "hex": "#5B2B4E",
+        "name": "Titan Plum",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "Titan's jingle is Mozart's 25th Symphony — and the Tata joint venture broke a government monopoly on watches."
+  },
+  {
+    "id": "wipro",
+    "name": "Wipro",
+    "category": "indian-tech",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "wipro.com",
+    "assets": {
+      "logoFull": "/logos/wipro.svg"
+    },
+    "colors": [
+      {
+        "hex": "#2A4C87",
+        "name": "Wipro Navy",
+        "proportion": 0.5
+      },
+      {
+        "hex": "#F89828",
+        "name": "Orange",
+        "proportion": 0.25
+      },
+      {
+        "hex": "#00AA75",
+        "name": "Green",
+        "proportion": 0.25
+      }
+    ],
+    "funFact": "Wipro's rainbow flower crowns a company that began in 1945 selling vegetable oil — Western India Products."
+  },
+  {
+    "id": "infosys",
+    "name": "Infosys",
+    "category": "indian-tech",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "infosys.com",
+    "assets": {
+      "logoFull": "/logos/infosys.svg"
+    },
+    "colors": [
+      {
+        "hex": "#007CC3",
+        "name": "Infosys Blue",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "Infosys was founded by seven engineers on ₹10,000 — famously borrowed from co-founder Narayana Murthy's wife, Sudha."
+  },
+  {
+    "id": "tcs",
+    "name": "TCS",
+    "category": "indian-tech",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "tcs.com",
+    "assets": {
+      "logoFull": "/logos/tcs.svg"
+    },
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "TCS Black",
+        "proportion": 0.85
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.15
+      }
+    ],
+    "funFact": "TCS predates the industry it now leads — it began in 1968 punching cards for Indian banks and utilities.",
+    "excludeFromModes": [
+      "colors"
+    ]
+  },
+  {
+    "id": "zoho",
+    "name": "Zoho",
+    "category": "indian-tech",
+    "region": "indian",
+    "difficulty": "hard",
+    "domain": "zoho.com",
+    "assets": {
+      "logoFull": "/logos/zoho.svg"
+    },
+    "colors": [
+      {
+        "hex": "#E42527",
+        "name": "Red",
+        "proportion": 0.25
+      },
+      {
+        "hex": "#089949",
+        "name": "Green",
+        "proportion": 0.25
+      },
+      {
+        "hex": "#F9B21D",
+        "name": "Yellow",
+        "proportion": 0.25
+      },
+      {
+        "hex": "#226DB4",
+        "name": "Blue",
+        "proportion": 0.25
+      }
+    ],
+    "funFact": "Zoho famously hires school-leavers through its own in-house university — degrees optional, villages welcome."
+  },
+  {
+    "id": "hotstar",
+    "name": "Hotstar",
+    "category": "indian-media",
+    "region": "indian",
+    "difficulty": "easy",
+    "domain": "hotstar.com",
+    "assets": {
+      "logoFull": "/logos/hotstar.svg"
+    },
+    "colors": [
+      {
+        "hex": "#010ABD",
+        "name": "Hotstar Blue",
+        "proportion": 0.7
+      },
+      {
+        "hex": "#00FFFF",
+        "name": "Cyan",
+        "proportion": 0.3
+      }
+    ],
+    "funFact": "Hotstar has held world records for live-stream audiences — cricket finals have crossed 50 million concurrent viewers."
+  },
+  {
+    "id": "bisleri",
+    "name": "Bisleri",
+    "category": "indian-food",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "bisleri.com",
+    "assets": {
+      "logoFull": "/logos/bisleri.svg"
+    },
+    "colors": [
+      {
+        "hex": "#00B3A1",
+        "name": "Bisleri Aqua",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "Bisleri began as an Italian brand selling mineral water to 1960s Bombay — in India, its name became the word for bottled water."
+  },
+  {
+    "id": "maggi",
+    "name": "Maggi",
+    "category": "indian-food",
+    "region": "indian",
+    "difficulty": "easy",
+    "domain": "maggi.com",
+    "assets": {
+      "logoFull": "/logos/maggi.svg"
+    },
+    "colors": [
+      {
+        "hex": "#FFF01D",
+        "name": "Maggi Yellow",
+        "proportion": 0.6
+      },
+      {
+        "hex": "#E70023",
+        "name": "Red",
+        "proportion": 0.3
+      },
+      {
+        "hex": "#642A00",
+        "name": "Brown",
+        "proportion": 0.1
+      }
+    ],
+    "funFact": "Maggi is Swiss, born in 1886 — but no country eats more of its two-minute noodles than India."
+  },
+  {
+    "id": "apple",
+    "name": "Apple",
+    "category": "global-tech",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "apple.com",
+    "assets": {
+      "logoFull": "/logos/apple.svg"
+    },
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Apple Black",
+        "proportion": 1
+      }
+    ],
+    "funFact": "The bite in the Apple logo is there for scale — so the fruit is never mistaken for a cherry, says its designer."
+  },
+  {
+    "id": "microsoft",
+    "name": "Microsoft",
+    "category": "global-tech",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "microsoft.com",
+    "assets": {
+      "logoFull": "/logos/microsoft.svg"
+    },
+    "colors": [
+      {
+        "hex": "#F25022",
+        "name": "Red",
+        "proportion": 0.25
+      },
+      {
+        "hex": "#7FBA00",
+        "name": "Green",
+        "proportion": 0.25
+      },
+      {
+        "hex": "#00A4EF",
+        "name": "Blue",
+        "proportion": 0.25
+      },
+      {
+        "hex": "#FFB900",
+        "name": "Yellow",
+        "proportion": 0.25
+      }
+    ],
+    "funFact": "Microsoft's four-pane flag arrived only in 2012 — the company spent 25 years before that with just a wordmark."
+  },
+  {
+    "id": "amazon",
+    "name": "Amazon",
+    "category": "global-tech",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "amazon.com",
+    "assets": {
+      "logoFull": "/logos/amazon.svg"
+    },
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Black",
+        "proportion": 0.7
+      },
+      {
+        "hex": "#FF6201",
+        "name": "Amazon Orange",
+        "proportion": 0.3
+      }
+    ],
+    "funFact": "Amazon's arrow runs from A to Z — and doubles as a smile pointed at the customer."
+  },
+  {
+    "id": "instagram",
+    "name": "Instagram",
+    "category": "global-tech",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "instagram.com",
+    "assets": {
+      "logoFull": "/logos/instagram.svg"
+    },
+    "colors": [
+      {
+        "hex": "#833AB4",
+        "name": "Purple",
+        "proportion": 0.4
+      },
+      {
+        "hex": "#FD1D1D",
+        "name": "Red",
+        "proportion": 0.3
+      },
+      {
+        "hex": "#FCAF45",
+        "name": "Yellow",
+        "proportion": 0.3
+      }
+    ],
+    "funFact": "Instagram's icon was a detailed Polaroid camera until 2016 — the gradient is a nod to the old rainbow lens stripe."
+  },
+  {
+    "id": "whatsapp",
+    "name": "WhatsApp",
+    "category": "global-tech",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "whatsapp.com",
+    "assets": {
+      "logoFull": "/logos/whatsapp.svg"
+    },
+    "colors": [
+      {
+        "hex": "#25D366",
+        "name": "WhatsApp Green",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "WhatsApp had about 55 employees when it sold for $19 billion — roughly $345 million per person."
+  },
+  {
+    "id": "youtube",
+    "name": "YouTube",
+    "category": "global-media",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "youtube.com",
+    "assets": {
+      "logoFull": "/logos/youtube.svg"
+    },
+    "colors": [
+      {
+        "hex": "#ED1D24",
+        "name": "YouTube Red",
+        "proportion": 0.7
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.3
+      }
+    ],
+    "funFact": "YouTube's first video, 'Me at the zoo', is 19 seconds of elephants — uploaded by a co-founder in April 2005."
+  },
+  {
+    "id": "netflix",
+    "name": "Netflix",
+    "category": "global-media",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "netflix.com",
+    "assets": {
+      "logoFull": "/logos/netflix.svg"
+    },
+    "colors": [
+      {
+        "hex": "#E50914",
+        "name": "Netflix Red",
+        "proportion": 0.7
+      },
+      {
+        "hex": "#000000",
+        "name": "Black",
+        "proportion": 0.3
+      }
+    ],
+    "funFact": "Netflix once offered to sell itself to Blockbuster for $50 million. Blockbuster passed."
+  },
+  {
+    "id": "linkedin",
+    "name": "LinkedIn",
+    "category": "global-tech",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "linkedin.com",
+    "assets": {
+      "logoFull": "/logos/linkedin.svg"
+    },
+    "colors": [
+      {
+        "hex": "#0A66C2",
+        "name": "LinkedIn Blue",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "LinkedIn launched from Reid Hoffman's living room in 2003 and pulled in just 4,500 members its first month."
+  },
+  {
+    "id": "snapchat",
+    "name": "Snapchat",
+    "category": "global-tech",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "snapchat.com",
+    "assets": {
+      "logoFull": "/logos/snapchat.svg"
+    },
+    "colors": [
+      {
+        "hex": "#FFFC00",
+        "name": "Snap Yellow",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "Snapchat's ghost has a name — Ghostface Chillah — from when the app was still called Picaboo."
+  },
+  {
+    "id": "uber",
+    "name": "Uber",
+    "category": "global-tech",
+    "region": "global",
+    "difficulty": "medium",
+    "domain": "uber.com",
+    "assets": {
+      "logoFull": "/logos/uber.svg"
+    },
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Uber Black",
+        "proportion": 0.85
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.15
+      }
+    ],
+    "funFact": "Uber was sketched out after its founders failed to hail a cab in a Paris snowstorm.",
+    "excludeFromModes": [
+      "colors"
+    ]
+  },
+  {
+    "id": "airbnb",
+    "name": "Airbnb",
+    "category": "global-travel",
+    "region": "global",
+    "difficulty": "medium",
+    "domain": "airbnb.com",
+    "assets": {
+      "logoFull": "/logos/airbnb.svg"
+    },
+    "colors": [
+      {
+        "hex": "#FF385C",
+        "name": "Rausch Coral",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "Airbnb is short for 'air bed and breakfast' — the founders literally rented air mattresses on their floor during a sold-out conference."
+  },
+  {
+    "id": "paypal",
+    "name": "PayPal",
+    "category": "global-finance",
+    "region": "global",
+    "difficulty": "medium",
+    "domain": "paypal.com",
+    "assets": {
+      "logoFull": "/logos/paypal.svg"
+    },
+    "colors": [
+      {
+        "hex": "#003087",
+        "name": "PayPal Navy",
+        "proportion": 0.6
+      },
+      {
+        "hex": "#009CDE",
+        "name": "Light Blue",
+        "proportion": 0.4
+      }
+    ],
+    "funFact": "PayPal's early employees went on to found or fund Tesla, LinkedIn, YouTube and SpaceX — the 'PayPal Mafia'."
+  },
+  {
+    "id": "mastercard",
+    "name": "Mastercard",
+    "category": "global-finance",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "mastercard.com",
+    "assets": {
+      "logoFull": "/logos/mastercard.svg"
+    },
+    "colors": [
+      {
+        "hex": "#EB001B",
+        "name": "Red",
+        "proportion": 0.45
+      },
+      {
+        "hex": "#F79E1B",
+        "name": "Yellow",
+        "proportion": 0.45
+      },
+      {
+        "hex": "#FF5F00",
+        "name": "Overlap Orange",
+        "proportion": 0.1
+      }
+    ],
+    "funFact": "Mastercard dropped its own name from the logo in 2019 — betting the overlapping circles alone were recognizable enough."
+  },
+  {
+    "id": "visa",
+    "name": "Visa",
+    "category": "global-finance",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "visa.com",
+    "assets": {
+      "logoFull": "/logos/visa.svg"
+    },
+    "colors": [
+      {
+        "hex": "#1434CB",
+        "name": "Visa Navy",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#F7B600",
+        "name": "Gold",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "'Visa' was picked because it sounds the same in nearly every language on Earth."
+  },
+  {
+    "id": "samsung",
+    "name": "Samsung",
+    "category": "global-tech",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "samsung.com",
+    "assets": {
+      "logoFull": "/logos/samsung.svg"
+    },
+    "colors": [
+      {
+        "hex": "#1428A0",
+        "name": "Samsung Blue",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "Samsung means 'three stars' in Korean — the company started in 1938 trading dried fish and noodles."
+  },
+  {
+    "id": "cocacola",
+    "name": "Coca-Cola",
+    "category": "global-food",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "coca-cola.com",
+    "assets": {
+      "logoFull": "/logos/cocacola.svg"
+    },
+    "colors": [
+      {
+        "hex": "#E61D2B",
+        "name": "Coke Red",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "The Coca-Cola script was written in 1887 by the company bookkeeper — chosen simply for his fine penmanship."
+  },
+  {
+    "id": "kfc",
+    "name": "KFC",
+    "category": "global-food",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "kfc.com",
+    "assets": {
+      "logoFull": "/logos/kfc.svg"
+    },
+    "colors": [
+      {
+        "hex": "#E4002B",
+        "name": "KFC Red",
+        "proportion": 0.7
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.3
+      }
+    ],
+    "funFact": "Colonel Sanders was a real Kentucky Colonel whose recipe was reportedly rejected over 1,000 times before a restaurant said yes."
+  },
+  {
+    "id": "burgerking",
+    "name": "Burger King",
+    "category": "global-food",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "bk.com",
+    "assets": {
+      "logoFull": "/logos/burgerking.svg"
+    },
+    "colors": [
+      {
+        "hex": "#D62300",
+        "name": "Flame Red",
+        "proportion": 0.55
+      },
+      {
+        "hex": "#FF8732",
+        "name": "Orange",
+        "proportion": 0.45
+      }
+    ],
+    "funFact": "Burger King's 2021 rebrand deliberately went backwards — reviving the flat, bun-shaped lettering of its 1970s logo."
+  },
+  {
+    "id": "dominos",
+    "name": "Domino's",
+    "category": "global-food",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "dominos.com",
+    "assets": {
+      "logoFull": "/logos/dominos.svg"
+    },
+    "colors": [
+      {
+        "hex": "#006491",
+        "name": "Domino Blue",
+        "proportion": 0.5
+      },
+      {
+        "hex": "#E31837",
+        "name": "Red",
+        "proportion": 0.5
+      }
+    ],
+    "funFact": "The three dots on the Domino's tile are its first three stores — the plan to add one per new store died very fast."
+  },
+  {
+    "id": "pizzahut",
+    "name": "Pizza Hut",
+    "category": "global-food",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "pizzahut.com",
+    "assets": {
+      "logoFull": "/logos/pizzahut.svg"
+    },
+    "colors": [
+      {
+        "hex": "#ED1C24",
+        "name": "Hut Red",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "The red roof in Pizza Hut's logo is the actual hut-shaped roof of the first 1958 restaurant in Wichita."
+  },
+  {
+    "id": "starbucks",
+    "name": "Starbucks",
+    "category": "global-food",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "starbucks.com",
+    "assets": {
+      "logoFull": "/logos/starbucks.svg"
+    },
+    "colors": [
+      {
+        "hex": "#006241",
+        "name": "Starbucks Green",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "The Starbucks siren is a twin-tailed mermaid from a 16th-century woodcut — her face is kept slightly asymmetric on purpose."
+  },
+  {
+    "id": "oreo",
+    "name": "Oreo",
+    "category": "global-food",
+    "region": "global",
+    "difficulty": "medium",
+    "domain": "oreo.com",
+    "assets": {
+      "logoFull": "/logos/oreo.svg"
+    },
+    "colors": [
+      {
+        "hex": "#0092D3",
+        "name": "Oreo Blue",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "Nobody knows what 'Oreo' means — the company has never confirmed any theory about its own name."
+  },
+  {
+    "id": "redbull",
+    "name": "Red Bull",
+    "category": "global-food",
+    "region": "global",
+    "difficulty": "medium",
+    "domain": "redbull.com",
+    "assets": {
+      "logoFull": "/logos/redbull.svg"
+    },
+    "colors": [
+      {
+        "hex": "#D2003C",
+        "name": "Bull Red",
+        "proportion": 0.6
+      },
+      {
+        "hex": "#FFCC00",
+        "name": "Sun Yellow",
+        "proportion": 0.4
+      }
+    ],
+    "funFact": "Red Bull is a Thai drink first — Krating Daeng, 'red gaur' — licensed by an Austrian who swore by it for jet lag."
+  },
+  {
+    "id": "adidas",
+    "name": "Adidas",
+    "category": "global-sportswear",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "adidas.com",
+    "assets": {
+      "logoFull": "/logos/adidas.svg"
+    },
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Black",
+        "proportion": 1
+      }
+    ],
+    "funFact": "Adidas is Adi Dassler's name folded together — his feuding brother founded Puma across the river."
+  },
+  {
+    "id": "puma",
+    "name": "Puma",
+    "category": "global-sportswear",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "puma.com",
+    "assets": {
+      "logoFull": "/logos/puma.svg"
+    },
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Black",
+        "proportion": 1
+      }
+    ],
+    "funFact": "Puma and Adidas split one German family — the brothers' rival factories faced each other across the river Aurach."
+  },
+  {
+    "id": "reebok",
+    "name": "Reebok",
+    "category": "global-sportswear",
+    "region": "global",
+    "difficulty": "medium",
+    "domain": "reebok.com",
+    "assets": {
+      "logoFull": "/logos/reebok.svg"
+    },
+    "colors": [
+      {
+        "hex": "#E41D1B",
+        "name": "Reebok Red",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "Reebok is named after the rhebok, a South African antelope — spelled the way the founders found it in a dictionary."
+  },
+  {
+    "id": "zara",
+    "name": "Zara",
+    "category": "global-fashion",
+    "region": "global",
+    "difficulty": "medium",
+    "domain": "zara.com",
+    "assets": {
+      "logoFull": "/logos/zara.svg"
+    },
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Black",
+        "proportion": 1
+      }
+    ],
+    "funFact": "Zara was almost called 'Zorba' — a nearby bar had the name first, so the founder rearranged the letter molds he'd already bought."
+  },
+  {
+    "id": "hm",
+    "name": "H&M",
+    "category": "global-fashion",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "hm.com",
+    "assets": {
+      "logoFull": "/logos/hm.svg"
+    },
+    "colors": [
+      {
+        "hex": "#CD2026",
+        "name": "H&M Red",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "H&M began in 1947 as 'Hennes' — Swedish for 'hers' — selling only womenswear; the M came with a hunting store it bought."
+  },
+  {
+    "id": "levis",
+    "name": "Levi's",
+    "category": "global-fashion",
+    "region": "global",
+    "difficulty": "medium",
+    "domain": "levi.com",
+    "assets": {
+      "logoFull": "/logos/levis.svg"
+    },
+    "colors": [
+      {
+        "hex": "#A8112E",
+        "name": "Levi's Red",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "Levi's 1886 patch shows two horses failing to tear the jeans apart — a trademark designed for customers who couldn't read."
+  },
+  {
+    "id": "lacoste",
+    "name": "Lacoste",
+    "category": "global-fashion",
+    "region": "global",
+    "difficulty": "medium",
+    "domain": "lacoste.com",
+    "assets": {
+      "logoFull": "/logos/lacoste.svg"
+    },
+    "colors": [
+      {
+        "hex": "#00552D",
+        "name": "Crocodile Green",
+        "proportion": 0.6
+      },
+      {
+        "hex": "#E10041",
+        "name": "Red",
+        "proportion": 0.4
+      }
+    ],
+    "funFact": "The crocodile honors tennis champion René Lacoste's nickname — often called the first logo ever stitched on the outside of clothing."
+  },
+  {
+    "id": "rolex",
+    "name": "Rolex",
+    "category": "global-fashion",
+    "region": "global",
+    "difficulty": "medium",
+    "domain": "rolex.com",
+    "assets": {
+      "logoFull": "/logos/rolex.svg"
+    },
+    "colors": [
+      {
+        "hex": "#006039",
+        "name": "Rolex Green",
+        "proportion": 0.6
+      },
+      {
+        "hex": "#A37E2C",
+        "name": "Crown Gold",
+        "proportion": 0.4
+      }
+    ],
+    "funFact": "Rolex is owned by a charitable foundation, not shareholders — set up by its founder Hans Wilsdorf in 1945."
+  },
+  {
+    "id": "toyota",
+    "name": "Toyota",
+    "category": "global-auto",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "toyota.com",
+    "assets": {
+      "logoFull": "/logos/toyota.svg"
+    },
+    "colors": [
+      {
+        "hex": "#EB0A1E",
+        "name": "Toyota Red",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "Toyota's three ellipses contain every letter of the name — and 'Toyoda' became 'Toyota' partly for a luckier stroke count."
+  },
+  {
+    "id": "honda",
+    "name": "Honda",
+    "category": "global-auto",
+    "region": "global",
+    "difficulty": "medium",
+    "domain": "honda.com",
+    "assets": {
+      "logoFull": "/logos/honda.svg"
+    },
+    "colors": [
+      {
+        "hex": "#ED1B2F",
+        "name": "Honda Red",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "Honda began by bolting surplus wartime radio generators onto bicycles — Soichiro Honda's first 'motorcycle'."
+  },
+  {
+    "id": "mercedes",
+    "name": "Mercedes-Benz",
+    "category": "global-auto",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "mercedes-benz.com",
+    "assets": {
+      "logoFull": "/logos/mercedes.svg"
+    },
+    "colors": [
+      {
+        "hex": "#0B1F2A",
+        "name": "Mercedes Dark",
+        "proportion": 0.85
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.15
+      }
+    ],
+    "funFact": "Mercedes was a customer's daughter's name; the three-pointed star claims engines for land, sea and air.",
+    "excludeFromModes": [
+      "colors"
+    ]
+  },
+  {
+    "id": "audi",
+    "name": "Audi",
+    "category": "global-auto",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "audi.com",
+    "assets": {
+      "logoFull": "/logos/audi.svg"
+    },
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Black",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#F50537",
+        "name": "Audi Red",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "Audi is Latin for 'hear!' — founder August Horch's surname means the same in German, but he'd lost the rights to use it."
+  },
+  {
+    "id": "volkswagen",
+    "name": "Volkswagen",
+    "category": "global-auto",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "volkswagen.com",
+    "assets": {
+      "logoFull": "/logos/volkswagen.svg"
+    },
+    "colors": [
+      {
+        "hex": "#001E50",
+        "name": "VW Navy",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "Volkswagen means 'the people's car' — and the Beetle it was created to build eventually outsold the Model T."
+  },
+  {
+    "id": "ferrari",
+    "name": "Ferrari",
+    "category": "global-auto",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "ferrari.com",
+    "assets": {
+      "logoFull": "/logos/ferrari.svg"
+    },
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ferrari Black",
+        "proportion": 1
+      }
+    ],
+    "funFact": "Ferrari's prancing horse came from a WWI ace's fighter plane — his mother told Enzo it would bring him luck."
+  },
+  {
+    "id": "porsche",
+    "name": "Porsche",
+    "category": "global-auto",
+    "region": "global",
+    "difficulty": "medium",
+    "domain": "porsche.com",
+    "assets": {
+      "logoFull": "/logos/porsche.svg"
+    },
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Porsche Black",
+        "proportion": 1
+      }
+    ],
+    "funFact": "The Porsche crest carries Stuttgart's rearing horse — the city began as a stud farm, 'Stutengarten'."
+  },
+  {
+    "id": "tesla",
+    "name": "Tesla",
+    "category": "global-auto",
+    "region": "global",
+    "difficulty": "medium",
+    "domain": "tesla.com",
+    "assets": {
+      "logoFull": "/logos/tesla.svg"
+    },
+    "colors": [
+      {
+        "hex": "#E82127",
+        "name": "Tesla Red",
+        "proportion": 0.85
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.15
+      }
+    ],
+    "funFact": "Tesla's 'T' isn't just a letter — it's a cross-section of an electric motor's rotor, as Elon Musk confirmed."
+  },
+  {
+    "id": "hyundai",
+    "name": "Hyundai",
+    "category": "global-auto",
+    "region": "global",
+    "difficulty": "medium",
+    "domain": "hyundai.com",
+    "assets": {
+      "logoFull": "/logos/hyundai.svg"
+    },
+    "colors": [
+      {
+        "hex": "#002C5F",
+        "name": "Hyundai Blue",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "Hyundai's slanted 'H' is two figures shaking hands — company and customer, mid-deal."
+  },
+  {
+    "id": "ikea",
+    "name": "IKEA",
+    "category": "global-retail",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "ikea.com",
+    "assets": {
+      "logoFull": "/logos/ikea.svg"
+    },
+    "colors": [
+      {
+        "hex": "#0058A3",
+        "name": "IKEA Blue",
+        "proportion": 0.6
+      },
+      {
+        "hex": "#FFDB00",
+        "name": "IKEA Yellow",
+        "proportion": 0.4
+      }
+    ],
+    "funFact": "IKEA is an acronym of its founder and his childhood home: Ingvar Kamprad, Elmtaryd farm, Agunnaryd village."
+  },
+  {
+    "id": "lego",
+    "name": "LEGO",
+    "category": "global-retail",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "lego.com",
+    "assets": {
+      "logoFull": "/logos/lego.svg"
+    },
+    "colors": [
+      {
+        "hex": "#D01012",
+        "name": "LEGO Red",
+        "proportion": 0.6
+      },
+      {
+        "hex": "#FFD500",
+        "name": "Yellow",
+        "proportion": 0.2
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "LEGO compresses 'leg godt' — Danish for 'play well' — and bricks moulded in 1958 still click with today's."
+  },
+  {
+    "id": "shell",
+    "name": "Shell",
+    "category": "global-auto",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "shell.com",
+    "assets": {
+      "logoFull": "/logos/shell.svg"
+    },
+    "colors": [
+      {
+        "hex": "#FBCE07",
+        "name": "Shell Yellow",
+        "proportion": 0.7
+      },
+      {
+        "hex": "#DD1D21",
+        "name": "Red",
+        "proportion": 0.3
+      }
+    ],
+    "funFact": "Shell really did start with seashells — the founder's father imported decorative shells from the East to Victorian London."
+  },
+  {
+    "id": "fedex",
+    "name": "FedEx",
+    "category": "global-retail",
+    "region": "global",
+    "difficulty": "medium",
+    "domain": "fedex.com",
+    "assets": {
+      "logoFull": "/logos/fedex.svg"
+    },
+    "colors": [
+      {
+        "hex": "#4D148C",
+        "name": "FedEx Purple",
+        "proportion": 0.6
+      },
+      {
+        "hex": "#FF6600",
+        "name": "Orange",
+        "proportion": 0.4
+      }
+    ],
+    "funFact": "There's an arrow hidden between the E and the x of FedEx — design's most famous negative-space trick."
+  },
+  {
+    "id": "dhl",
+    "name": "DHL",
+    "category": "global-retail",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "dhl.com",
+    "assets": {
+      "logoFull": "/logos/dhl.svg"
+    },
+    "colors": [
+      {
+        "hex": "#FFCC00",
+        "name": "DHL Yellow",
+        "proportion": 0.6
+      },
+      {
+        "hex": "#D40511",
+        "name": "Red",
+        "proportion": 0.4
+      }
+    ],
+    "funFact": "DHL is Dalsey, Hillblom and Lynn — three founders who began by flying shipping papers from San Francisco to Honolulu."
   }
 ]

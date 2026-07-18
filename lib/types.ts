@@ -3,10 +3,19 @@ export type BrandCategory =
   | "global-sportswear"
   | "global-food"
   | "global-auto"
+  | "global-fashion"
+  | "global-retail"
+  | "global-media"
+  | "global-finance"
+  | "global-travel"
   | "indian-d2c"
   | "indian-legacy"
   | "indian-auto"
-  | "indian-food";
+  | "indian-food"
+  | "indian-tech"
+  | "indian-finance"
+  | "indian-travel"
+  | "indian-media";
 
 export type GameMode = "draw" | "crop" | "wordmark" | "shade" | "colors" | "fake";
 
@@ -28,6 +37,8 @@ export type Brand = {
   category: BrandCategory;
   region: "indian" | "global";
   difficulty: "easy" | "medium" | "hard";
+  /** Domain Brandfetch indexes this brand under; used only by the import script. */
+  domain?: string;
   assets: {
     logoFull: string;
     logoSilhouette?: string;

@@ -17,8 +17,8 @@ npm run build   # fully static — deploys to Vercel as-is
 
 ## How it's put together
 
-- **One dataset drives everything** — [data/brands.json](data/brands.json) holds 15 brands
-  (8 Indian, 7 global). Mode eligibility is derived from which fields a brand has
+- **One dataset drives everything** — [data/brands.json](data/brands.json) holds ~105 brands
+  (roughly half Indian, half global). Mode eligibility is derived from which fields a brand has
   ([lib/data.ts](lib/data.ts)), never special-cased. Add a brand to the JSON and it appears
   in every mode it qualifies for.
 - **All randomness is seeded and resolved up front** ([lib/session.ts](lib/session.ts),
@@ -30,11 +30,19 @@ npm run build   # fully static — deploys to Vercel as-is
   chip with that brand's real primary color — it is also the future share card.
 - No backend, no state library. Session-only state, `sessionStorage` for best streak.
 
+## Data pipeline
+
+- [scripts/import-logos.mjs](scripts/import-logos.mjs) does one-time logo imports from the
+  Brandfetch Brand API (`node scripts/import-logos.mjs <API_KEY> [--missing] [ids…]`), wrapping
+  each asset on the square canvas the game expects.
+- [scripts/sync-colors.mjs](scripts/sync-colors.mjs) reconciles `brands.json` hexes with the
+  colors actually present in the imported SVGs (`--write` to apply), so shade mode always
+  quizzes on the color the player is looking at.
+
 ## Before shipping publicly
 
-- **Logo assets in [public/logos/](public/logos/) are simplified placeholder recreations**
-  (several are generic-font wordmarks). Replace with accurate SVGs during data collection.
-- **Hex codes, Pantone refs, and fun facts are illustrative** — verify each against official
-  brand guidelines (PRD §12 note).
+- **Fun facts and remaining hex values are best-effort** — verify against official brand
+  guidelines before launch (PRD §12 note). PNG-based assets can't be auto-synced; check
+  those brands' colors by eye.
 - Replace the placeholder takedown email in [app/page.tsx](app/page.tsx).
 - Pick the real product name (PRD open decision #1).
