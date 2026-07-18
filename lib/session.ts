@@ -1,9 +1,10 @@
-import { paperTint, shadeSwatches } from "./color";
+import { hexToHsl, shadeSwatches } from "./color";
 import { getBrandsForMode, getBrandsForPack } from "./data";
 import { createRng, pick, shuffle, type Rng } from "./rng";
 import {
   PLAYABLE_MODES,
   type Brand,
+  type FakeSpec,
   type Pack,
   type PlayableMode,
   type Round,
@@ -13,14 +14,25 @@ import {
 export const DEFAULT_ROUNDS = 10;
 export const OPTION_COUNT = 4;
 
-const CROP_FOCUS_POINTS = [
-  { fx: 0.32, fy: 0.42 },
-  { fx: 0.5, fy: 0.42 },
-  { fx: 0.68, fy: 0.42 },
-  { fx: 0.32, fy: 0.58 },
-  { fx: 0.5, fy: 0.58 },
-  { fx: 0.68, fy: 0.58 },
-];
+/**
+ * Build the doctoring for a fake round. Colored logos can get a hue shift;
+ * monochrome ones (where a hue shift is invisible) get a proportion squeeze.
+ */
+function buildFake(brand: Brand, rng: Rng): FakeSpec {
+  const saturated = brand.colors.some((c) => hexToHsl(c.hex).s >= 0.18);
+  const kinds: FakeSpec["kind"][] = saturated
+    ? ["hue", "squashX", "squashY"]
+    : ["squashX", "squashY"];
+  const kind = pick(kinds, rng);
+  if (kind === "hue") {
+    const amount = (24 + Math.round(rng() * 14)) * (rng() < 0.5 ? -1 : 1);
+    return { kind, amount, whatsWrong: "The colors were shifted off the real shade." };
+  }
+  const amount = 0.8 + rng() * 0.06;
+  return kind === "squashX"
+    ? { kind, amount, whatsWrong: "It was squeezed narrower — the real mark is wider." }
+    : { kind, amount, whatsWrong: "It was squashed flatter — the real mark is taller." };
+}
 
 function playableModesFor(brand: Brand): PlayableMode[] {
   return PLAYABLE_MODES.filter((m) => getBrandsForMode(m, [brand]).length === 1);
@@ -40,20 +52,14 @@ function pickOptions(answer: Brand, pool: Brand[], rng: Rng): Brand[] {
 
 function buildRound(brand: Brand, mode: PlayableMode, pool: Brand[], rng: Rng): Round {
   const round: Round = { mode, brand };
-  if (mode === "colors" || mode === "crop") {
+  if (mode === "colors") {
     round.options = pickOptions(brand, pool, rng);
   }
   if (mode === "shade") {
     round.swatches = shadeSwatches(brand.colors[0].hex, rng);
   }
-  if (mode === "crop") {
-    const focus = pick(CROP_FOCUS_POINTS, rng);
-    round.crop = {
-      scale: 3.2 + rng() * 1.2,
-      fx: focus.fx + (rng() - 0.5) * 0.05,
-      fy: focus.fy + (rng() - 0.5) * 0.05,
-      backdrop: paperTint(brand.colors[0].hex),
-    };
+  if (mode === "fake") {
+    round.fake = rng() < 0.5 ? buildFake(brand, rng) : null;
   }
   return round;
 }

@@ -32,10 +32,10 @@ const MODES = [
     blurb: "Four near-identical swatches. Only one is the real hex.",
   },
   {
-    id: "crop",
+    id: "fake",
     tag: "Mode C",
-    name: "Close-up",
-    blurb: "Call the brand from one zoomed-in sliver of its logo.",
+    name: "Real or fake",
+    blurb: "One logo, one call. Half of them have been quietly doctored.",
   },
   {
     id: "draw",
@@ -117,7 +117,7 @@ export default function Home() {
       </section>
 
       <p className="mt-4 font-mono text-[11px] tracking-[0.2em] text-ink-muted uppercase">
-        In the works: wordmark · real or fake
+        In the works: wordmark · close-up
       </p>
 
       <footer className="mt-auto pt-4 text-xs leading-relaxed text-ink-muted">

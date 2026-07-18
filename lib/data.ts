@@ -21,7 +21,9 @@ export function isEligible(brand: Brand, mode: GameMode): boolean {
     case "colors":
       return brand.colors.length >= 2;
     case "fake":
-      return (brand.fakeVariants?.length ?? 0) >= 1;
+      // Fakes are generated procedurally from the real asset, so any brand
+      // with a logo qualifies; hand-made fakeVariants remain a future override.
+      return !!brand.assets.logoFull;
   }
 }
 

@@ -52,21 +52,33 @@ export type Brand = {
 };
 
 /** Modes that are actually playable. */
-export const PLAYABLE_MODES = ["colors", "shade", "crop", "draw"] as const;
+export const PLAYABLE_MODES = ["colors", "shade", "fake", "draw"] as const;
 export type PlayableMode = (typeof PLAYABLE_MODES)[number];
 
 export type Pack = "all" | "indian" | "global";
+
+/**
+ * A procedurally doctored logo (fake mode). Fakes are rendered from the real
+ * asset with a CSS distortion, so every brand plays without hand-made assets;
+ * hand-crafted `fakeVariants` in brands.json can override this later.
+ */
+export type FakeSpec = {
+  kind: "squashX" | "squashY" | "hue";
+  /** scale factor for squash kinds, degrees for hue. */
+  amount: number;
+  whatsWrong: string;
+};
 
 /** One prepared round of a session. All randomness is resolved up front. */
 export type Round = {
   mode: PlayableMode;
   brand: Brand;
-  /** 4 brand options (colors + crop modes). Includes the answer, pre-shuffled. */
+  /** 4 brand options (colors mode). Includes the answer, pre-shuffled. */
   options?: Brand[];
   /** 4 hex swatches (shade mode). Includes the true hex, pre-shuffled. */
   swatches?: string[];
-  /** Crop window (crop mode). */
-  crop?: { scale: number; fx: number; fy: number; backdrop: string };
+  /** Fake mode: the doctoring to show, or null when this round shows the real mark. */
+  fake?: FakeSpec | null;
 };
 
 export type RoundResult = {
@@ -79,6 +91,8 @@ export type RoundResult = {
   /** Draw mode: the sketch as a PNG data URL, and its 0–100 similarity score. */
   drawing?: string;
   score?: number;
+  /** Fake mode: what was shown — null means the real mark was shown. */
+  shownFake?: FakeSpec | null;
 };
 
 export type Session = {

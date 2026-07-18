@@ -5,7 +5,7 @@ import type { Round, RoundResult } from "@/lib/types";
 const MODE_LABELS: Record<string, string> = {
   colors: "Name the palette",
   shade: "Exact shade",
-  crop: "Close-up",
+  fake: "Real or fake",
   draw: "Draw from memory",
 };
 

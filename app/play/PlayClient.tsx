@@ -7,13 +7,13 @@ import { RevealScreen } from "@/components/RevealScreen";
 import { Results } from "@/components/Results";
 import { ColorsRound } from "@/components/modes/ColorsRound";
 import { ShadeRound } from "@/components/modes/ShadeRound";
-import { CropRound } from "@/components/modes/CropRound";
+import { FakeRound } from "@/components/modes/FakeRound";
 import { DrawRound } from "@/components/modes/DrawRound";
 import { DRAW_PASS_SCORE } from "@/lib/drawScore";
 import { buildSession } from "@/lib/session";
 import type { Pack, PlayableMode, RoundResult, Session } from "@/lib/types";
 
-const VALID_MODES = ["colors", "shade", "crop", "draw", "mixed"];
+const VALID_MODES = ["colors", "shade", "fake", "draw", "mixed"];
 const VALID_PACKS = ["all", "indian", "global"];
 
 export function PlayClient() {
@@ -88,6 +88,22 @@ export function PlayClient() {
     setPhase("reveal");
   };
 
+  const submitFakeCall = (saidFake: boolean) => {
+    const wasFake = round.fake != null;
+    setResults((prev) => [
+      ...prev,
+      {
+        brand: round.brand,
+        mode: round.mode,
+        correct: saidFake === wasFake,
+        skipped: false,
+        picked: saidFake ? "fake" : "real",
+        shownFake: round.fake ?? null,
+      },
+    ]);
+    setPhase("reveal");
+  };
+
   const submitDrawing = (drawing: string, score: number) => {
     setResults((prev) => [
       ...prev,
@@ -145,7 +161,7 @@ export function PlayClient() {
         ) : round.mode === "draw" ? (
           <DrawRound round={round} onDone={submitDrawing} onSkip={skip} />
         ) : (
-          <CropRound round={round} onPick={(id) => answer(id, id === round.brand.id)} />
+          <FakeRound round={round} onPick={submitFakeCall} />
         )
       ) : (
         <RevealScreen

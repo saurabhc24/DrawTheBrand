@@ -4,11 +4,13 @@ A brand-logo memory game: you recognize every logo instantly — but can you nam
 shade, place a palette with no shapes, or call a brand from one zoomed-in sliver?
 
 Live modes: **Palette** (name the brand from proportional color blocks), **Exact shade**
-(pick the real hex from near-identical swatches), **Close-up** (zoomed crop), and
-**Draw from memory** (sketch the logo; scored 0–100 against the real mark via a
+(pick the real hex from near-identical swatches), **Real or fake** (spot the doctored
+logo — fakes are generated procedurally from the real asset via seeded hue shifts and
+proportion squeezes, [lib/fake.ts](lib/fake.ts), so no hand-made fake images are needed),
+and **Draw from memory** (sketch the logo; scored 0–100 against the real mark via a
 position/scale-normalized, edge-based chamfer similarity — [lib/drawScore.ts](lib/drawScore.ts)).
-Plus Mixed sessions and Indian / Global packs. Wordmark and real-or-fake modes are
-data-ready but not yet built.
+Plus Mixed sessions and Indian / Global packs. Wordmark mode is data-ready but not yet
+built; the earlier Close-up (crop) mode was retired in favor of Real or fake.
 
 ## Run it
 

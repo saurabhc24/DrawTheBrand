@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { fakeStyle } from "@/lib/fake";
 import type { RoundResult } from "@/lib/types";
 
 function HexChip({ hex, name }: { hex: string; name?: string }) {
@@ -68,7 +69,38 @@ export function RevealScreen({
         <h2 className="text-2xl font-extrabold tracking-tight">{brand.name}</h2>
       </div>
 
-      {mode === "draw" && result.drawing ? (
+      {mode === "fake" && result.shownFake ? (
+        <>
+          <div className="mt-4 grid grid-cols-2 gap-3">
+            <figure className="overflow-hidden rounded-lg border border-flag bg-card">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={brand.assets.logoFull}
+                alt="The doctored logo you were shown"
+                className="aspect-square w-full"
+                style={fakeStyle(result.shownFake)}
+              />
+              <figcaption className="border-t border-flag px-2 py-1.5 font-mono text-[10px] tracking-widest text-flag uppercase">
+                What you saw
+              </figcaption>
+            </figure>
+            <figure className="overflow-hidden rounded-lg border border-rule bg-card">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={brand.assets.logoFull}
+                alt={`The real ${brand.name} logo`}
+                className="aspect-square w-full"
+              />
+              <figcaption className="border-t border-rule px-2 py-1.5 font-mono text-[10px] tracking-widest text-ink-muted uppercase">
+                The real one
+              </figcaption>
+            </figure>
+          </div>
+          <p className="mt-3 border-l-2 border-flag pl-3 text-sm leading-relaxed text-ink">
+            {result.shownFake.whatsWrong}
+          </p>
+        </>
+      ) : mode === "draw" && result.drawing ? (
         <div className="mt-4 grid grid-cols-2 gap-3">
           <figure className="overflow-hidden rounded-lg border border-rule bg-card">
             {/* eslint-disable-next-line @next/next/no-img-element */}
