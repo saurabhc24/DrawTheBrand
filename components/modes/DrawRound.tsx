@@ -142,7 +142,7 @@ export function DrawRound({
         <select
           value={width}
           onChange={(event) => setWidth(Number(event.target.value))}
-          className="rounded-md border border-rule bg-card px-2 py-1.5 text-sm font-semibold"
+          className="rounded-full border border-ink/20 bg-card px-3 py-1.5 text-sm font-bold"
           aria-label="Brush size"
         >
           <option value={7}>Fine</option>
@@ -163,7 +163,7 @@ export function DrawRound({
             key={hex}
             onClick={() => setBrush(hex)}
             aria-label={`Use ${hex}`}
-            className={`h-9 w-9 shrink-0 rounded-md border ${
+            className={`h-9 w-9 shrink-0 rounded-xl border ${
               brush.toUpperCase() === hex.toUpperCase() ? "border-ink border-2" : "border-rule"
             }`}
             style={{ backgroundColor: hex }}
@@ -182,7 +182,7 @@ export function DrawRound({
           onPointerMove={move}
           onPointerUp={stop}
           onPointerCancel={stop}
-          className="max-h-full max-w-full touch-none rounded-lg border border-rule bg-card"
+          className="max-h-full max-w-full touch-none rounded-2xl border border-rule bg-card"
           aria-label={`Drawing canvas for ${round.brand.name}`}
         />
       </div>
@@ -191,20 +191,20 @@ export function DrawRound({
         <button
           onClick={undo}
           disabled={!canUndo}
-          className="pressable rounded-md border border-rule bg-card py-3 text-sm font-bold disabled:opacity-40"
+          className="pressable rounded-full border border-ink/20 bg-card py-3 text-sm font-bold disabled:opacity-40"
         >
           Undo
         </button>
         <button
           onClick={clear}
-          className="pressable rounded-md border border-rule bg-card py-3 text-sm font-bold"
+          className="pressable rounded-full border border-ink/20 bg-card py-3 text-sm font-bold"
         >
           Clear
         </button>
         <button
           onClick={done}
           disabled={scoring}
-          className="pressable rounded-md bg-ink py-3 text-sm font-bold text-paper disabled:opacity-60"
+          className="pressable rounded-full bg-ink py-3 text-sm font-bold text-paper disabled:opacity-60"
         >
           {scoring ? "Scoring…" : hasDrawing ? "Score it" : "Skip drawing"}
         </button>

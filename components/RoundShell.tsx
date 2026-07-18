@@ -39,11 +39,11 @@ export function RoundShell({
             <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" strokeWidth="1.8" />
           </svg>
         </Link>
-        <span className="font-mono text-xs tracking-widest text-ink-muted uppercase">
+        <span className="text-xs font-bold tracking-widest text-ink-muted uppercase">
           Round {index + 1}/{rounds.length}
         </span>
         <span
-          className={`font-mono text-xs tracking-widest uppercase ${
+          className={`text-xs font-bold tracking-widest uppercase ${
             streak >= 2 ? "text-proof" : "text-ink-muted"
           }`}
         >
@@ -56,13 +56,13 @@ export function RoundShell({
       </div>
 
       <div className="mt-6 flex items-baseline justify-between">
-        <p className="font-mono text-[11px] tracking-[0.2em] text-ink-muted uppercase">
+        <p className="text-[11px] font-bold tracking-[0.2em] text-ink-muted uppercase">
           {MODE_LABELS[round.mode]}
         </p>
         {showSkip && (
           <button
             onClick={onSkip}
-            className="pressable font-mono text-[11px] tracking-[0.2em] text-ink-muted uppercase underline underline-offset-4 hover:text-ink"
+            className="pressable text-[11px] font-bold tracking-[0.2em] text-ink-muted uppercase underline underline-offset-4 hover:text-ink"
           >
             Skip
           </button>

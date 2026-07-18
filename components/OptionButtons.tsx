@@ -16,11 +16,11 @@ export function OptionButtons({
         <button
           key={brand.id}
           onClick={() => onPick(brand.id)}
-          className="pressable relative min-h-16 rounded-md border border-rule bg-card px-3 py-4 text-center text-base font-semibold hover:border-ink-muted"
+          className="pressable relative min-h-16 rounded-2xl bg-tile px-3 py-4 text-center text-base font-bold hover:bg-rule"
         >
           <span
             aria-hidden
-            className="absolute top-1.5 left-2 font-mono text-[10px] text-ink-muted"
+            className="absolute top-2 left-3 text-[10px] font-bold text-ink-muted"
           >
             {INDEX_LABELS[i]}
           </span>

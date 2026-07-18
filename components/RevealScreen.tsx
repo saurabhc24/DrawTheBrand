@@ -18,7 +18,7 @@ function HexChip({ hex, name }: { hex: string; name?: string }) {
       onClick={() => {
         navigator.clipboard?.writeText(hex).then(() => setCopied(true));
       }}
-      className="pressable w-24 shrink-0 overflow-hidden rounded-md border border-rule bg-card text-left"
+      className="pressable w-24 shrink-0 overflow-hidden rounded-xl border border-rule bg-card text-left"
       aria-label={`Copy ${hex}`}
     >
       <span className="block h-14 w-full" style={{ backgroundColor: hex }} />
@@ -60,8 +60,8 @@ export function RevealScreen({
     <div className="animate-rise flex min-h-0 flex-1 flex-col overflow-y-auto">
       <div className="flex items-center gap-3">
         <span
-          className={`animate-stamp inline-block rounded-sm border-2 px-2.5 py-1 font-mono text-xs font-semibold tracking-[0.18em] uppercase ${
-            correct ? "border-proof text-proof" : "border-flag text-flag"
+          className={`animate-stamp inline-block rounded-full px-3 py-1.5 text-xs font-bold tracking-[0.18em] text-white uppercase ${
+            correct ? "bg-proof" : "bg-flag"
           }`}
         >
           {verdict}
@@ -72,7 +72,7 @@ export function RevealScreen({
       {mode === "fake" && result.shownFake ? (
         <>
           <div className="mt-4 grid grid-cols-2 gap-3">
-            <figure className="overflow-hidden rounded-lg border border-flag bg-card">
+            <figure className="overflow-hidden rounded-2xl border border-flag bg-card">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={brand.assets.logoFull}
@@ -80,18 +80,18 @@ export function RevealScreen({
                 className="aspect-square w-full"
                 style={fakeStyle(result.shownFake)}
               />
-              <figcaption className="border-t border-flag px-2 py-1.5 font-mono text-[10px] tracking-widest text-flag uppercase">
+              <figcaption className="border-t border-flag px-2 py-1.5 text-[10px] font-bold tracking-widest text-flag uppercase">
                 What you saw
               </figcaption>
             </figure>
-            <figure className="overflow-hidden rounded-lg border border-rule bg-card">
+            <figure className="overflow-hidden rounded-2xl border border-rule bg-card">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={brand.assets.logoFull}
                 alt={`The real ${brand.name} logo`}
                 className="aspect-square w-full"
               />
-              <figcaption className="border-t border-rule px-2 py-1.5 font-mono text-[10px] tracking-widest text-ink-muted uppercase">
+              <figcaption className="border-t border-rule px-2 py-1.5 text-[10px] font-bold tracking-widest text-ink-muted uppercase">
                 The real one
               </figcaption>
             </figure>
@@ -102,23 +102,23 @@ export function RevealScreen({
         </>
       ) : mode === "draw" && result.drawing ? (
         <div className="mt-4 grid grid-cols-2 gap-3">
-          <figure className="overflow-hidden rounded-lg border border-rule bg-card">
+          <figure className="overflow-hidden rounded-2xl border border-rule bg-card">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={result.drawing} alt="Your drawing" className="aspect-square w-full" />
-            <figcaption className="border-t border-rule px-2 py-1.5 font-mono text-[10px] tracking-widest text-ink-muted uppercase">
+            <figcaption className="border-t border-rule px-2 py-1.5 text-[10px] font-bold tracking-widest text-ink-muted uppercase">
               Yours
             </figcaption>
           </figure>
-          <figure className="overflow-hidden rounded-lg border border-rule bg-card">
+          <figure className="overflow-hidden rounded-2xl border border-rule bg-card">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={brand.assets.logoFull} alt={`${brand.name} logo`} className="aspect-square w-full" />
-            <figcaption className="border-t border-rule px-2 py-1.5 font-mono text-[10px] tracking-widest text-ink-muted uppercase">
+            <figcaption className="border-t border-rule px-2 py-1.5 text-[10px] font-bold tracking-widest text-ink-muted uppercase">
               Actual
             </figcaption>
           </figure>
         </div>
       ) : (
-        <div className="mt-4 mx-auto w-full max-w-80 overflow-hidden rounded-lg border border-rule bg-card">
+        <div className="mt-4 mx-auto w-full max-w-80 overflow-hidden rounded-2xl border border-rule bg-card">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={brand.assets.logoFull} alt={`${brand.name} logo`} className="aspect-square w-full" />
         </div>
@@ -143,7 +143,7 @@ export function RevealScreen({
         </div>
       )}
 
-      <p className="mt-4 font-mono text-[11px] tracking-[0.2em] text-ink-muted uppercase">
+      <p className="mt-4 text-[11px] font-bold tracking-[0.2em] text-ink-muted uppercase">
         The exact colors — tap to copy
       </p>
       <div className="mt-2 flex gap-2 overflow-x-auto pb-1">
@@ -159,7 +159,7 @@ export function RevealScreen({
       <div className="mt-auto pt-4">
         <button
           onClick={onNext}
-          className="pressable w-full rounded-md bg-ink py-4 text-base font-bold text-paper"
+          className="pressable w-full rounded-full bg-ink py-4 text-base font-bold text-paper"
         >
           {isLast ? "See results" : "Next"}
         </button>

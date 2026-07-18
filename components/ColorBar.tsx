@@ -33,7 +33,7 @@ export function ColorBar({
         } else if (i === currentIndex) {
           cls = "bg-card border border-ink";
         }
-        return <div key={i} className={`flex-1 rounded-[2px] ${cls}`} style={style} />;
+        return <div key={i} className={`flex-1 ${tall ? "rounded-md" : "rounded-sm"} ${cls}`} style={style} />;
       })}
     </div>
   );

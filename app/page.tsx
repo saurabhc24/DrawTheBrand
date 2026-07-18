@@ -17,31 +17,46 @@ const MODES = [
     tag: "Mix",
     name: "Mixed",
     blurb: "All four challenges, shuffled. The full test.",
-    primary: true,
+    card: "bg-ink text-paper",
+    tagColor: "text-paper/60",
+    blurbColor: "text-paper/70",
+    wide: true,
   },
   {
     id: "colors",
     tag: "Mode A",
     name: "Palette",
-    blurb: "Name the brand from its colors alone — no shapes, no letters.",
+    blurb: "Name the brand from its colors alone.",
+    card: "bg-block-orange text-white",
+    tagColor: "text-white/70",
+    blurbColor: "text-white/85",
   },
   {
     id: "shade",
     tag: "Mode B",
     name: "Exact shade",
-    blurb: "Four near-identical swatches. Only one is the real hex.",
+    blurb: "Only one swatch is the real hex.",
+    card: "bg-block-pink text-ink",
+    tagColor: "text-ink/60",
+    blurbColor: "text-ink/70",
   },
   {
     id: "fake",
     tag: "Mode C",
     name: "Real or fake",
-    blurb: "One logo, one call. Half of them have been quietly doctored.",
+    blurb: "Half of these logos are doctored.",
+    card: "bg-block-yellow text-ink",
+    tagColor: "text-ink/60",
+    blurbColor: "text-ink/70",
   },
   {
     id: "draw",
     tag: "Mode D",
     name: "Draw",
-    blurb: "Sketch the logo from memory — scored against the real mark.",
+    blurb: "Sketch it from memory. Get scored.",
+    card: "bg-block-green text-paper",
+    tagColor: "text-paper/60",
+    blurbColor: "text-paper/75",
   },
 ];
 
@@ -49,23 +64,27 @@ export default function Home() {
   const [pack, setPack] = useState<Pack>("all");
 
   return (
-    <div className="mx-auto flex h-dvh w-full max-w-md flex-col overflow-hidden px-4 pb-4 pt-8">
+    <div className="mx-auto flex min-h-dvh w-full max-w-md flex-col px-4 pb-6 pt-10">
       <header>
-        <p className="font-mono text-[11px] tracking-[0.3em] text-ink-muted uppercase">
+        <p className="text-[11px] font-bold tracking-[0.25em] text-ink-muted uppercase">
           A brand memory test
         </p>
-        <h1 className="mt-2 text-6xl font-extrabold tracking-tight">Brandr</h1>
-        {/* Calibration strip: every brand in the current pack, by its real primary color. */}
-        <div className="mt-4 flex h-2 gap-[3px]" aria-hidden>
-          {brands
-            .filter((b) => pack === "all" || b.region === pack)
-            .map((b) => (
-              <span
-                key={b.id}
-                className="flex-1 rounded-[2px]"
-                style={{ backgroundColor: b.colors[0].hex }}
-              />
-            ))}
+        <h1 className="mt-1 text-6xl font-extrabold tracking-tight">Brandr</h1>
+        {/* Calibration strip: a sample of the pack's brands, by real primary color. */}
+        <div className="mt-4 flex h-2.5 gap-[3px]" aria-hidden>
+          {(() => {
+            const pool = brands.filter((b) => pack === "all" || b.region === pack);
+            const step = Math.max(1, Math.ceil(pool.length / 22));
+            return pool
+              .filter((_, i) => i % step === 0)
+              .map((b) => (
+                <span
+                  key={b.id}
+                  className="flex-1 rounded-full"
+                  style={{ backgroundColor: b.colors[0].hex }}
+                />
+              ));
+          })()}
         </div>
         <p className="mt-4 text-base leading-relaxed text-ink-muted">
           You&apos;ve seen these logos ten thousand times. This measures what actually stuck.
@@ -78,10 +97,10 @@ export default function Home() {
             <button
               key={p.id}
               onClick={() => setPack(p.id)}
-              className={`pressable rounded-full border px-4 py-2 text-sm font-semibold ${
+              className={`pressable rounded-full px-4 py-2 text-sm font-bold ${
                 pack === p.id
-                  ? "border-ink bg-ink text-paper"
-                  : "border-rule bg-card text-ink hover:border-ink-muted"
+                  ? "bg-ink text-paper"
+                  : "border border-ink/20 bg-card text-ink hover:border-ink"
               }`}
             >
               {p.label}
@@ -90,42 +109,53 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mt-4 flex min-h-0 flex-1 flex-col gap-2.5 overflow-y-auto pr-1" aria-label="Pick a mode">
+      <section className="mt-4 grid grid-cols-2 gap-3" aria-label="Pick a mode">
         {MODES.map((m) => (
           <Link
             key={m.id}
             href={`/play?mode=${m.id}&pack=${pack}`}
-            className={`pressable rounded-lg border p-3.5 ${
-              m.primary
-                ? "border-ink bg-ink text-paper"
-                : "border-rule bg-card hover:border-ink-muted"
+            className={`pressable flex min-h-36 flex-col justify-between rounded-3xl p-4 ${m.card} ${
+              m.wide ? "col-span-2 min-h-28" : ""
             }`}
           >
-            <span
-              className={`font-mono text-[10px] tracking-[0.25em] uppercase ${
-                m.primary ? "text-paper/60" : "text-ink-muted"
-              }`}
-            >
+            <span className={`text-[10px] font-bold tracking-[0.22em] uppercase ${m.tagColor}`}>
               {m.tag}
             </span>
-            <span className="mt-1 block text-lg font-extrabold tracking-tight">{m.name}</span>
-            <span className={`mt-0.5 block text-sm ${m.primary ? "text-paper/70" : "text-ink-muted"}`}>
-              {m.blurb}
+            <span>
+              <span className="block text-xl leading-tight font-extrabold tracking-tight">
+                {m.name}
+              </span>
+              <span className={`mt-1 block text-[13px] leading-snug ${m.blurbColor}`}>
+                {m.blurb}
+              </span>
             </span>
           </Link>
         ))}
       </section>
 
-      <p className="mt-4 font-mono text-[11px] tracking-[0.2em] text-ink-muted uppercase">
+      <p className="mt-5 text-[11px] font-bold tracking-[0.18em] text-ink-muted uppercase">
         In the works: wordmark · close-up
       </p>
 
-      <footer className="mt-auto pt-4 text-xs leading-relaxed text-ink-muted">
-        A memory game, not an affiliation. All marks belong to their owners and appear here to
-        test how well we remember them. Something yours shown wrongly?{" "}
-        <a href="mailto:takedown@example.com" className="underline underline-offset-2">
-          Ask us to take it down.
-        </a>
+      <footer className="mt-auto pt-8 text-xs leading-relaxed text-ink-muted">
+        <p>
+          A memory game, not an affiliation. All marks belong to their owners and appear here to
+          test how well we remember them. Something yours shown wrongly?{" "}
+          <a href="mailto:takedown@example.com" className="underline underline-offset-2">
+            Ask us to take it down.
+          </a>
+        </p>
+        <p className="mt-3 font-semibold text-ink">
+          Made by{" "}
+          <a
+            href="https://github.com/saurabhc24"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2"
+          >
+            Saurabh
+          </a>
+        </p>
       </footer>
     </div>
   );

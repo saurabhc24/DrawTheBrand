@@ -15,7 +15,7 @@ export function ShadeRound({
       <h1 className="text-xl font-extrabold tracking-tight">
         Which one is the real {colorName}?
       </h1>
-      <div className="mx-auto mt-4 w-40 overflow-hidden rounded-lg border border-rule bg-card">
+      <div className="mx-auto mt-4 w-40 overflow-hidden rounded-2xl border border-rule bg-card">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={round.brand.assets.logoFull}
@@ -32,7 +32,7 @@ export function ShadeRound({
             key={i}
             onClick={() => onPick(hex)}
             aria-label={`Swatch ${i + 1}`}
-            className="pressable h-24 rounded-md border border-rule"
+            className="pressable h-24 rounded-2xl border border-rule"
             style={{ backgroundColor: hex }}
           />
         ))}

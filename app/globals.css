@@ -1,14 +1,23 @@
 @import "tailwindcss";
 
 @theme {
-  /* Proof-sheet palette: quiet chrome, the logos supply the color. */
-  --color-paper: #fbfbf9;
+  /* Color-block palette: white paper, bold ink, flat bright cards for the
+     chrome. Game surfaces stay neutral so the logos supply the color. */
+  --color-paper: #fdfcfa;
   --color-card: #ffffff;
-  --color-ink: #141416;
+  --color-tile: #f4f1ec; /* neutral option/answer tiles */
+  --color-ink: #131313;
   --color-ink-muted: #6f6f74;
-  --color-rule: #e6e6e2;
-  --color-proof: #0e8a5f; /* correct */
-  --color-flag: #d2362a; /* wrong */
+  --color-rule: #e7e4de;
+  --color-proof: #1e4633; /* correct — deep green block */
+  --color-flag: #e0442a; /* wrong — orange-red block */
+
+  /* The block colors, straight from the reference boards. */
+  --color-block-orange: #f2732e;
+  --color-block-pink: #f4b8dd;
+  --color-block-yellow: #f5c63c;
+  --color-block-olive: #a8b33b;
+  --color-block-green: #1e4633;
 
   --font-sans: var(--font-archivo), system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, monospace;

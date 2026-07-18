@@ -17,7 +17,7 @@ export function FakeRound({
       <h1 className="text-xl font-extrabold tracking-tight">
         Is this the real {round.brand.name} logo?
       </h1>
-      <div className="mx-auto mt-4 w-full max-w-80 overflow-hidden rounded-lg border border-rule bg-card">
+      <div className="mx-auto mt-4 w-full max-w-80 overflow-hidden rounded-2xl border border-rule bg-card">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={round.brand.assets.logoFull}
@@ -32,13 +32,13 @@ export function FakeRound({
       <div className="mt-auto grid grid-cols-2 gap-3 pt-6">
         <button
           onClick={() => onPick(false)}
-          className="pressable min-h-16 rounded-md border-2 border-proof bg-card py-4 font-mono text-sm font-semibold tracking-[0.18em] text-proof uppercase"
+          className="pressable min-h-16 rounded-2xl bg-proof py-4 text-sm font-bold tracking-[0.18em] text-white uppercase"
         >
           Real
         </button>
         <button
           onClick={() => onPick(true)}
-          className="pressable min-h-16 rounded-md border-2 border-flag bg-card py-4 font-mono text-sm font-semibold tracking-[0.18em] text-flag uppercase"
+          className="pressable min-h-16 rounded-2xl bg-flag py-4 text-sm font-bold tracking-[0.18em] text-white uppercase"
         >
           Fake
         </button>

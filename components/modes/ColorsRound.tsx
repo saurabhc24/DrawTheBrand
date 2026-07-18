@@ -16,7 +16,7 @@ export function ColorsRound({
     <div className="animate-fade flex flex-1 flex-col">
       <h1 className="text-xl font-extrabold tracking-tight">Whose palette is this?</h1>
       <div
-        className="mt-4 flex h-64 w-full flex-col overflow-hidden rounded-lg border border-rule"
+        className="mt-4 flex h-64 w-full flex-col overflow-hidden rounded-3xl border border-rule"
         role="img"
         aria-label="A brand's colors, shown in proportion"
       >
