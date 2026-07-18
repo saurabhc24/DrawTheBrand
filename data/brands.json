@@ -362,14 +362,14 @@
     },
     "colors": [
       {
-        "hex": "#F8D409",
-        "name": "Flipkart Yellow",
-        "proportion": 0.6
-      },
-      {
         "hex": "#0664AE",
         "name": "Flipkart Blue",
-        "proportion": 0.4
+        "proportion": 0.5
+      },
+      {
+        "hex": "#F8D409",
+        "name": "Flipkart Yellow",
+        "proportion": 0.5
       }
     ],
     "funFact": "Flipkart started in 2007 selling books out of a two-bedroom Bengaluru apartment, with a delivery fleet of two founders.",
@@ -1159,14 +1159,14 @@
     },
     "colors": [
       {
-        "hex": "#E10000",
+        "hex": "#EC1C24",
         "name": "Dream11 Red",
-        "proportion": 0.6
+        "proportion": 0.8
       },
       {
-        "hex": "#1F2A44",
-        "name": "Navy",
-        "proportion": 0.4
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
       }
     ],
     "funFact": "Dream11 became India's first gaming unicorn — and put its logo on the front of the Indian cricket team's jersey."
@@ -1795,14 +1795,14 @@
     },
     "colors": [
       {
-        "hex": "#003087",
+        "hex": "#253B80",
         "name": "PayPal Navy",
-        "proportion": 0.6
+        "proportion": 0.5
       },
       {
-        "hex": "#009CDE",
-        "name": "Light Blue",
-        "proportion": 0.4
+        "hex": "#179BD7",
+        "name": "PayPal Blue",
+        "proportion": 0.5
       }
     ],
     "funFact": "PayPal's early employees went on to found or fund Tesla, LinkedIn, YouTube and SpaceX — the 'PayPal Mafia'."
@@ -1920,7 +1920,7 @@
     },
     "colors": [
       {
-        "hex": "#E4002B",
+        "hex": "#AB182F",
         "name": "KFC Red",
         "proportion": 0.7
       },
@@ -2243,12 +2243,12 @@
       {
         "hex": "#006039",
         "name": "Rolex Green",
-        "proportion": 0.6
+        "proportion": 0.85
       },
       {
-        "hex": "#A37E2C",
-        "name": "Crown Gold",
-        "proportion": 0.4
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.15
       }
     ],
     "funFact": "Rolex is owned by a charitable foundation, not shareholders — set up by its founder Hans Wilsdorf in 1945."
@@ -2450,7 +2450,7 @@
     },
     "colors": [
       {
-        "hex": "#002C5F",
+        "hex": "#003984",
         "name": "Hyundai Blue",
         "proportion": 0.8
       },
@@ -2474,12 +2474,12 @@
     },
     "colors": [
       {
-        "hex": "#0058A3",
+        "hex": "#0058AB",
         "name": "IKEA Blue",
         "proportion": 0.6
       },
       {
-        "hex": "#FFDB00",
+        "hex": "#FBD914",
         "name": "IKEA Yellow",
         "proportion": 0.4
       }
@@ -2498,12 +2498,12 @@
     },
     "colors": [
       {
-        "hex": "#D01012",
+        "hex": "#E3000B",
         "name": "LEGO Red",
         "proportion": 0.6
       },
       {
-        "hex": "#FFD500",
+        "hex": "#FFED00",
         "name": "Yellow",
         "proportion": 0.2
       },
@@ -2527,14 +2527,14 @@
     },
     "colors": [
       {
-        "hex": "#FBCE07",
+        "hex": "#FFCD00",
         "name": "Shell Yellow",
-        "proportion": 0.7
+        "proportion": 0.65
       },
       {
-        "hex": "#DD1D21",
+        "hex": "#DA291C",
         "name": "Red",
-        "proportion": 0.3
+        "proportion": 0.35
       }
     ],
     "funFact": "Shell really did start with seashells — the founder's father imported decorative shells from the East to Victorian London."
@@ -2577,12 +2577,12 @@
       {
         "hex": "#FFCC00",
         "name": "DHL Yellow",
-        "proportion": 0.6
+        "proportion": 0.65
       },
       {
-        "hex": "#D40511",
+        "hex": "#D2002E",
         "name": "Red",
-        "proportion": 0.4
+        "proportion": 0.35
       }
     ],
     "funFact": "DHL is Dalsey, Hillblom and Lynn — three founders who began by flying shipping papers from San Francisco to Honolulu."
