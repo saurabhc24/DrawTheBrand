@@ -1,0 +1,213 @@
+[
+  {
+    "id": "nike",
+    "name": "Nike",
+    "category": "global-sportswear",
+    "region": "global",
+    "difficulty": "easy",
+    "assets": { "logoFull": "/logos/nike.svg" },
+    "colors": [{ "hex": "#111111", "name": "Nike Black", "proportion": 1.0 }],
+    "funFact": "The Nike swoosh was designed in 1971 by a design student for a reported flat fee of $35.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "mcdonalds",
+    "name": "McDonald's",
+    "category": "global-food",
+    "region": "global",
+    "difficulty": "easy",
+    "assets": { "logoFull": "/logos/mcdonalds.svg" },
+    "colors": [
+      { "hex": "#FFC72C", "name": "Golden Arches Yellow", "pantone": "Pantone 123 C", "proportion": 0.45 },
+      { "hex": "#DA291C", "name": "McDonald's Red", "pantone": "Pantone 485 C", "proportion": 0.55 }
+    ],
+    "funFact": "The Golden Arches started as real architecture — the actual arches built into 1950s McDonald's restaurants.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "pepsi",
+    "name": "Pepsi",
+    "category": "global-food",
+    "region": "global",
+    "difficulty": "medium",
+    "assets": { "logoFull": "/logos/pepsi.svg" },
+    "colors": [
+      { "hex": "#004B93", "name": "Pepsi Blue", "proportion": 0.4 },
+      { "hex": "#E32934", "name": "Pepsi Red", "proportion": 0.3 },
+      { "hex": "#FFFFFF", "name": "White", "proportion": 0.3 }
+    ],
+    "funFact": "Pepsi's 2008 globe redesign reportedly cost over a million dollars, backed by a design document invoking the Golden Ratio.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "spotify",
+    "name": "Spotify",
+    "category": "global-tech",
+    "region": "global",
+    "difficulty": "easy",
+    "assets": { "logoFull": "/logos/spotify.svg" },
+    "colors": [
+      { "hex": "#1DB954", "name": "Spotify Green", "proportion": 0.75 },
+      { "hex": "#191414", "name": "Spotify Black", "proportion": 0.25 }
+    ],
+    "funFact": "Spotify swapped its green for a much brighter shade in a 2015 rebrand — and designers argued about it for weeks.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "cadbury",
+    "name": "Cadbury",
+    "category": "global-food",
+    "region": "global",
+    "difficulty": "medium",
+    "assets": { "logoFull": "/logos/cadbury.svg" },
+    "colors": [
+      { "hex": "#4B2E83", "name": "Cadbury Purple", "pantone": "Pantone 2685 C", "proportion": 0.8 },
+      { "hex": "#FFFFFF", "name": "White", "proportion": 0.2 }
+    ],
+    "funFact": "Cadbury has fought multi-year legal battles to trademark its exact shade of purple.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "google",
+    "name": "Google",
+    "category": "global-tech",
+    "region": "global",
+    "difficulty": "easy",
+    "assets": { "logoFull": "/logos/google.svg" },
+    "colors": [
+      { "hex": "#4285F4", "name": "Google Blue", "proportion": 0.3 },
+      { "hex": "#EA4335", "name": "Google Red", "proportion": 0.25 },
+      { "hex": "#FBBC05", "name": "Google Yellow", "proportion": 0.2 },
+      { "hex": "#34A853", "name": "Google Green", "proportion": 0.25 }
+    ],
+    "funFact": "The green 'l' in Google's logo deliberately breaks the primary-color pattern — a reminder that Google doesn't follow the rules.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "bmw",
+    "name": "BMW",
+    "category": "global-auto",
+    "region": "global",
+    "difficulty": "medium",
+    "assets": { "logoFull": "/logos/bmw.svg" },
+    "colors": [
+      { "hex": "#0066B1", "name": "BMW Blue", "proportion": 0.4 },
+      { "hex": "#FFFFFF", "name": "White", "proportion": 0.3 },
+      { "hex": "#16171A", "name": "Black", "proportion": 0.3 }
+    ],
+    "funFact": "The BMW roundel's blue and white come from the Bavarian flag — not a spinning propeller, despite the popular legend.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "amul",
+    "name": "Amul",
+    "category": "indian-legacy",
+    "region": "indian",
+    "difficulty": "easy",
+    "assets": { "logoFull": "/logos/amul.svg" },
+    "colors": [
+      { "hex": "#ED1C24", "name": "Amul Red", "proportion": 0.6 },
+      { "hex": "#FFFFFF", "name": "White", "proportion": 0.4 }
+    ],
+    "funFact": "The polka-dotted Amul girl has fronted one of the world's longest-running ad campaigns — going since 1966.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "swiggy",
+    "name": "Swiggy",
+    "category": "indian-food",
+    "region": "indian",
+    "difficulty": "easy",
+    "assets": { "logoFull": "/logos/swiggy.svg" },
+    "colors": [
+      { "hex": "#FC8019", "name": "Swiggy Orange", "proportion": 0.8 },
+      { "hex": "#FFFFFF", "name": "White", "proportion": 0.2 }
+    ],
+    "funFact": "Swiggy launched in 2014 with a fleet of exactly six delivery partners in one Bengaluru neighbourhood.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "zomato",
+    "name": "Zomato",
+    "category": "indian-food",
+    "region": "indian",
+    "difficulty": "easy",
+    "assets": { "logoFull": "/logos/zomato.svg" },
+    "colors": [
+      { "hex": "#E23744", "name": "Zomato Red", "proportion": 0.75 },
+      { "hex": "#FFFFFF", "name": "White", "proportion": 0.25 }
+    ],
+    "funFact": "Zomato began life in 2008 as 'Foodiebay' — a site for scanned office-canteen and restaurant menus in Delhi.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "zepto",
+    "name": "Zepto",
+    "category": "indian-d2c",
+    "region": "indian",
+    "difficulty": "hard",
+    "assets": { "logoFull": "/logos/zepto.svg" },
+    "colors": [
+      { "hex": "#6C2BD9", "name": "Zepto Purple", "proportion": 0.85 },
+      { "hex": "#FFFFFF", "name": "White", "proportion": 0.15 }
+    ],
+    "funFact": "Zepto was founded in 2021 by two 19-year-old Stanford dropouts — a 'zepto' is 10⁻²¹, a very small unit of time.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "paytm",
+    "name": "Paytm",
+    "category": "indian-d2c",
+    "region": "indian",
+    "difficulty": "medium",
+    "assets": { "logoFull": "/logos/paytm.svg" },
+    "colors": [
+      { "hex": "#002E6E", "name": "Paytm Navy", "proportion": 0.55 },
+      { "hex": "#00BAF2", "name": "Paytm Blue", "proportion": 0.45 }
+    ],
+    "funFact": "Paytm started in 2010 as a website for prepaid mobile recharges — 'Paytm' is short for 'Pay through mobile'.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "tata",
+    "name": "Tata",
+    "category": "indian-legacy",
+    "region": "indian",
+    "difficulty": "medium",
+    "assets": { "logoFull": "/logos/tata.svg" },
+    "colors": [
+      { "hex": "#486AAE", "name": "Tata Blue", "proportion": 0.8 },
+      { "hex": "#FFFFFF", "name": "White", "proportion": 0.2 }
+    ],
+    "funFact": "The Tata mark's looping shape is meant to suggest a fountain of knowledge — and a tree you can trust to shelter under.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "mrf",
+    "name": "MRF",
+    "category": "indian-auto",
+    "region": "indian",
+    "difficulty": "medium",
+    "assets": { "logoFull": "/logos/mrf.svg" },
+    "colors": [
+      { "hex": "#E31E24", "name": "MRF Red", "proportion": 0.7 },
+      { "hex": "#FFFFFF", "name": "White", "proportion": 0.3 }
+    ],
+    "funFact": "MRF — Madras Rubber Factory — began in 1946 as a toy-balloon workshop, decades before it ruled Indian tyres and cricket bats.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "flipkart",
+    "name": "Flipkart",
+    "category": "indian-d2c",
+    "region": "indian",
+    "difficulty": "easy",
+    "assets": { "logoFull": "/logos/flipkart.svg" },
+    "colors": [
+      { "hex": "#2874F0", "name": "Flipkart Blue", "proportion": 0.75 },
+      { "hex": "#FFE500", "name": "Flipkart Yellow", "proportion": 0.25 }
+    ],
+    "funFact": "Flipkart started in 2007 selling books out of a two-bedroom Bengaluru apartment, with a delivery fleet of two founders.",
+    "excludeFromModes": []
+  }
+]

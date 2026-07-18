@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#FFFFFF"/>
+  <circle cx="256" cy="256" r="204" fill="#16171A"/>
+  <path d="M256 256 L256 108 A148 148 0 0 1 404 256 Z" fill="#0066B1"/>
+  <path d="M256 256 L404 256 A148 148 0 0 1 256 404 Z" fill="#FFFFFF"/>
+  <path d="M256 256 L256 404 A148 148 0 0 1 108 256 Z" fill="#0066B1"/>
+  <path d="M256 256 L108 256 A148 148 0 0 1 256 108 Z" fill="#FFFFFF"/>
+  <text x="256" y="98" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="600" letter-spacing="6" fill="#FFFFFF">BMW</text>
+</svg>

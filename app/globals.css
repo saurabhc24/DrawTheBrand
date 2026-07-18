@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  /* Proof-sheet palette: quiet chrome, the logos supply the color. */
+  --color-paper: #fbfbf9;
+  --color-card: #ffffff;
+  --color-ink: #141416;
+  --color-ink-muted: #6f6f74;
+  --color-rule: #e6e6e2;
+  --color-proof: #0e8a5f; /* correct */
+  --color-flag: #d2362a; /* wrong */
+
+  --font-sans: var(--font-archivo), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+
+  --animate-rise: rise 0.32s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-stamp: stamp 0.26s cubic-bezier(0.2, 0.9, 0.3, 1.4) both;
+  --animate-fade: fade 0.25s ease both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes stamp {
+  from {
+    opacity: 0;
+    transform: scale(1.45) rotate(-3deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(-2deg);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Tactile press on every tappable thing. */
+.pressable {
+  transition: transform 0.08s ease, background-color 0.12s ease, border-color 0.12s ease;
+}
+.pressable:active {
+  transform: scale(0.97);
+}
