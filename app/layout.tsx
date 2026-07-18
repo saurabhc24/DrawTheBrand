@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo, IBM_Plex_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -30,6 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         className={`${archivo.variable} ${plexMono.variable} bg-paper font-sans text-ink antialiased`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
