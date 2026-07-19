@@ -11,16 +11,16 @@ export function OptionButtons({
   onPick: (brandId: string) => void;
 }) {
   return (
-    <div className="grid grid-cols-2 gap-3">
+    <div className="option-grid grid shrink-0 grid-cols-2 gap-3">
       {options.map((brand, i) => (
         <button
           key={brand.id}
           onClick={() => onPick(brand.id)}
-          className="pressable relative min-h-16 rounded-2xl bg-tile px-3 py-4 text-center text-base font-bold hover:bg-rule"
+          className="option-button pressable bg-tile hover:bg-rule relative min-h-16 rounded-2xl px-3 py-4 text-center text-base font-bold"
         >
           <span
             aria-hidden
-            className="absolute top-2 left-3 text-[10px] font-bold text-ink-muted"
+            className="option-index text-ink-muted absolute top-2 left-3 text-[10px] font-bold"
           >
             {INDEX_LABELS[i]}
           </span>

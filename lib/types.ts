@@ -17,7 +17,8 @@ export type BrandCategory =
   | "indian-travel"
   | "indian-media";
 
-export type GameMode = "draw" | "crop" | "wordmark" | "shade" | "colors" | "fake";
+export type GameMode =
+  "draw" | "crop" | "wordmark" | "shade" | "colors" | "fake";
 
 export type BrandColor = {
   hex: string;

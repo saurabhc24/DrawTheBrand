@@ -18,7 +18,10 @@ export function ColorBar({
   tall?: boolean;
 }) {
   return (
-    <div className={`flex w-full gap-[3px] ${tall ? "h-8" : "h-2.5"}`} aria-hidden>
+    <div
+      className={`color-bar flex w-full gap-[3px] ${tall ? "h-8" : "h-2.5"}`}
+      aria-hidden
+    >
       {rounds.map((round, i) => {
         const result = results[i];
         let cls = "bg-rule";
@@ -33,7 +36,13 @@ export function ColorBar({
         } else if (i === currentIndex) {
           cls = "bg-card border border-ink";
         }
-        return <div key={i} className={`flex-1 ${tall ? "rounded-md" : "rounded-sm"} ${cls}`} style={style} />;
+        return (
+          <div
+            key={i}
+            className={`color-bar-chip flex-1 ${tall ? "rounded-md" : "rounded-sm"} ${cls}`}
+            style={style}
+          />
+        );
       })}
     </div>
   );

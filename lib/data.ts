@@ -27,7 +27,10 @@ export function isEligible(brand: Brand, mode: GameMode): boolean {
   }
 }
 
-export function getBrandsForMode(mode: GameMode, pool: Brand[] = brands): Brand[] {
+export function getBrandsForMode(
+  mode: GameMode,
+  pool: Brand[] = brands,
+): Brand[] {
   return pool.filter((b) => isEligible(b, mode));
 }
 

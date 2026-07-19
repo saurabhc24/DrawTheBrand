@@ -26,17 +26,21 @@ const TIMER_SECONDS: Record<PlayableMode, number> = {
 
 export function PlayClient() {
   const params = useSearchParams();
-  const mode = (VALID_MODES.includes(params.get("mode") ?? "")
-    ? params.get("mode")
-    : "mixed") as PlayableMode | "mixed";
-  const pack = (VALID_PACKS.includes(params.get("pack") ?? "")
-    ? params.get("pack")
-    : "all") as Pack;
+  const mode = (
+    VALID_MODES.includes(params.get("mode") ?? "")
+      ? params.get("mode")
+      : "mixed"
+  ) as PlayableMode | "mixed";
+  const pack = (
+    VALID_PACKS.includes(params.get("pack") ?? "") ? params.get("pack") : "all"
+  ) as Pack;
 
   // Built on the client only, so the seeded randomness never fights hydration.
   const [session, setSession] = useState<Session | null>(null);
   const [index, setIndex] = useState(0);
-  const [phase, setPhase] = useState<"question" | "reveal" | "done">("question");
+  const [phase, setPhase] = useState<"question" | "reveal" | "done">(
+    "question",
+  );
   const [results, setResults] = useState<RoundResult[]>([]);
   const [timerFrac, setTimerFrac] = useState(1);
   const [timeUp, setTimeUp] = useState(false);
@@ -107,7 +111,8 @@ export function PlayClient() {
   useEffect(() => {
     if (bestStreak === 0) return;
     const prev = Number(sessionStorage.getItem("brandr:bestStreak") ?? 0);
-    if (bestStreak > prev) sessionStorage.setItem("brandr:bestStreak", String(bestStreak));
+    if (bestStreak > prev)
+      sessionStorage.setItem("brandr:bestStreak", String(bestStreak));
   }, [bestStreak]);
 
   if (!session) return null;
@@ -116,8 +121,8 @@ export function PlayClient() {
 
   if (!round) {
     return (
-      <div className="mx-auto flex h-dvh max-w-md flex-col items-center justify-center overflow-hidden px-4 text-center">
-        <p className="text-sm text-ink-muted">
+      <div className="empty-state mx-auto flex h-dvh max-w-md flex-col items-center justify-center overflow-hidden px-4 text-center">
+        <p className="empty-state-note text-ink-muted text-sm">
           This pack doesn't have enough brands for that mode yet.
         </p>
       </div>
@@ -189,7 +194,12 @@ export function PlayClient() {
 
   if (phase === "done") {
     return (
-      <Results rounds={rounds} results={results} bestStreak={bestStreak} onReplay={replay} />
+      <Results
+        rounds={rounds}
+        results={results}
+        bestStreak={bestStreak}
+        onReplay={replay}
+      />
     );
   }
 
@@ -212,14 +222,24 @@ export function PlayClient() {
     >
       {phase === "question" ? (
         round.mode === "colors" ? (
-          <ColorsRound round={round} onPick={(id) => answer(id, id === round.brand.id)} />
+          <ColorsRound
+            round={round}
+            onPick={(id) => answer(id, id === round.brand.id)}
+          />
         ) : round.mode === "shade" ? (
           <ShadeRound
             round={round}
-            onPick={(hex) => answer(hex, hex === round.brand.colors[0].hex.toUpperCase())}
+            onPick={(hex) =>
+              answer(hex, hex === round.brand.colors[0].hex.toUpperCase())
+            }
           />
         ) : round.mode === "draw" ? (
-          <DrawRound round={round} onDone={submitDrawing} onSkip={skip} timeUp={timeUp} />
+          <DrawRound
+            round={round}
+            onDone={submitDrawing}
+            onSkip={skip}
+            timeUp={timeUp}
+          />
         ) : (
           <FakeRound round={round} onPick={submitFakeCall} />
         )

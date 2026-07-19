@@ -26,16 +26,30 @@ function buildFake(brand: Brand, rng: Rng): FakeSpec {
   const kind = pick(kinds, rng);
   if (kind === "hue") {
     const amount = (24 + Math.round(rng() * 14)) * (rng() < 0.5 ? -1 : 1);
-    return { kind, amount, whatsWrong: "The colors were shifted off the real shade." };
+    return {
+      kind,
+      amount,
+      whatsWrong: "The colors were shifted off the real shade.",
+    };
   }
   const amount = 0.8 + rng() * 0.06;
   return kind === "squashX"
-    ? { kind, amount, whatsWrong: "It was squeezed narrower — the real mark is wider." }
-    : { kind, amount, whatsWrong: "It was squashed flatter — the real mark is taller." };
+    ? {
+        kind,
+        amount,
+        whatsWrong: "It was squeezed narrower — the real mark is wider.",
+      }
+    : {
+        kind,
+        amount,
+        whatsWrong: "It was squashed flatter — the real mark is taller.",
+      };
 }
 
 function playableModesFor(brand: Brand): PlayableMode[] {
-  return PLAYABLE_MODES.filter((m) => getBrandsForMode(m, [brand]).length === 1);
+  return PLAYABLE_MODES.filter(
+    (m) => getBrandsForMode(m, [brand]).length === 1,
+  );
 }
 
 /**
@@ -44,13 +58,24 @@ function playableModesFor(brand: Brand): PlayableMode[] {
  */
 function pickOptions(answer: Brand, pool: Brand[], rng: Rng): Brand[] {
   const others = pool.filter((b) => b.id !== answer.id);
-  const sameRegion = shuffle(others.filter((b) => b.region === answer.region), rng);
-  const rest = shuffle(others.filter((b) => b.region !== answer.region), rng);
+  const sameRegion = shuffle(
+    others.filter((b) => b.region === answer.region),
+    rng,
+  );
+  const rest = shuffle(
+    others.filter((b) => b.region !== answer.region),
+    rng,
+  );
   const distractors = [...sameRegion, ...rest].slice(0, OPTION_COUNT - 1);
   return shuffle([answer, ...distractors], rng);
 }
 
-function buildRound(brand: Brand, mode: PlayableMode, pool: Brand[], rng: Rng): Round {
+function buildRound(
+  brand: Brand,
+  mode: PlayableMode,
+  pool: Brand[],
+  rng: Rng,
+): Round {
   const round: Round = { mode, brand };
   if (mode === "colors") {
     round.options = pickOptions(brand, pool, rng);
@@ -68,20 +93,27 @@ export function buildSession(
   mode: PlayableMode | "mixed",
   pack: Pack,
   seed: number = Date.now(),
-  roundCount: number = DEFAULT_ROUNDS
+  roundCount: number = DEFAULT_ROUNDS,
 ): Session {
   const rng = createRng(seed);
   const pool = getBrandsForPack(pack);
 
   let rounds: Round[];
   if (mode === "mixed") {
-    const candidates = shuffle(pool.filter((b) => playableModesFor(b).length > 0), rng);
+    const candidates = shuffle(
+      pool.filter((b) => playableModesFor(b).length > 0),
+      rng,
+    );
     rounds = candidates
       .slice(0, roundCount)
-      .map((brand) => buildRound(brand, pick(playableModesFor(brand), rng), pool, rng));
+      .map((brand) =>
+        buildRound(brand, pick(playableModesFor(brand), rng), pool, rng),
+      );
   } else {
     const candidates = shuffle(getBrandsForMode(mode, pool), rng);
-    rounds = candidates.slice(0, roundCount).map((brand) => buildRound(brand, mode, pool, rng));
+    rounds = candidates
+      .slice(0, roundCount)
+      .map((brand) => buildRound(brand, mode, pool, rng));
   }
   return { mode, pack, rounds };
 }

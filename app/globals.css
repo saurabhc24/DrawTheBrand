@@ -25,6 +25,18 @@
   --animate-rise: rise 0.32s cubic-bezier(0.2, 0.7, 0.2, 1) both;
   --animate-stamp: stamp 0.26s cubic-bezier(0.2, 0.9, 0.3, 1.4) both;
   --animate-fade: fade 0.25s ease both;
+  --animate-chip-wave: chip-wave 2.8s ease-in-out infinite;
+}
+
+/* Calibration-strip chips ripple gently; stagger comes from animation-delay. */
+@keyframes chip-wave {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.9);
+  }
 }
 
 @keyframes rise {
@@ -70,7 +82,10 @@
 
 /* Tactile press on every tappable thing. */
 .pressable {
-  transition: transform 0.08s ease, background-color 0.12s ease, border-color 0.12s ease;
+  transition:
+    transform 0.08s ease,
+    background-color 0.12s ease,
+    border-color 0.12s ease;
 }
 .pressable:active {
   transform: scale(0.97);

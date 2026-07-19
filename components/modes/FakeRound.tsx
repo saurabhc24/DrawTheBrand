@@ -13,11 +13,11 @@ export function FakeRound({
   onPick: (saidFake: boolean) => void;
 }) {
   return (
-    <div className="animate-fade flex flex-1 flex-col">
-      <h1 className="text-xl font-extrabold tracking-tight">
+    <div className="fake-round animate-fade flex flex-1 flex-col">
+      <h1 className="round-question text-xl font-extrabold tracking-tight">
         Is this the real {round.brand.name} logo?
       </h1>
-      <div className="mx-auto mt-4 w-full max-w-80 overflow-hidden rounded-2xl border border-rule bg-card">
+      <div className="suspect-logo-card border-rule bg-card mx-auto mt-4 w-full max-w-80 shrink-0 overflow-hidden rounded-2xl border">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={round.brand.assets.logoFull}
@@ -26,19 +26,19 @@ export function FakeRound({
           style={fakeStyle(round.fake)}
         />
       </div>
-      <p className="mt-3 text-center text-sm text-ink-muted">
+      <p className="fake-hint text-ink-muted mt-3 text-center text-sm">
         Look twice. Half of these have been quietly doctored.
       </p>
-      <div className="mt-auto grid grid-cols-2 gap-3 pt-6">
+      <div className="verdict-buttons mt-auto grid shrink-0 grid-cols-2 gap-3 pt-6">
         <button
           onClick={() => onPick(false)}
-          className="pressable min-h-16 rounded-2xl bg-proof py-4 text-sm font-bold tracking-[0.18em] text-white uppercase"
+          className="real-button pressable bg-proof min-h-16 rounded-2xl py-4 text-sm font-bold tracking-[0.18em] text-white uppercase"
         >
           Real
         </button>
         <button
           onClick={() => onPick(true)}
-          className="pressable min-h-16 rounded-2xl bg-flag py-4 text-sm font-bold tracking-[0.18em] text-white uppercase"
+          className="fake-button pressable bg-flag min-h-16 rounded-2xl py-4 text-sm font-bold tracking-[0.18em] text-white uppercase"
         >
           Fake
         </button>

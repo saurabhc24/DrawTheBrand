@@ -24,11 +24,15 @@ export const viewport: Viewport = {
   themeColor: "#fbfbf9",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body
-        className={`${archivo.variable} ${plexMono.variable} bg-paper font-sans text-ink antialiased`}
+        className={`${archivo.variable} ${plexMono.variable} bg-paper text-ink font-sans antialiased`}
       >
         {children}
         <Analytics />

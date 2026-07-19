@@ -57,45 +57,61 @@ const STRIP = brands.filter((_, i) => i % STRIP_STEP === 0);
 
 export default function Home() {
   return (
-    <div className="mx-auto flex min-h-dvh w-full max-w-md flex-col px-4 pb-6 pt-8 sm:pt-10">
+    <div className="home-screen mx-auto flex h-dvh w-full max-w-md flex-col overflow-hidden px-4 pt-8 pb-4 sm:pt-10">
       <Intro />
-      <header>
-        <p className="text-[11px] font-bold tracking-[0.25em] text-ink-muted uppercase">
+      <header className="home-header shrink-0">
+        <p className="home-eyebrow text-ink-muted text-[11px] font-bold tracking-[0.25em] uppercase">
           A brand memory test
         </p>
-        <h1 className="mt-1 text-5xl font-extrabold tracking-tight sm:text-6xl">Brandr</h1>
+        <h1 className="home-title mt-1 text-5xl font-extrabold tracking-tight sm:text-6xl">
+          Brandr
+        </h1>
         {/* Calibration strip: a sample of the roster, by real primary color. */}
-        <div className="mt-4 flex h-2.5 gap-[3px]" aria-hidden>
-          {STRIP.map((b) => (
+        <div
+          className="calibration-strip mt-4 flex h-2.5 gap-[3px]"
+          aria-hidden
+        >
+          {STRIP.map((b, i) => (
             <span
               key={b.id}
-              className="flex-1 rounded-full"
-              style={{ backgroundColor: b.colors[0].hex }}
+              className="calibration-chip animate-chip-wave flex-1 rounded-full"
+              style={{
+                backgroundColor: b.colors[0].hex,
+                animationDelay: `${i * 110}ms`,
+              }}
             />
           ))}
         </div>
-        <p className="mt-4 text-base leading-relaxed text-ink-muted">
-          You&apos;ve seen these logos ten thousand times. This measures what actually stuck.
+        <p className="home-tagline text-ink-muted mt-4 text-base leading-relaxed">
+          You&apos;ve seen these logos ten thousand times. This measures what
+          actually stuck.
         </p>
       </header>
 
-      <section className="mt-6 grid grid-cols-2 gap-3" aria-label="Pick a mode">
+      <section
+        className="mode-grid mt-5 grid min-h-0 flex-1 grid-cols-2 content-start gap-3 overflow-y-auto"
+        aria-label="Pick a mode"
+      >
         {MODES.map((m) => (
           <Link
             key={m.id}
             href={`/play?mode=${m.id}`}
-            className={`pressable flex min-h-36 flex-col justify-between rounded-3xl p-4 ${m.card} ${
-              m.wide ? "col-span-2 min-h-28" : ""
+            className={`mode-card pressable flex min-h-32 flex-col justify-between rounded-3xl p-4 ${m.card} ${
+              m.wide ? "col-span-2 min-h-24" : ""
             }`}
           >
-            <span className={`text-[10px] font-bold tracking-[0.22em] uppercase ${m.tagColor}`}>
+            <span
+              className={`mode-card-tag text-[10px] font-bold tracking-[0.22em] uppercase ${m.tagColor}`}
+            >
               {m.tag}
             </span>
-            <span>
-              <span className="block text-xl leading-tight font-extrabold tracking-tight">
+            <span className="mode-card-body">
+              <span className="mode-card-name block text-xl leading-tight font-extrabold tracking-tight">
                 {m.name}
               </span>
-              <span className={`mt-1 block text-[13px] leading-snug ${m.blurbColor}`}>
+              <span
+                className={`mode-card-blurb mt-1 block text-[13px] leading-snug ${m.blurbColor}`}
+              >
                 {m.blurb}
               </span>
             </span>
@@ -103,19 +119,22 @@ export default function Home() {
         ))}
       </section>
 
-      <p className="mt-5 text-[11px] font-bold tracking-[0.18em] text-ink-muted uppercase">
+      <p className="coming-soon text-ink-muted mt-3 shrink-0 text-[11px] font-bold tracking-[0.18em] uppercase">
         In the works: wordmark · close-up
       </p>
 
-      <footer className="mt-auto pt-8 text-xs leading-relaxed text-ink-muted">
-        <p>
-          A memory game, not an affiliation. All marks belong to their owners and appear here to
-          test how well we remember them. Something yours shown wrongly?{" "}
-          <a href="mailto:takedown@example.com" className="underline underline-offset-2">
-            Ask us to take it down.
+      <footer className="home-footer text-ink-muted mt-2 shrink-0 text-[11px] leading-relaxed">
+        <p className="legal-note">
+          A memory game, not an affiliation. All marks belong to their owners.{" "}
+          <a
+            href="mailto:takedown@example.com"
+            className="underline underline-offset-2"
+          >
+            Takedown requests
           </a>
+          .
         </p>
-        <p className="mt-3 font-semibold text-ink">
+        <p className="maker-credit text-ink mt-1.5 font-semibold">
           Made by{" "}
           <a
             href="https://github.com/saurabhc24"

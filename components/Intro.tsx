@@ -20,6 +20,7 @@ export function Intro() {
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (new URLSearchParams(window.location.search).has("nointro")) return;
     if (sessionStorage.getItem(SEEN_KEY)) return;
     sessionStorage.setItem(SEEN_KEY, "1");
     setVisible(true);
@@ -75,7 +76,12 @@ export function Intro() {
         ctx.fillStyle = tile.color;
         const s = size * (0.6 + 0.4 * appear);
         const off = (size - s) / 2;
-        ctx.fillRect(tile.c * size + off, tile.r * size + off, s + 0.5, s + 0.5);
+        ctx.fillRect(
+          tile.c * size + off,
+          tile.r * size + off,
+          s + 0.5,
+          s + 0.5,
+        );
       }
       ctx.globalAlpha = 1;
       if (t < DURATION) raf = requestAnimationFrame(frame);
@@ -91,13 +97,13 @@ export function Intro() {
     <div
       onClick={finish}
       aria-hidden
-      className={`fixed inset-0 z-50 bg-paper transition-opacity duration-200 ${
+      className={`intro-overlay bg-paper fixed inset-0 z-50 transition-opacity duration-200 ${
         leaving ? "opacity-0" : "opacity-100"
       }`}
     >
-      <canvas ref={canvasRef} className="h-full w-full" />
+      <canvas ref={canvasRef} className="intro-canvas h-full w-full" />
       <p
-        className="animate-fade absolute inset-0 flex items-center justify-center text-6xl font-extrabold tracking-tight text-white [text-shadow:0_2px_28px_rgba(0,0,0,0.4)]"
+        className="intro-wordmark animate-fade absolute inset-0 flex items-center justify-center text-6xl font-extrabold tracking-tight text-white [text-shadow:0_2px_28px_rgba(0,0,0,0.4)]"
         style={{ animationDelay: "500ms" }}
       >
         Brandr

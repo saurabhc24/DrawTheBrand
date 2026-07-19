@@ -16,7 +16,10 @@ const GRID = 256;
 const FRAME = 232; // normalized ink box within the grid
 const TOLERANCE = 14; // px distance at which ink still counts as matching
 
-function makeCanvas(size: number): { canvas: HTMLCanvasElement; ctx: CanvasRenderingContext2D } {
+function makeCanvas(size: number): {
+  canvas: HTMLCanvasElement;
+  ctx: CanvasRenderingContext2D;
+} {
   const canvas = document.createElement("canvas");
   canvas.width = size;
   canvas.height = size;
@@ -36,7 +39,9 @@ function loadImage(src: string): Promise<HTMLImageElement> {
 }
 
 /** Load an image source; .svg files get explicit dimensions so canvas rasterizes them. */
-async function loadDrawable(src: string): Promise<{ img: HTMLImageElement; cleanup: () => void }> {
+async function loadDrawable(
+  src: string,
+): Promise<{ img: HTMLImageElement; cleanup: () => void }> {
   if (src.startsWith("data:") || !src.endsWith(".svg")) {
     return { img: await loadImage(src), cleanup: () => {} };
   }
@@ -44,7 +49,10 @@ async function loadDrawable(src: string): Promise<{ img: HTMLImageElement; clean
   const sized = text.replace(/<svg /, '<svg width="512" height="512" ');
   const url = URL.createObjectURL(new Blob([sized], { type: "image/svg+xml" }));
   try {
-    return { img: await loadImage(url), cleanup: () => URL.revokeObjectURL(url) };
+    return {
+      img: await loadImage(url),
+      cleanup: () => URL.revokeObjectURL(url),
+    };
   } catch (err) {
     URL.revokeObjectURL(url);
     throw err;
@@ -67,7 +75,10 @@ function toMask(ctx: CanvasRenderingContext2D): Uint8Array {
 
 /** Redraw a source canvas so its ink bounding box fills the normalized frame. */
 function normalize(source: HTMLCanvasElement, mask: Uint8Array): Uint8Array {
-  let minX = GRID, minY = GRID, maxX = -1, maxY = -1;
+  let minX = GRID,
+    minY = GRID,
+    maxX = -1,
+    maxY = -1;
   for (let y = 0; y < GRID; y++) {
     for (let x = 0; x < GRID; x++) {
       if (mask[y * GRID + x]) {
@@ -90,8 +101,14 @@ function normalize(source: HTMLCanvasElement, mask: Uint8Array): Uint8Array {
   ctx.imageSmoothingEnabled = true;
   ctx.drawImage(
     source,
-    minX * sx, minY * sx, w * sx, h * sx,
-    (GRID - dw) / 2, (GRID - dh) / 2, dw, dh
+    minX * sx,
+    minY * sx,
+    w * sx,
+    h * sx,
+    (GRID - dw) / 2,
+    (GRID - dh) / 2,
+    dw,
+    dh,
   );
   return toMask(ctx);
 }
@@ -104,8 +121,14 @@ function edges(mask: Uint8Array): Uint8Array {
       const i = y * GRID + x;
       if (!mask[i]) continue;
       if (
-        x === 0 || y === 0 || x === GRID - 1 || y === GRID - 1 ||
-        !mask[i - 1] || !mask[i + 1] || !mask[i - GRID] || !mask[i + GRID]
+        x === 0 ||
+        y === 0 ||
+        x === GRID - 1 ||
+        y === GRID - 1 ||
+        !mask[i - 1] ||
+        !mask[i + 1] ||
+        !mask[i - GRID] ||
+        !mask[i + GRID]
       ) {
         out[i] = 1;
       }
@@ -152,7 +175,9 @@ function nearFraction(points: Uint8Array, field: Float32Array): number {
   return total === 0 ? 0 : credit / total;
 }
 
-async function rasterize(src: string): Promise<{ canvas: HTMLCanvasElement; mask: Uint8Array }> {
+async function rasterize(
+  src: string,
+): Promise<{ canvas: HTMLCanvasElement; mask: Uint8Array }> {
   const { img, cleanup } = await loadDrawable(src);
   const { canvas, ctx } = makeCanvas(GRID);
   ctx.drawImage(img, 0, 0, GRID, GRID);
@@ -163,8 +188,14 @@ async function rasterize(src: string): Promise<{ canvas: HTMLCanvasElement; mask
 /**
  * Score a drawing (data URL) against the brand's logo asset. Returns 0–100.
  */
-export async function scoreDrawing(drawingDataUrl: string, logoSrc: string): Promise<number> {
-  const [drawing, logo] = await Promise.all([rasterize(drawingDataUrl), rasterize(logoSrc)]);
+export async function scoreDrawing(
+  drawingDataUrl: string,
+  logoSrc: string,
+): Promise<number> {
+  const [drawing, logo] = await Promise.all([
+    rasterize(drawingDataUrl),
+    rasterize(logoSrc),
+  ]);
 
   const drawn = normalize(drawing.canvas, drawing.mask);
   const reference = normalize(logo.canvas, logo.mask);

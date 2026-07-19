@@ -34,7 +34,8 @@ export function hslToHex({ h, s, l }: Hsl): string {
   return `#${f(0)}${f(8)}${f(4)}`.toUpperCase();
 }
 
-const clamp01 = (v: number, min = 0.03, max = 0.97) => Math.min(max, Math.max(min, v));
+const clamp01 = (v: number, min = 0.03, max = 0.97) =>
+  Math.min(max, Math.max(min, v));
 
 /**
  * Build near-identical distractor swatches for shade mode: the true hex nudged
@@ -53,9 +54,14 @@ export function shadeSwatches(trueHex: string, rng: Rng): string[] {
     let variant: Hsl;
     if (neutral) {
       const kind = Math.floor(rng() * 3);
-      if (kind === 0) variant = { ...base, l: clamp01(base.l + sign() * range(0.05, 0.1)) };
+      if (kind === 0)
+        variant = { ...base, l: clamp01(base.l + sign() * range(0.05, 0.1)) };
       else if (kind === 1)
-        variant = { h: range(0, 360), s: clamp01(base.s + range(0.05, 0.12)), l: base.l };
+        variant = {
+          h: range(0, 360),
+          s: clamp01(base.s + range(0.05, 0.12)),
+          l: base.l,
+        };
       else
         variant = {
           h: range(0, 360),
@@ -65,7 +71,8 @@ export function shadeSwatches(trueHex: string, rng: Rng): string[] {
     } else {
       const kind = Math.floor(rng() * 3);
       if (kind === 0) variant = { ...base, h: base.h + sign() * range(6, 13) };
-      else if (kind === 1) variant = { ...base, l: clamp01(base.l + sign() * range(0.06, 0.11)) };
+      else if (kind === 1)
+        variant = { ...base, l: clamp01(base.l + sign() * range(0.06, 0.11)) };
       else
         variant = {
           h: base.h + sign() * range(4, 9),
@@ -74,13 +81,19 @@ export function shadeSwatches(trueHex: string, rng: Rng): string[] {
         };
     }
     const hex = hslToHex(variant);
-    if (hex !== trueHex.toUpperCase() && !candidates.some((c) => hslToHex(c) === hex)) {
+    if (
+      hex !== trueHex.toUpperCase() &&
+      !candidates.some((c) => hslToHex(c) === hex)
+    ) {
       candidates.push(variant);
     }
   }
   // Degenerate fallback (should not happen): plain lightness steps.
   while (candidates.length < 3) {
-    candidates.push({ ...base, l: clamp01(base.l + (candidates.length + 1) * 0.08) });
+    candidates.push({
+      ...base,
+      l: clamp01(base.l + (candidates.length + 1) * 0.08),
+    });
   }
   return shuffle([trueHex.toUpperCase(), ...candidates.map(hslToHex)], rng);
 }

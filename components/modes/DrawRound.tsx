@@ -56,7 +56,10 @@ export function DrawRound({
   const snapshot = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    undoRef.current = [...undoRef.current.slice(-9), canvas.toDataURL("image/png")];
+    undoRef.current = [
+      ...undoRef.current.slice(-9),
+      canvas.toDataURL("image/png"),
+    ];
     setCanUndo(true);
   };
 
@@ -103,7 +106,8 @@ export function DrawRound({
   const canvasHasInk = (ctx: CanvasRenderingContext2D) => {
     const { data } = ctx.getImageData(0, 0, SIZE, SIZE);
     for (let i = 0; i < data.length; i += 4) {
-      if (!(data[i] > 242 && data[i + 1] > 242 && data[i + 2] > 242)) return true;
+      if (!(data[i] > 242 && data[i + 1] > 242 && data[i + 2] > 242))
+        return true;
     }
     return false;
   };
@@ -143,15 +147,15 @@ export function DrawRound({
   };
 
   return (
-    <div className="animate-fade flex min-h-0 flex-1 flex-col">
-      <div className="flex items-end justify-between gap-3">
-        <h1 className="text-xl font-extrabold tracking-tight">
+    <div className="draw-round animate-fade flex min-h-0 flex-1 flex-col">
+      <div className="draw-header flex shrink-0 items-end justify-between gap-3">
+        <h1 className="round-question text-xl font-extrabold tracking-tight">
           Draw {round.brand.name} from memory
         </h1>
         <select
           value={width}
           onChange={(event) => setWidth(Number(event.target.value))}
-          className="rounded-full border border-ink/20 bg-card px-3 py-1.5 text-sm font-bold"
+          className="brush-size-select border-ink/20 bg-card rounded-full border px-3 py-1.5 text-sm font-bold"
           aria-label="Brush size"
         >
           <option value={7}>Fine</option>
@@ -160,7 +164,7 @@ export function DrawRound({
         </select>
       </div>
 
-      <div className="mt-3 flex shrink-0 items-center gap-2 overflow-x-auto pb-1">
+      <div className="brush-palette mt-3 flex shrink-0 items-center gap-2 overflow-x-auto pb-1">
         {[
           ...new Set([
             ...round.brand.colors.map((c) => c.hex.toUpperCase()),
@@ -172,8 +176,10 @@ export function DrawRound({
             key={hex}
             onClick={() => setBrush(hex)}
             aria-label={`Use ${hex}`}
-            className={`h-9 w-9 shrink-0 rounded-xl border ${
-              brush.toUpperCase() === hex.toUpperCase() ? "border-ink border-2" : "border-rule"
+            className={`brush-chip h-9 w-9 shrink-0 rounded-xl border ${
+              brush.toUpperCase() === hex.toUpperCase()
+                ? "border-ink border-2"
+                : "border-rule"
             }`}
             style={{ backgroundColor: hex }}
           />
@@ -182,7 +188,7 @@ export function DrawRound({
 
       {/* The canvas keeps its intrinsic 1:1 ratio; the wrapper absorbs spare
           height so tall screens don't stretch it (and skew the saved sketch). */}
-      <div className="mt-3 flex min-h-0 flex-1 items-center justify-center">
+      <div className="canvas-frame mt-3 flex min-h-0 flex-1 items-center justify-center">
         <canvas
           ref={canvasRef}
           width={SIZE}
@@ -191,29 +197,29 @@ export function DrawRound({
           onPointerMove={move}
           onPointerUp={stop}
           onPointerCancel={stop}
-          className="max-h-full max-w-full touch-none rounded-2xl border border-rule bg-card"
+          className="draw-canvas border-rule bg-card max-h-full max-w-full touch-none rounded-2xl border"
           aria-label={`Drawing canvas for ${round.brand.name}`}
         />
       </div>
 
-      <div className="mt-3 grid shrink-0 grid-cols-[1fr_1fr_1.5fr] gap-2">
+      <div className="draw-controls mt-3 grid shrink-0 grid-cols-[1fr_1fr_1.5fr] gap-2">
         <button
           onClick={undo}
           disabled={!canUndo}
-          className="pressable rounded-full border border-ink/20 bg-card py-3 text-sm font-bold disabled:opacity-40"
+          className="undo-button pressable border-ink/20 bg-card rounded-full border py-3 text-sm font-bold disabled:opacity-40"
         >
           Undo
         </button>
         <button
           onClick={clear}
-          className="pressable rounded-full border border-ink/20 bg-card py-3 text-sm font-bold"
+          className="clear-button pressable border-ink/20 bg-card rounded-full border py-3 text-sm font-bold"
         >
           Clear
         </button>
         <button
           onClick={done}
           disabled={scoring}
-          className="pressable rounded-full bg-ink py-3 text-sm font-bold text-paper disabled:opacity-60"
+          className="score-button pressable bg-ink text-paper rounded-full py-3 text-sm font-bold disabled:opacity-60"
         >
           {scoring ? "Scoring…" : hasDrawing ? "Score it" : "Skip drawing"}
         </button>

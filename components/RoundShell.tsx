@@ -32,22 +32,32 @@ export function RoundShell({
   const round = rounds[index];
   const urgent = timer !== undefined && timer.frac <= 0.32;
   return (
-    <div className="mx-auto flex h-dvh w-full max-w-md flex-col overflow-hidden px-4 pb-4 pt-4">
-      <header className="flex items-center justify-between gap-4">
+    <div className="round-shell mx-auto flex h-dvh w-full max-w-md flex-col overflow-hidden px-4 pt-4 pb-4">
+      <header className="round-header flex items-center justify-between gap-4">
         <Link
           href="/"
           aria-label="Leave the game"
-          className="pressable -m-2 p-2 text-ink-muted hover:text-ink"
+          className="quit-button pressable text-ink-muted hover:text-ink -m-2 p-2"
         >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
-            <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" strokeWidth="1.8" />
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            aria-hidden
+          >
+            <path
+              d="M2 2l12 12M14 2L2 14"
+              stroke="currentColor"
+              strokeWidth="1.8"
+            />
           </svg>
         </Link>
-        <span className="text-xs font-bold tracking-widest text-ink-muted uppercase">
+        <span className="round-counter text-ink-muted text-xs font-bold tracking-widest uppercase">
           Round {index + 1}/{rounds.length}
         </span>
         <span
-          className={`text-xs font-bold tracking-widest uppercase ${
+          className={`streak-counter text-xs font-bold tracking-widest uppercase ${
             streak >= 2 ? "text-proof" : "text-ink-muted"
           }`}
         >
@@ -55,25 +65,25 @@ export function RoundShell({
         </span>
       </header>
 
-      <div className="mt-3">
+      <div className="progress-strip mt-3">
         <ColorBar rounds={rounds} results={results} currentIndex={index} />
       </div>
 
       {/* Round clock: drains left to right, turns red when time runs short. */}
       <div
-        className={`mt-2 flex items-center gap-2 ${timer === undefined ? "invisible" : ""}`}
+        className={`timer-row mt-2 flex items-center gap-2 ${timer === undefined ? "invisible" : ""}`}
         aria-hidden={timer === undefined}
       >
-        <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-rule">
+        <div className="timer-track bg-rule h-1.5 flex-1 overflow-hidden rounded-full">
           <div
-            className={`h-full rounded-full transition-[width] duration-100 ease-linear ${
+            className={`timer-fill h-full rounded-full transition-[width] duration-100 ease-linear ${
               urgent ? "bg-flag" : "bg-ink"
             }`}
             style={{ width: `${(timer?.frac ?? 0) * 100}%` }}
           />
         </div>
         <span
-          className={`w-4 text-right text-xs font-bold tabular-nums ${
+          className={`timer-seconds w-4 text-right text-xs font-bold tabular-nums ${
             urgent ? "text-flag" : "text-ink-muted"
           }`}
         >
@@ -81,14 +91,14 @@ export function RoundShell({
         </span>
       </div>
 
-      <div className="mt-4 flex items-baseline justify-between">
-        <p className="text-[11px] font-bold tracking-[0.2em] text-ink-muted uppercase">
+      <div className="mode-row mt-4 flex items-baseline justify-between">
+        <p className="mode-label text-ink-muted text-[11px] font-bold tracking-[0.2em] uppercase">
           {MODE_LABELS[round.mode]}
         </p>
         {showSkip && (
           <button
             onClick={onSkip}
-            className="pressable text-[11px] font-bold tracking-[0.2em] text-ink-muted uppercase underline underline-offset-4 hover:text-ink"
+            className="skip-button pressable text-ink-muted hover:text-ink text-[11px] font-bold tracking-[0.2em] uppercase underline underline-offset-4"
           >
             Skip
           </button>
@@ -97,7 +107,9 @@ export function RoundShell({
 
       {/* Scrolls when a screen is taller than the viewport, so nothing clips
           on small phones; short content still pins its actions to the bottom. */}
-      <main className="mt-3 flex min-h-0 flex-1 flex-col overflow-y-auto">{children}</main>
+      <main className="round-main mt-3 flex min-h-0 flex-1 flex-col overflow-y-auto">
+        {children}
+      </main>
     </div>
   );
 }
