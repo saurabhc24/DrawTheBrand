@@ -119,15 +119,11 @@ export default function Home() {
         ))}
       </section>
 
-      <p className="coming-soon text-ink-muted mt-3 shrink-0 text-[11px] font-bold tracking-[0.18em] uppercase">
-        In the works: wordmark · close-up
-      </p>
-
-      <footer className="home-footer text-ink-muted mt-2 shrink-0 text-[11px] leading-relaxed">
+      <footer className="home-footer text-ink-muted mt-4 shrink-0 text-[11px] leading-relaxed">
         <p className="legal-note">
           A memory game, not an affiliation. All marks belong to their owners.{" "}
           <a
-            href="mailto:takedown@example.com"
+            href="mailto:hellosaurabhchandra@gmail.com?subject=Brandr%20takedown%20request"
             className="underline underline-offset-2"
           >
             Takedown requests
