@@ -137,7 +137,7 @@ export default function Home() {
         <p className="maker-credit text-ink mt-1.5 font-semibold">
           Made by{" "}
           <a
-            href="https://github.com/saurabhc24"
+            href="https://hellosaurabhchandra.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="underline underline-offset-2"
