@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* The Remotion showreel is its own project; keep its markup out of the scan. */
+@source not "../showreel";
 
 @theme {
   /* Color-block palette: white paper, bold ink, flat bright cards for the
