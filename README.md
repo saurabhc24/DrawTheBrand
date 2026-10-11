@@ -5,8 +5,11 @@ shade, place a palette with no shapes, or call a brand from one zoomed-in sliver
 
 Live modes: **Palette** (name the brand from proportional color blocks), **Exact shade**
 (the logo is shown desaturated; pick its real hex from near-identical swatches), **Real
-or fake** (spot the doctored logo — fakes are generated procedurally from the real asset
-via seeded hue shifts and proportion squeezes, [lib/fake.ts](lib/fake.ts)), and **Draw
+or fake** (spot the doctored logo — fakes are seeded hue rotations and proportion squeezes of
+the real asset, sized by measured difficulty: hue fakes target a CIEDE2000 band computed through
+the browser's own `hue-rotate()` matrix, easing from obvious to subtle across a session —
+[lib/session.ts](lib/session.ts), [lib/delta-e.ts](lib/delta-e.ts), self-check in
+[scripts/check-fakes.mjs](scripts/check-fakes.mjs)), and **Draw
 from memory** (sketch the logo; scored 0–100 against the real mark via a
 position/scale-normalized, edge-based chamfer similarity — [lib/drawScore.ts](lib/drawScore.ts)),
 and **Focus** (the real logo pulls into focus from a heavy blur; the distractors share its

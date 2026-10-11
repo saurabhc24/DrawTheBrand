@@ -42,7 +42,11 @@ export function FakeRound({
       </p>
       <div className="fake-stage [container-type:size] flex min-h-56 flex-1 items-center justify-center py-2">
         <div className="suspect-proof crop-marks w-[min(100cqw,100cqh,24rem)]">
-          <div className="suspect-logo-card vt-stage border-rule bg-card overflow-hidden rounded-xl border">
+          {/* A full-bleed logo's own canvas color sits behind it, so a squash never shows the card. */}
+          <div
+            className="suspect-logo-card vt-stage border-rule bg-card overflow-hidden rounded-xl border"
+            style={{ backgroundColor: round.brand.assets.background }}
+          >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={round.brand.assets.logoFull}

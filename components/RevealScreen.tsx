@@ -48,6 +48,7 @@ function Figure({
   caption,
   tone = "neutral",
   style,
+  background,
   stage = false,
 }: {
   src: string;
@@ -55,6 +56,8 @@ function Figure({
   caption: string;
   tone?: "neutral" | "flag";
   style?: React.CSSProperties;
+  /** Full-bleed canvas color, painted behind the (possibly squashed) image. */
+  background?: string;
   stage?: boolean;
 }) {
   const edge =
@@ -63,8 +66,15 @@ function Figure({
     <figure
       className={`compare-figure bg-card overflow-hidden rounded-2xl border ${edge} ${stage ? "vt-stage" : ""}`}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={src} alt={alt} className="aspect-square w-full" style={style} />
+      <div className="compare-art" style={{ backgroundColor: background }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={src}
+          alt={alt}
+          className="aspect-square w-full"
+          style={style}
+        />
+      </div>
       <figcaption
         className={`compare-caption border-t px-2.5 py-1.5 font-mono text-[10px] tracking-[0.12em] uppercase ${edge}`}
       >
@@ -136,12 +146,14 @@ export function RevealScreen({
               caption="What you saw"
               tone="flag"
               style={fakeStyle(result.shownFake)}
+              background={brand.assets.background}
               stage
             />
             <Figure
               src={brand.assets.logoFull}
               alt={`The real ${brand.name} logo`}
               caption="The real one"
+              background={brand.assets.background}
             />
           </div>
           <p className="whats-wrong border-flag text-ink mt-3 shrink-0 border-l-2 pl-3 text-sm leading-relaxed">

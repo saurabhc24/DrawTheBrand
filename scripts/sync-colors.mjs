@@ -43,10 +43,25 @@ let changed = 0;
 for (const brand of brands) {
   let svgText;
   try {
-    svgText = await readFile(path.join(root, "public", "logos", `${brand.id}.svg`), "utf8");
+    svgText = await readFile(
+      path.join(root, "public", "logos", `${brand.id}.svg`),
+      "utf8",
+    );
   } catch {
     manual.push(`${brand.id}: MISSING ASSET`);
     continue;
+  }
+  const canvas = svgText
+    .match(/<rect width="512" height="512" fill="(#[0-9A-Fa-f]{6})"/)?.[1]
+    ?.toUpperCase();
+  if (
+    canvas &&
+    canvas !== "#FFFFFF" &&
+    brand.assets.background?.toUpperCase() !== canvas
+  ) {
+    manual.push(
+      `${brand.id}: full-bleed canvas ${canvas} needs assets.background (squash fakes would show the frame)`,
+    );
   }
   const m = svgText.match(/base64,([^"]+)/);
   const inner = m ? Buffer.from(m[1], "base64").toString("utf8") : svgText;
@@ -56,7 +71,9 @@ for (const brand of brands) {
   }
 
   const raw = [
-    ...inner.matchAll(/(?:fill|stroke|stop-color)[=:]\s*"?'?(#[0-9a-fA-F]{3}\b|#[0-9a-fA-F]{6})/g),
+    ...inner.matchAll(
+      /(?:fill|stroke|stop-color)[=:]\s*"?'?(#[0-9a-fA-F]{3}\b|#[0-9a-fA-F]{6})/g,
+    ),
   ].map((x) => normalizeHex(x[1]));
   const fills = [...new Set(raw)];
   const saturated = fills.filter((h) => !isNeutral(h));
@@ -66,7 +83,9 @@ for (const brand of brands) {
     if (!isNeutral(current)) {
       // Data claims a saturated primary: snap it to the asset's actual color.
       if (saturated[0] !== current) {
-        console.log(`${brand.id.padEnd(14)} colors[0] ${current} -> ${saturated[0]}`);
+        console.log(
+          `${brand.id.padEnd(14)} colors[0] ${current} -> ${saturated[0]}`,
+        );
         if (write) {
           brand.colors[0].hex = saturated[0];
           changed++;
@@ -76,8 +95,14 @@ for (const brand of brands) {
       // Neutral-dominant logo (black wordmark + colored accent): the saturated
       // fill corrects the accent, not the primary.
       const accent = brand.colors[1];
-      if (accent && !isNeutral(accent.hex.toUpperCase()) && accent.hex.toUpperCase() !== saturated[0]) {
-        console.log(`${brand.id.padEnd(14)} colors[1] ${accent.hex.toUpperCase()} -> ${saturated[0]}`);
+      if (
+        accent &&
+        !isNeutral(accent.hex.toUpperCase()) &&
+        accent.hex.toUpperCase() !== saturated[0]
+      ) {
+        console.log(
+          `${brand.id.padEnd(14)} colors[1] ${accent.hex.toUpperCase()} -> ${saturated[0]}`,
+        );
         if (write) {
           accent.hex = saturated[0];
           changed++;
@@ -86,7 +111,8 @@ for (const brand of brands) {
     }
   } else if (saturated.length === 0) {
     // Monochrome logo (possibly via default black fill).
-    const black = fills.find((h) => parseInt(h.slice(1, 3), 16) < 40) ?? "#000000";
+    const black =
+      fills.find((h) => parseInt(h.slice(1, 3), 16) < 40) ?? "#000000";
     if (isNeutralClaim(current) && current !== black) {
       console.log(`${brand.id.padEnd(14)} ${current} -> ${black} (monochrome)`);
       if (write) {
@@ -94,13 +120,17 @@ for (const brand of brands) {
         changed++;
       }
     } else if (!isNeutralClaim(current)) {
-      manual.push(`${brand.id}: asset is monochrome (${fills.join(" ") || "default black"}) but data claims ${current}`);
+      manual.push(
+        `${brand.id}: asset is monochrome (${fills.join(" ") || "default black"}) but data claims ${current}`,
+      );
     }
   } else {
     const dataColors = brand.colors.map((c) => c.hex.toUpperCase());
     const covered = dataColors.every((c) => fills.includes(c));
     if (!covered) {
-      manual.push(`${brand.id}: asset [${saturated.join(" ")}] vs data [${dataColors.join(" ")}]`);
+      manual.push(
+        `${brand.id}: asset [${saturated.join(" ")}] vs data [${dataColors.join(" ")}]`,
+      );
     }
   }
 }
@@ -114,4 +144,5 @@ if (write) {
   console.log(`\n${changed} colors[0] value(s) updated.`);
 }
 if (manual.length) console.log(`\nManual review:\n  ${manual.join("\n  ")}`);
-if (pngs.length) console.log(`\nPNG assets (verify by eye): ${pngs.join(", ")}`);
+if (pngs.length)
+  console.log(`\nPNG assets (verify by eye): ${pngs.join(", ")}`);

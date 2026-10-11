@@ -42,6 +42,12 @@ export type Brand = {
   domain?: string;
   assets: {
     logoFull: string;
+    /**
+     * Canvas color for logos whose artwork fills the whole 512px wrapper
+     * (DHL, Snapchat). Cards behind the logo use it, so a squashed fake never
+     * exposes the frame. scripts/sync-colors.mjs flags any that are missing.
+     */
+    background?: string;
     logoSilhouette?: string;
     wordmark?: string;
     drawReference?: string;
@@ -69,10 +75,15 @@ export type Pack = "all" | "indian" | "global";
  * asset with a CSS distortion, so every brand plays without hand-made assets;
  * hand-crafted `fakeVariants` in brands.json can override this later.
  */
+export type FakeLevel = "easy" | "medium" | "hard";
+
 export type FakeSpec = {
   kind: "squashX" | "squashY" | "hue";
   /** scale factor for squash kinds, degrees for hue. */
   amount: number;
+  level: FakeLevel;
+  /** Hue fakes: area-weighted CIEDE2000 between the real palette and the shown one. */
+  deltaE?: number;
   whatsWrong: string;
 };
 

@@ -10,7 +10,8 @@ export function fakeStyle(fake: FakeSpec | null | undefined): CSSProperties {
   if (!fake) return {};
   switch (fake.kind) {
     case "hue":
-      return { filter: `hue-rotate(${fake.amount}deg) saturate(1.05)` };
+      // Exactly the rotation lib/session.ts measured — nothing extra on top.
+      return { filter: `hue-rotate(${fake.amount}deg)` };
     case "squashX":
       return { transform: `scaleX(${fake.amount})` };
     case "squashY":

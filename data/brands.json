@@ -1716,7 +1716,8 @@
     "difficulty": "easy",
     "domain": "snapchat.com",
     "assets": {
-      "logoFull": "/logos/snapchat.svg"
+      "logoFull": "/logos/snapchat.svg",
+      "background": "#FFFC00"
     },
     "colors": [
       {
@@ -2571,7 +2572,8 @@
     "difficulty": "easy",
     "domain": "dhl.com",
     "assets": {
-      "logoFull": "/logos/dhl.svg"
+      "logoFull": "/logos/dhl.svg",
+      "background": "#FFCC00"
     },
     "colors": [
       {
