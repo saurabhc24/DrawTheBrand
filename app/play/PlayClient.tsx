@@ -11,7 +11,13 @@ import { FakeRound } from "@/components/modes/FakeRound";
 import { DrawRound } from "@/components/modes/DrawRound";
 import { DRAW_PASS_SCORE } from "@/lib/drawScore";
 import { buildSession } from "@/lib/session";
-import type { Pack, PlayableMode, RoundResult, Session } from "@/lib/types";
+import type {
+  Pack,
+  PlayableMode,
+  Round,
+  RoundResult,
+  Session,
+} from "@/lib/types";
 
 const VALID_MODES = ["colors", "shade", "fake", "draw", "mixed"];
 const VALID_PACKS = ["all", "indian", "global"];
@@ -43,40 +49,41 @@ export function PlayClient() {
   );
   const [results, setResults] = useState<RoundResult[]>([]);
   const [timerFrac, setTimerFrac] = useState(1);
-  const [timeUp, setTimeUp] = useState(false);
+  // Expiry is keyed to the round object, not a boolean: a flag left over from
+  // a timed-out round can never forfeit the next one (or a replayed session).
+  const [expired, setExpired] = useState<Round | null>(null);
 
   useEffect(() => {
     setSession(buildSession(mode, pack));
   }, [mode, pack]);
 
-  const currentMode = session?.rounds[index]?.mode;
+  const round = session?.rounds[index];
+  const timeUp = round != null && expired === round;
 
   // The round clock: ticks only while a question is on screen.
   useEffect(() => {
-    if (!currentMode || phase !== "question") return;
-    setTimeUp(false);
+    if (!round || phase !== "question") return;
     setTimerFrac(1);
-    const total = TIMER_SECONDS[currentMode] * 1000;
+    const total = TIMER_SECONDS[round.mode] * 1000;
     const deadline = Date.now() + total;
     const tick = setInterval(() => {
       const frac = (deadline - Date.now()) / total;
       if (frac <= 0) {
         clearInterval(tick);
         setTimerFrac(0);
-        setTimeUp(true);
+        setExpired(round);
       } else {
         setTimerFrac(frac);
       }
     }, 100);
     return () => clearInterval(tick);
-  }, [currentMode, phase, index]);
+  }, [round, phase]);
 
   // Clock expiry for the tap modes; draw handles its own via the timeUp prop
   // (it scores whatever is on the canvas instead of forfeiting).
   useEffect(() => {
-    if (!timeUp || phase !== "question") return;
-    const round = session?.rounds[index];
-    if (!round || round.mode === "draw") return;
+    if (!timeUp || phase !== "question" || !round || round.mode === "draw")
+      return;
     setResults((prev) => [
       ...prev,
       {
@@ -89,7 +96,7 @@ export function PlayClient() {
       },
     ]);
     setPhase("reveal");
-  }, [timeUp, phase, session, index]);
+  }, [timeUp, phase, round]);
 
   const streak = useMemo(() => {
     let n = 0;
@@ -117,7 +124,6 @@ export function PlayClient() {
 
   if (!session) return null;
   const rounds = session.rounds;
-  const round = rounds[index];
 
   if (!round) {
     return (
