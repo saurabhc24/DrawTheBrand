@@ -17,7 +17,25 @@ Vercel via GitHub pushes to `main`.
   to chrome only (home cards, results bento, verdict pills).
 - App screens are `h-dvh overflow-hidden` frames with an internal `overflow-y-auto`
   region; fixed-height blocks inside flex columns need `shrink-0` or they get crushed on
-  short viewports.
+  short viewports. Scroll regions use `-mx-4 px-4` so rings and shakes at the content edge
+  aren't clipped. `overflow-hidden` on a grid item zeroes its automatic min height — keep it
+  off cards whose rows must grow to fit content.
+
+## Design system: the press proof
+
+- Prepress furniture is the motif: `crop-marks` (wrap a stimulus; marks live in its
+  padding), `stamp` + `ink-texture` (verdicts; color from `text-*`, tilt via `--tilt`),
+  `RegMark` at both ends of every color bar. IBM Plex Mono uppercase for labels; Archivo
+  `font-stretch-expanded` for display, `semi-expanded` for headings.
+- Rounds go question → feedback → reveal. During feedback, question components get the
+  `answered` result and show the verdict in place; keyboard input goes through
+  `lib/useHotkeys.ts`.
+- One `vt-stage` element per screen (the stimulus / main logo) — it's the View Transitions
+  shared element; duplicates abort the morph.
+- Animate with `translate`/`scale` properties, not `transform`, on anything `.pressable`
+  (fill-mode `both` would pin the transform and kill the press). Reduced motion shows base
+  styles, so every looping illustration needs a sensible resting state.
+- Next's bundled React has no `useEffectEvent`; use a ref.
 
 ## Data & assets
 

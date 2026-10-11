@@ -32,9 +32,39 @@ npm run build   # fully static — deploys to Vercel as-is
   ([lib/color.ts](lib/color.ts)), and crop windows are fixed when a session is built.
 - **Shared shell** — every mode renders inside [components/RoundShell.tsx](components/RoundShell.tsx)
   and ends on [components/RevealScreen.tsx](components/RevealScreen.tsx) (real logo, tappable
-  hex chips, fun fact). The progress bar is a printer's color bar: each correct round fills a
-  chip with that brand's real primary color — it is also the future share card.
+  spec chips, fun fact). A round runs question → feedback (the verdict shown in place for
+  750 ms) → reveal ([app/play/PlayClient.tsx](app/play/PlayClient.tsx)). The progress bar is a
+  printer's color bar: each correct round inks a chip with that brand's real primary color.
 - No backend, no state library. Session-only state, `sessionStorage` for best streak.
+
+## Design: the press proof
+
+Brands live and die by spec sheets, so the game is staged as a print-shop proofing session.
+The flat color-block bento is the chrome; game surfaces stay neutral so the logos supply the
+color; prepress furniture does the rest.
+
+- **Print furniture as utilities** ([app/globals.css](app/globals.css)) — `crop-marks` trims
+  any stimulus like a press proof (drawn as backgrounds, so scroll containers never clip them),
+  `stamp` + `ink-texture` make rubber-stamp verdicts with speckled ink from a thresholded
+  `feTurbulence` mask, and registration targets ([components/RegMark.tsx](components/RegMark.tsx))
+  bracket every color bar.
+- **Type** — Archivo's variable width axis does the heavy lifting: expanded (125%) for display,
+  regular for UI, IBM Plex Mono for job-ticket labels.
+- **Intro** ([components/Intro.tsx](components/Intro.tsx)) — a mosaic of the roster's real colors
+  pops in, sorts itself into a spectrum, then pours into the home page's calibration strip while
+  the wordmark FLIPs onto the title; every piece lands on its live counterpart, so the hand-off
+  is seamless. A pre-paint gate script keeps the static page from flashing first.
+- **Motion with meaning** — each home card animates its own mechanic
+  ([components/ModeArt.tsx](components/ModeArt.tsx)); the question's stimulus morphs into the
+  reveal via the View Transitions API; streaks pop, chips take ink, the clock ticks red.
+  Reduced-motion users get clean stills.
+- **Share card** ([lib/shareCard.ts](lib/shareCard.ts)) — the finished run as a 1080×1350 press
+  proof (score, rank stamp, color bar, every logo played), drawn by hand on a canvas in the
+  page's own fonts and handed to the native share sheet; desktop saves it and copies an emoji
+  grid instead.
+- **Feel** — haptics on Android for verdicts and the last seconds, 1–4/A–D/R/F/Enter on a
+  keyboard, coalesced-pointer + quadratic smoothing on the drawing pad, and a phone-width sheet
+  on a cutting mat on desktop.
 
 ## Data pipeline
 
@@ -50,5 +80,4 @@ npm run build   # fully static — deploys to Vercel as-is
 - **Fun facts and remaining hex values are best-effort** — verify against official brand
   guidelines before launch (PRD §12 note). PNG-based assets can't be auto-synced; check
   those brands' colors by eye.
-- Replace the placeholder takedown email in [app/page.tsx](app/page.tsx).
 - Pick the real product name (PRD open decision #1).
