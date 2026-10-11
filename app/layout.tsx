@@ -95,10 +95,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body
-        className={`${archivo.variable} ${plexMono.variable} bg-paper text-ink font-sans antialiased`}
-      >
+    // Font variables live on <html> so the @theme tokens (declared on :root)
+    // can resolve them.
+    <html lang="en" className={`${archivo.variable} ${plexMono.variable}`}>
+      <body className="bg-paper text-ink font-sans antialiased">
         {children}
         <script
           type="application/ld+json"
