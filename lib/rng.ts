@@ -1,6 +1,6 @@
 /**
  * Small seeded RNG (mulberry32) so every round's randomness — brand order,
- * option shuffle, shade distractors, crop window — is resolved once when the
+ * option shuffle, shade distractors, fake doctoring — is resolved once when the
  * session is built, and never changes across re-renders.
  */
 export type Rng = () => number;

@@ -1,7 +1,8 @@
 # Brandr (working title)
 
 A brand-logo memory game: you recognize every logo instantly — but can you name the exact
-shade, place a palette with no shapes, or call a brand from one zoomed-in sliver?
+shade, place a palette with no shapes, spot a doctored mark, or call a logo before it comes into
+focus?
 
 Live modes: **Palette** (name the brand from proportional color blocks), **Exact shade**
 (the logo is shown desaturated; pick its real hex from near-identical swatches), **Real
@@ -15,7 +16,8 @@ position/scale-normalized, edge-based chamfer similarity — [lib/drawScore.ts](
 and **Focus** (the real logo pulls into focus from a heavy blur; the distractors share its
 dominant color, so the call comes from shape — earlier calls score more,
 [components/modes/FocusRound.tsx](components/modes/FocusRound.tsx)). Plus Mixed sessions.
-Every round runs on a clock — 5 s for guess rounds, 8 s for focus, 30 s for drawing. Wordmark mode is data-ready but not yet built; the earlier Close-up (crop)
+Every round runs on a clock — 5 s for guess rounds, 8 s for focus, 30 s for drawing. A
+Wordmark mode is supported by the schema but has no assets yet; the earlier Close-up (crop)
 mode was retired in favor of Real or fake.
 
 ## Run it
@@ -34,7 +36,8 @@ npm run build   # fully static — deploys to Vercel as-is
   in every mode it qualifies for.
 - **All randomness is seeded and resolved up front** ([lib/session.ts](lib/session.ts),
   [lib/rng.ts](lib/rng.ts)): brand order, option shuffles, shade distractors
-  ([lib/color.ts](lib/color.ts)), and crop windows are fixed when a session is built.
+  ([lib/color.ts](lib/color.ts)), fake doctorings and focus lookalikes are fixed when a
+  session is built.
 - **Shared shell** — every mode renders inside [components/RoundShell.tsx](components/RoundShell.tsx)
   and ends on [components/RevealScreen.tsx](components/RevealScreen.tsx) (real logo, tappable
   spec chips, fun fact). A round runs question → feedback (the verdict shown in place for
@@ -73,16 +76,30 @@ color; prepress furniture does the rest.
 
 ## Data pipeline
 
-- [scripts/import-logos.mjs](scripts/import-logos.mjs) does one-time logo imports from the
-  Brandfetch Brand API (`node scripts/import-logos.mjs <API_KEY> [--missing] [ids…]`), wrapping
-  each asset on the square canvas the game expects.
+- **Logo assets** are 512×512 wrapper SVGs in [public/logos](public/logos) with the artwork
+  base64-embedded (an embedded SVG must have a `viewBox`, or it renders stretched). Sources:
+  the Brandfetch Brand API via [scripts/import-logos.mjs](scripts/import-logos.mjs)
+  (`node scripts/import-logos.mjs <API_KEY> [--missing] [ids…]`), and Wikipedia / Wikimedia
+  Commons logo files. Oversized sources are re-encoded to WebP rather than shipped as-is.
+- **Full-bleed logos** (artwork filling the whole canvas, like DHL) declare
+  `assets.background` so cards behind them match and a squashed fake never shows the frame.
 - [scripts/sync-colors.mjs](scripts/sync-colors.mjs) reconciles `brands.json` hexes with the
-  colors actually present in the imported SVGs (`--write` to apply), so shade mode always
-  quizzes on the color the player is looking at.
+  colors actually present in the SVG assets (`--write` to apply), so shade mode always quizzes
+  on the color the player is looking at — and flags full-bleed assets missing a background.
+- [scripts/check-fakes.mjs](scripts/check-fakes.mjs) self-checks the fake-measuring color math
+  (`node --no-warnings scripts/check-fakes.mjs`).
+
+## Showreel
+
+[showreel/](showreel) is a self-contained [Remotion](https://remotion.dev) project: a 55-second,
+60fps motion piece built from the game's own tokens, fonts, logos and dataset — every frame is
+code. `cd showreel && npm install && npm run render` writes `out/brandr-showreel.mp4`; see its
+[README](showreel/README.md) for the scene list. It's excluded from the app's TypeScript and
+Tailwind builds.
 
 ## Before shipping publicly
 
 - **Fun facts and remaining hex values are best-effort** — verify against official brand
-  guidelines before launch (PRD §12 note). PNG-based assets can't be auto-synced; check
-  those brands' colors by eye.
+  guidelines before launch (PRD §12 note). Raster (PNG/WebP) assets can't be auto-synced;
+  check those brands' colors by eye.
 - Pick the real product name (PRD open decision #1).
