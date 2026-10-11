@@ -39,7 +39,7 @@ function loadImage(src: string): Promise<HTMLImageElement> {
 }
 
 /** Load an image source; .svg files get explicit dimensions so canvas rasterizes them. */
-async function loadDrawable(
+export async function loadDrawable(
   src: string,
 ): Promise<{ img: HTMLImageElement; cleanup: () => void }> {
   if (src.startsWith("data:") || !src.endsWith(".svg")) {

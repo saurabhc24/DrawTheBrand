@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { flushSync } from "react-dom";
 import { useSearchParams } from "next/navigation";
 import { RoundShell } from "@/components/RoundShell";
 import { RevealScreen } from "@/components/RevealScreen";
@@ -30,6 +31,20 @@ const TIMER_SECONDS: Record<PlayableMode, number> = {
   draw: 30,
 };
 
+/** How long right/wrong shows on the question itself before the reveal. */
+const FEEDBACK_MS = 750;
+
+type Phase = "question" | "feedback" | "reveal" | "done";
+
+/** Haptics where the platform has them (Android); a silent no-op elsewhere. */
+const buzz = (pattern: number | number[]) => navigator.vibrate?.(pattern);
+
+/** Morph between screens with the View Transitions API where supported. */
+function transition(update: () => void) {
+  if (!document.startViewTransition) return update();
+  document.startViewTransition(() => flushSync(update));
+}
+
 export function PlayClient() {
   const params = useSearchParams();
   const mode = (
@@ -44,9 +59,7 @@ export function PlayClient() {
   // Built on the client only, so the seeded randomness never fights hydration.
   const [session, setSession] = useState<Session | null>(null);
   const [index, setIndex] = useState(0);
-  const [phase, setPhase] = useState<"question" | "reveal" | "done">(
-    "question",
-  );
+  const [phase, setPhase] = useState<Phase>("question");
   const [results, setResults] = useState<RoundResult[]>([]);
   const [timerFrac, setTimerFrac] = useState(1);
   // Expiry is keyed to the round object, not a boolean: a flag left over from
@@ -60,27 +73,33 @@ export function PlayClient() {
   const round = session?.rounds[index];
   const timeUp = round != null && expired === round;
 
-  // The round clock: ticks only while a question is on screen.
+  // The round clock: ticks only while a question is open; it freezes (rather
+  // than vanishes) through the feedback beat. Haptic ticks for the last 2 s.
   useEffect(() => {
     if (!round || phase !== "question") return;
     setTimerFrac(1);
     const total = TIMER_SECONDS[round.mode] * 1000;
     const deadline = Date.now() + total;
+    let lastSecond = TIMER_SECONDS[round.mode];
     const tick = setInterval(() => {
-      const frac = (deadline - Date.now()) / total;
-      if (frac <= 0) {
+      const left = deadline - Date.now();
+      if (left <= 0) {
         clearInterval(tick);
         setTimerFrac(0);
         setExpired(round);
-      } else {
-        setTimerFrac(frac);
+        return;
       }
+      setTimerFrac(left / total);
+      const second = Math.ceil(left / 1000);
+      if (second !== lastSecond && second <= 2) buzz(8);
+      lastSecond = second;
     }, 100);
     return () => clearInterval(tick);
   }, [round, phase]);
 
-  // Clock expiry for the tap modes; draw handles its own via the timeUp prop
-  // (it scores whatever is on the canvas instead of forfeiting).
+  // Clock expiry for the tap modes: the answer flashes up in context, then
+  // the reveal. Draw handles its own via the timeUp prop (it scores whatever
+  // is on the canvas instead of forfeiting).
   useEffect(() => {
     if (!timeUp || phase !== "question" || !round || round.mode === "draw")
       return;
@@ -95,8 +114,18 @@ export function PlayClient() {
         ...(round.mode === "fake" ? { shownFake: round.fake ?? null } : {}),
       },
     ]);
-    setPhase("reveal");
+    buzz([24, 60, 24]);
+    setPhase("feedback");
   }, [timeUp, phase, round]);
+
+  useEffect(() => {
+    if (phase !== "feedback") return;
+    const t = setTimeout(
+      () => transition(() => setPhase("reveal")),
+      FEEDBACK_MS,
+    );
+    return () => clearTimeout(t);
+  }, [phase]);
 
   const streak = useMemo(() => {
     let n = 0;
@@ -127,80 +156,80 @@ export function PlayClient() {
 
   if (!round) {
     return (
-      <div className="empty-state mx-auto flex h-dvh max-w-md flex-col items-center justify-center overflow-hidden px-4 text-center">
+      <div className="empty-state app-sheet mx-auto flex h-dvh max-w-md flex-col items-center justify-center overflow-hidden px-4 text-center">
         <p className="empty-state-note text-ink-muted text-sm">
-          This pack doesn't have enough brands for that mode yet.
+          This pack doesn&apos;t have enough brands for that mode yet.
         </p>
       </div>
     );
   }
 
-  const answer = (picked: string, correct: boolean) => {
+  /** Record the round's outcome, with a haptic verdict. */
+  const settle = (outcome: Omit<RoundResult, "brand" | "mode">) => {
     setResults((prev) => [
       ...prev,
-      { brand: round.brand, mode: round.mode, correct, skipped: false, picked },
+      { brand: round.brand, mode: round.mode, ...outcome },
     ]);
-    setPhase("reveal");
+    buzz(outcome.correct ? 14 : [24, 60, 24]);
   };
 
-  const skip = () => {
-    setResults((prev) => [
-      ...prev,
-      { brand: round.brand, mode: round.mode, correct: false, skipped: true },
-    ]);
-    setPhase("reveal");
+  const answer = (picked: string, correct: boolean) => {
+    settle({ correct, skipped: false, picked });
+    setPhase("feedback");
   };
 
   const submitFakeCall = (saidFake: boolean) => {
-    const wasFake = round.fake != null;
-    setResults((prev) => [
-      ...prev,
-      {
-        brand: round.brand,
-        mode: round.mode,
-        correct: saidFake === wasFake,
-        skipped: false,
-        picked: saidFake ? "fake" : "real",
-        shownFake: round.fake ?? null,
-      },
-    ]);
-    setPhase("reveal");
+    settle({
+      correct: saidFake === (round.fake != null),
+      skipped: false,
+      picked: saidFake ? "fake" : "real",
+      shownFake: round.fake ?? null,
+    });
+    setPhase("feedback");
   };
 
-  const submitDrawing = (drawing: string, score: number) => {
-    setResults((prev) => [
-      ...prev,
-      {
-        brand: round.brand,
-        mode: round.mode,
+  const submitDrawing = (drawing: string, score: number) =>
+    transition(() => {
+      settle({
         correct: score >= DRAW_PASS_SCORE,
         skipped: false,
         drawing,
         score,
-      },
-    ]);
-    setPhase("reveal");
-  };
+      });
+      setPhase("reveal");
+    });
 
-  const next = () => {
-    if (index + 1 >= rounds.length) {
-      setPhase("done");
-    } else {
-      setIndex(index + 1);
+  const skip = () =>
+    transition(() => {
+      setResults((prev) => [
+        ...prev,
+        { brand: round.brand, mode: round.mode, correct: false, skipped: true },
+      ]);
+      setPhase("reveal");
+    });
+
+  const next = () =>
+    transition(() => {
+      if (index + 1 >= rounds.length) {
+        setPhase("done");
+      } else {
+        setIndex(index + 1);
+        setPhase("question");
+      }
+    });
+
+  const replay = () =>
+    transition(() => {
+      setSession(buildSession(mode, pack));
+      setIndex(0);
+      setResults([]);
       setPhase("question");
-    }
-  };
-
-  const replay = () => {
-    setSession(buildSession(mode, pack));
-    setIndex(0);
-    setResults([]);
-    setPhase("question");
-  };
+    });
 
   if (phase === "done") {
     return (
       <Results
+        mode={mode}
         rounds={rounds}
         results={results}
         bestStreak={bestStreak}
@@ -208,6 +237,8 @@ export function PlayClient() {
       />
     );
   }
+
+  const answered = phase === "feedback" ? results.at(-1) : undefined;
 
   return (
     <RoundShell
@@ -218,7 +249,7 @@ export function PlayClient() {
       onSkip={skip}
       showSkip={phase === "question"}
       timer={
-        phase === "question"
+        phase === "question" || phase === "feedback"
           ? {
               frac: timerFrac,
               seconds: Math.ceil(timerFrac * TIMER_SECONDS[round.mode]),
@@ -226,35 +257,35 @@ export function PlayClient() {
           : undefined
       }
     >
-      {phase === "question" ? (
-        round.mode === "colors" ? (
-          <ColorsRound
-            round={round}
-            onPick={(id) => answer(id, id === round.brand.id)}
-          />
-        ) : round.mode === "shade" ? (
-          <ShadeRound
-            round={round}
-            onPick={(hex) =>
-              answer(hex, hex === round.brand.colors[0].hex.toUpperCase())
-            }
-          />
-        ) : round.mode === "draw" ? (
-          <DrawRound
-            round={round}
-            onDone={submitDrawing}
-            onSkip={skip}
-            timeUp={timeUp}
-          />
-        ) : (
-          <FakeRound round={round} onPick={submitFakeCall} />
-        )
-      ) : (
+      {phase === "reveal" ? (
         <RevealScreen
           result={results[results.length - 1]}
           isLast={index + 1 >= rounds.length}
           onNext={next}
         />
+      ) : round.mode === "colors" ? (
+        <ColorsRound
+          round={round}
+          answered={answered}
+          onPick={(id) => answer(id, id === round.brand.id)}
+        />
+      ) : round.mode === "shade" ? (
+        <ShadeRound
+          round={round}
+          answered={answered}
+          onPick={(hex) =>
+            answer(hex, hex === round.brand.colors[0].hex.toUpperCase())
+          }
+        />
+      ) : round.mode === "draw" ? (
+        <DrawRound
+          round={round}
+          onDone={submitDrawing}
+          onSkip={skip}
+          timeUp={timeUp}
+        />
+      ) : (
+        <FakeRound round={round} answered={answered} onPick={submitFakeCall} />
       )}
     </RoundShell>
   );

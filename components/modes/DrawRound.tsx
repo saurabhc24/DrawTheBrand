@@ -1,10 +1,18 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { UndoIcon } from "../Icons";
 import { scoreDrawing } from "@/lib/drawScore";
 import type { Round } from "@/lib/types";
 
 const SIZE = 512;
+const BRUSHES = [
+  { px: 7, dot: 4, label: "Fine" },
+  { px: 12, dot: 7, label: "Medium" },
+  { px: 22, dot: 11, label: "Bold" },
+];
+
+type Point = { x: number; y: number };
 
 export function DrawRound({
   round,
@@ -20,7 +28,9 @@ export function DrawRound({
 }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const drawingRef = useRef(false);
-  const lastRef = useRef<{ x: number; y: number } | null>(null);
+  // Smoothing state: last raw point and last segment midpoint.
+  const lastRef = useRef<Point | null>(null);
+  const midRef = useRef<Point | null>(null);
   const undoRef = useRef<string[]>([]);
   const [brush, setBrush] = useState(round.brand.colors[0]?.hex ?? "#141416");
   const [width, setWidth] = useState(12);
@@ -44,9 +54,8 @@ export function DrawRound({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeUp]);
 
-  const point = (event: React.PointerEvent<HTMLCanvasElement>) => {
-    const canvas = canvasRef.current!;
-    const rect = canvas.getBoundingClientRect();
+  const point = (event: { clientX: number; clientY: number }): Point => {
+    const rect = canvasRef.current!.getBoundingClientRect();
     return {
       x: ((event.clientX - rect.left) / rect.width) * SIZE,
       y: ((event.clientY - rect.top) / rect.height) * SIZE,
@@ -65,32 +74,49 @@ export function DrawRound({
 
   const start = (event: React.PointerEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    const ctx = canvas?.getContext("2d");
+    if (!canvas || !ctx) return;
     canvas.setPointerCapture(event.pointerId);
     snapshot();
     drawingRef.current = true;
-    lastRef.current = point(event);
+    const p = point(event);
+    lastRef.current = p;
+    midRef.current = p;
+    // A tap leaves a dot (dots and i-tittles are part of plenty of marks).
+    ctx.fillStyle = brush;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, width / 2, 0, Math.PI * 2);
+    ctx.fill();
+    setHasDrawing(true);
   };
 
   const move = (event: React.PointerEvent<HTMLCanvasElement>) => {
-    if (!drawingRef.current || !lastRef.current) return;
-    const canvas = canvasRef.current;
-    const ctx = canvas?.getContext("2d");
+    if (!drawingRef.current) return;
+    const ctx = canvasRef.current?.getContext("2d");
     if (!ctx) return;
-    const next = point(event);
     ctx.strokeStyle = brush;
     ctx.lineWidth = width;
-    ctx.beginPath();
-    ctx.moveTo(lastRef.current.x, lastRef.current.y);
-    ctx.lineTo(next.x, next.y);
-    ctx.stroke();
-    lastRef.current = next;
-    setHasDrawing(true);
+    // Coalesced events recover the samples the browser batched between
+    // frames; midpoint quadratics turn them into a smooth curve.
+    const coalesced = event.nativeEvent.getCoalescedEvents?.() ?? [];
+    for (const sample of coalesced.length ? coalesced : [event.nativeEvent]) {
+      const last = lastRef.current!;
+      const prevMid = midRef.current!;
+      const p = point(sample);
+      const mid = { x: (last.x + p.x) / 2, y: (last.y + p.y) / 2 };
+      ctx.beginPath();
+      ctx.moveTo(prevMid.x, prevMid.y);
+      ctx.quadraticCurveTo(last.x, last.y, mid.x, mid.y);
+      ctx.stroke();
+      lastRef.current = p;
+      midRef.current = mid;
+    }
   };
 
   const stop = () => {
     drawingRef.current = false;
     lastRef.current = null;
+    midRef.current = null;
   };
 
   const clear = () => {
@@ -146,68 +172,105 @@ export function DrawRound({
     onDone(drawing, score);
   };
 
+  const palette = [
+    ...new Set([
+      ...round.brand.colors.map((c) => c.hex.toUpperCase()),
+      "#141416",
+      "#FFFFFF",
+    ]),
+  ];
+
   return (
     <div className="draw-round animate-fade flex min-h-0 flex-1 flex-col">
-      <div className="draw-header flex shrink-0 items-end justify-between gap-3">
-        <h1 className="round-question text-xl font-extrabold tracking-tight">
-          Draw {round.brand.name} from memory
-        </h1>
-        <select
-          value={width}
-          onChange={(event) => setWidth(Number(event.target.value))}
-          className="brush-size-select border-ink/20 bg-card rounded-full border px-3 py-1.5 text-sm font-bold"
+      <h1 className="round-question text-[22px] leading-tight font-extrabold tracking-[-0.02em] font-stretch-semi-expanded">
+        Draw {round.brand.name} from memory
+      </h1>
+      <p className="round-hint text-ink-muted mt-1 font-mono text-[10.5px] tracking-[0.12em] uppercase">
+        Scored on shape, not color
+      </p>
+
+      <div className="draw-tools mt-3 flex shrink-0 items-center justify-between gap-3">
+        <div className="brush-palette -m-1 flex items-center gap-2 overflow-x-auto p-1">
+          {palette.map((hex) => (
+            <button
+              key={hex}
+              onClick={() => setBrush(hex)}
+              aria-label={`Use ${hex}`}
+              aria-pressed={brush.toUpperCase() === hex}
+              className={`brush-chip pressable h-8 w-8 shrink-0 rounded-full border ${
+                brush.toUpperCase() === hex
+                  ? "border-ink ring-ink ring-offset-paper ring-2 ring-offset-2"
+                  : "border-rule"
+              }`}
+              style={{ backgroundColor: hex }}
+            />
+          ))}
+        </div>
+        <div
+          className="brush-size border-rule bg-card flex shrink-0 items-center gap-0.5 rounded-full border p-1"
+          role="radiogroup"
           aria-label="Brush size"
         >
-          <option value={7}>Fine</option>
-          <option value={12}>Medium</option>
-          <option value={22}>Bold</option>
-        </select>
+          {BRUSHES.map((b) => (
+            <button
+              key={b.px}
+              role="radio"
+              aria-checked={width === b.px}
+              aria-label={b.label}
+              onClick={() => setWidth(b.px)}
+              className={`brush-size-option grid h-8 w-8 place-items-center rounded-full transition-colors ${
+                width === b.px ? "bg-ink text-paper" : "text-ink hover:bg-tile"
+              }`}
+            >
+              <span
+                className="rounded-full bg-current"
+                style={{ width: b.dot, height: b.dot }}
+              />
+            </button>
+          ))}
+        </div>
       </div>
 
-      <div className="brush-palette mt-3 flex shrink-0 items-center gap-2 overflow-x-auto pb-1">
-        {[
-          ...new Set([
-            ...round.brand.colors.map((c) => c.hex.toUpperCase()),
-            "#141416",
-            "#FFFFFF",
-          ]),
-        ].map((hex) => (
-          <button
-            key={hex}
-            onClick={() => setBrush(hex)}
-            aria-label={`Use ${hex}`}
-            className={`brush-chip h-9 w-9 shrink-0 rounded-xl border ${
-              brush.toUpperCase() === hex.toUpperCase()
-                ? "border-ink border-2"
-                : "border-rule"
-            }`}
-            style={{ backgroundColor: hex }}
+      {/* The pad stays square at the largest size that fits; the stage
+          absorbs spare height so tall screens don't skew the saved sketch. */}
+      <div className="canvas-stage [container-type:size] mt-1 flex min-h-56 flex-1 items-center justify-center">
+        <div className="canvas-proof crop-marks relative w-[min(100cqw,100cqh)]">
+          <canvas
+            ref={canvasRef}
+            width={SIZE}
+            height={SIZE}
+            onPointerDown={start}
+            onPointerMove={move}
+            onPointerUp={stop}
+            onPointerCancel={stop}
+            className="draw-canvas vt-stage border-rule bg-card block aspect-square w-full touch-none rounded-2xl border"
+            aria-label={`Drawing canvas for ${round.brand.name}`}
           />
-        ))}
+          {/* Drafting-paper dots over the pad; translucent ink, so strokes barely notice. */}
+          <div
+            aria-hidden
+            className="canvas-grid pointer-events-none absolute inset-3 rounded-2xl bg-[radial-gradient(circle,rgb(19_19_19/0.16)_1px,transparent_1.4px)] bg-[length:20px_20px] bg-center"
+          />
+          {!hasDrawing && (
+            <p
+              aria-hidden
+              className="canvas-hint text-ink-muted pointer-events-none absolute inset-0 grid place-items-center font-mono text-[11px] tracking-[0.14em] uppercase"
+            >
+              <span className="canvas-hint-chip bg-card rounded-full px-3 py-1.5">
+                Sketch the mark here
+              </span>
+            </p>
+          )}
+        </div>
       </div>
 
-      {/* The canvas keeps its intrinsic 1:1 ratio; the wrapper absorbs spare
-          height so tall screens don't stretch it (and skew the saved sketch). */}
-      <div className="canvas-frame mt-3 flex min-h-0 flex-1 items-center justify-center">
-        <canvas
-          ref={canvasRef}
-          width={SIZE}
-          height={SIZE}
-          onPointerDown={start}
-          onPointerMove={move}
-          onPointerUp={stop}
-          onPointerCancel={stop}
-          className="draw-canvas border-rule bg-card max-h-full max-w-full touch-none rounded-2xl border"
-          aria-label={`Drawing canvas for ${round.brand.name}`}
-        />
-      </div>
-
-      <div className="draw-controls mt-3 grid shrink-0 grid-cols-[1fr_1fr_1.5fr] gap-2">
+      <div className="draw-controls mt-2 grid shrink-0 grid-cols-[1fr_1fr_1.5fr] gap-2">
         <button
           onClick={undo}
           disabled={!canUndo}
-          className="undo-button pressable border-ink/20 bg-card rounded-full border py-3 text-sm font-bold disabled:opacity-40"
+          className="undo-button pressable border-ink/20 bg-card flex items-center justify-center gap-1.5 rounded-full border py-3 text-sm font-bold disabled:opacity-40"
         >
+          <UndoIcon className="h-3.5 w-3.5" />
           Undo
         </button>
         <button
