@@ -4,8 +4,10 @@ import { Analytics } from "@vercel/analytics/next";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
+// Variable width axis: expanded cuts for display type, regular for UI.
 const archivo = Archivo({
   subsets: ["latin"],
+  axes: ["wdth"],
   variable: "--font-archivo",
 });
 
@@ -70,7 +72,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fbfbf9",
+  themeColor: "#fdfcfa",
 };
 
 const jsonLd = {
@@ -96,8 +98,13 @@ export default function RootLayout({
 }) {
   return (
     // Font variables live on <html> so the @theme tokens (declared on :root)
-    // can resolve them.
-    <html lang="en" className={`${archivo.variable} ${plexMono.variable}`}>
+    // can resolve them. suppressHydrationWarning: the intro gate script in
+    // app/page.tsx adds a class here before hydration.
+    <html
+      lang="en"
+      className={`${archivo.variable} ${plexMono.variable}`}
+      suppressHydrationWarning
+    >
       <body className="bg-paper text-ink font-sans antialiased">
         {children}
         <script

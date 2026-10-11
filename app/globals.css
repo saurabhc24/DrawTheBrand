@@ -22,11 +22,68 @@
   --font-sans: var(--font-archivo), system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, monospace;
 
-  --animate-rise: rise 0.32s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-  --animate-stamp: stamp 0.26s cubic-bezier(0.2, 0.9, 0.3, 1.4) both;
+  --animate-rise: rise 0.42s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-stamp: stamp 0.46s cubic-bezier(0.3, 0.8, 0.3, 1) both;
   --animate-fade: fade 0.25s ease both;
   --animate-chip-wave: chip-wave 2.8s ease-in-out infinite;
+  --animate-ink: ink 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+  --animate-tick: tick 0.35s ease-out both;
+  --animate-shake: shake 0.4s ease-in-out both;
+  --animate-pop: pop 0.34s ease-out both;
+  --animate-cursor: cursor 1.1s ease-in-out infinite;
+  --animate-marquee: marquee 60s linear infinite;
+  --animate-meter: meter 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
+
+/* ---------- Print furniture ---------- */
+
+/* Trim marks at the corners of the padded box: wrap any stimulus in a
+   `crop-marks` element and it reads as a press proof. Drawn as backgrounds
+   inside the element, so scroll containers never clip them. */
+@utility crop-marks {
+  --crop: 12px;
+  --crop-len: 8px;
+  --crop-ink: color-mix(in oklab, var(--color-ink) 45%, transparent);
+  padding: var(--crop);
+  background:
+    linear-gradient(var(--crop-ink) 0 0) 0 var(--crop) / var(--crop-len) 1px,
+    linear-gradient(var(--crop-ink) 0 0) var(--crop) 0 / 1px var(--crop-len),
+    linear-gradient(var(--crop-ink) 0 0) 100% var(--crop) / var(--crop-len) 1px,
+    linear-gradient(var(--crop-ink) 0 0) calc(100% - var(--crop)) 0 / 1px
+      var(--crop-len),
+    linear-gradient(var(--crop-ink) 0 0) 0 calc(100% - var(--crop)) /
+      var(--crop-len) 1px,
+    linear-gradient(var(--crop-ink) 0 0) var(--crop) 100% / 1px var(--crop-len),
+    linear-gradient(var(--crop-ink) 0 0) 100% calc(100% - var(--crop)) /
+      var(--crop-len) 1px,
+    linear-gradient(var(--crop-ink) 0 0) calc(100% - var(--crop)) 100% / 1px
+      var(--crop-len);
+  background-repeat: no-repeat;
+}
+
+/* Rubber-stamp ink: speckled gaps from a thresholded noise mask. */
+@utility ink-texture {
+  --ink-noise: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='i'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' seed='7' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -7 4.9'/></filter><rect width='160' height='160' filter='url(%23i)'/></svg>");
+  -webkit-mask-image: var(--ink-noise);
+  mask-image: var(--ink-noise);
+  -webkit-mask-size: 160px;
+  mask-size: 160px;
+}
+
+/* A rubber stamp: double rule, tilted, slammed in. Color comes from text. */
+@utility stamp {
+  --tilt: -6deg;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2.5px solid currentColor;
+  outline: 1.5px solid currentColor;
+  outline-offset: 2.5px;
+  border-radius: 6px;
+  transform: rotate(var(--tilt));
+}
+
+/* ---------- Motion ---------- */
 
 /* Calibration-strip chips ripple gently; stagger comes from animation-delay. */
 @keyframes chip-wave {
@@ -39,25 +96,37 @@
   }
 }
 
+/* Uses `translate`, not `transform`, so it composes with .pressable. */
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    translate: 0 14px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+}
+
+/* Same as rise; a distinct name forces a restart when the intro ends. */
+@keyframes rise-late {
+  from {
+    opacity: 0;
+    translate: 0 14px;
   }
 }
 
 @keyframes stamp {
-  from {
+  0% {
     opacity: 0;
-    transform: scale(1.45) rotate(-3deg);
+    transform: scale(2.3) rotate(calc(var(--tilt, -6deg) - 10deg));
   }
-  to {
+  55% {
     opacity: 1;
-    transform: scale(1) rotate(-2deg);
+    transform: scale(0.92) rotate(var(--tilt, -6deg));
+  }
+  78% {
+    transform: scale(1.04) rotate(var(--tilt, -6deg));
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(var(--tilt, -6deg));
   }
 }
 
@@ -65,9 +134,226 @@
   from {
     opacity: 0;
   }
+}
+
+/* A color-bar chip taking ink. */
+@keyframes ink {
+  0% {
+    opacity: 0.3;
+    transform: scaleY(0.2);
+  }
+  60% {
+    opacity: 1;
+    transform: scaleY(1.3);
+  }
+}
+
+@keyframes tick {
+  from {
+    transform: scale(1.6);
+  }
+}
+
+@keyframes shake {
+  20% {
+    translate: -6px 0;
+  }
+  40% {
+    translate: 5px 0;
+  }
+  60% {
+    translate: -3px 0;
+  }
+  80% {
+    translate: 2px 0;
+  }
+}
+
+@keyframes pop {
+  40% {
+    transform: scale(1.35);
+  }
+}
+
+@keyframes cursor {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes marquee {
   to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes meter {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+/* Home-card illustrations (components/ModeArt.tsx). */
+@keyframes band-a {
+  0%,
+  100% {
+    flex-grow: 3;
+  }
+  33% {
+    flex-grow: 1;
+  }
+  66% {
+    flex-grow: 1.5;
+  }
+}
+@keyframes band-b {
+  0%,
+  100% {
+    flex-grow: 1.5;
+  }
+  33% {
+    flex-grow: 3;
+  }
+  66% {
+    flex-grow: 1;
+  }
+}
+@keyframes band-c {
+  0%,
+  100% {
+    flex-grow: 1;
+  }
+  33% {
+    flex-grow: 1.5;
+  }
+  66% {
+    flex-grow: 3;
+  }
+}
+@keyframes swatch-pick {
+  0%,
+  28%,
+  100% {
+    translate: 0 0;
+    box-shadow: 0 0 0 0 transparent;
+  }
+  6%,
+  22% {
+    translate: 0 -4px;
+    box-shadow: 0 0 0 2px var(--color-ink);
+  }
+}
+@keyframes squash {
+  0%,
+  38%,
+  100% {
+    transform: scaleX(1);
+  }
+  48%,
+  88% {
+    transform: scaleX(0.66);
+  }
+}
+@keyframes label-real {
+  0%,
+  42%,
+  94%,
+  100% {
     opacity: 1;
   }
+  46%,
+  90% {
+    opacity: 0;
+  }
+}
+@keyframes label-fake {
+  0%,
+  42%,
+  94%,
+  100% {
+    opacity: 0;
+  }
+  46%,
+  90% {
+    opacity: 1;
+  }
+}
+@keyframes draw-path {
+  0% {
+    stroke-dashoffset: 1;
+    opacity: 1;
+  }
+  50%,
+  86% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+@keyframes pen {
+  0% {
+    offset-distance: 0%;
+    opacity: 1;
+  }
+  50%,
+  86% {
+    offset-distance: 100%;
+    opacity: 1;
+  }
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
+}
+@keyframes misregister {
+  0%,
+  100% {
+    translate: var(--mx) var(--my);
+  }
+  50% {
+    translate: calc(var(--mx) * -0.4) calc(var(--my) * 0.6);
+  }
+}
+
+@keyframes reveal-failsafe {
+  to {
+    visibility: visible;
+  }
+}
+
+/* ---------- Intro choreography (components/Intro.tsx) ----------
+   The gate script in app/page.tsx adds html.intro before first paint, so the
+   static page never flashes before the overlay. During `intro-landing` the
+   page is visible but the title and strip wait for the flying copies to land
+   on them. The failsafes reveal everything if JS never arrives. */
+html.intro .home-screen {
+  visibility: hidden;
+  animation: reveal-failsafe 0s 4s forwards;
+}
+html:is(.intro, .intro-landing) .mode-card {
+  animation: rise-late 0.42s 4s both !important;
+}
+html:is(.intro, .intro-landing) .calibration-chip {
+  animation: none;
+}
+html.intro-landing :is(.home-title, .calibration-strip) {
+  opacity: 0;
+}
+
+/* ---------- Screen morphs (View Transitions, app/play/PlayClient.tsx) ---------- */
+.vt-stage {
+  view-transition-name: stage;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 200ms;
+}
+::view-transition-group(stage) {
+  animation-duration: 380ms;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -78,6 +364,11 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
 }
 
 /* Tactile press on every tappable thing. */
@@ -85,8 +376,27 @@
   transition:
     transform 0.08s ease,
     background-color 0.12s ease,
-    border-color 0.12s ease;
+    border-color 0.12s ease,
+    opacity 0.2s ease;
 }
-.pressable:active {
+.pressable:active:not(:disabled) {
   transform: scale(0.97);
+}
+
+/* On wide screens the phone-width app sits on a cutting mat as a sheet. */
+@media (min-width: 640px) {
+  body {
+    background-color: #f1eee8;
+    background-image:
+      linear-gradient(#e5e1d9 1px, transparent 1px),
+      linear-gradient(90deg, #e5e1d9 1px, transparent 1px);
+    background-size: 32px 32px;
+    background-position: center top;
+  }
+  .app-sheet {
+    background-color: var(--color-paper);
+    box-shadow:
+      0 0 0 1px var(--color-rule),
+      0 24px 60px -30px rgb(19 19 19 / 0.25);
+  }
 }

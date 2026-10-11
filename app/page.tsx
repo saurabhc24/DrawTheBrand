@@ -1,16 +1,19 @@
 import Link from "next/link";
+import { ArrowIcon } from "@/components/Icons";
 import { Intro } from "@/components/Intro";
+import { ModeArt } from "@/components/ModeArt";
+import { RegMark } from "@/components/RegMark";
+import { hexToHsl } from "@/lib/color";
 import { brands } from "@/lib/data";
+import { DEFAULT_ROUNDS } from "@/lib/session";
 
 const MODES = [
   {
     id: "mixed",
-    tag: "Mix",
+    tag: `Mix · ${DEFAULT_ROUNDS} rounds`,
     name: "Mixed",
-    blurb: "All four challenges, shuffled. The full test.",
+    blurb: "All four tests, shuffled. The full exam.",
     card: "bg-ink text-paper",
-    tagColor: "text-paper/60",
-    blurbColor: "text-paper/70",
     wide: true,
   },
   {
@@ -19,8 +22,6 @@ const MODES = [
     name: "Palette",
     blurb: "Name the brand from its colors alone.",
     card: "bg-block-orange text-white",
-    tagColor: "text-white/70",
-    blurbColor: "text-white/85",
   },
   {
     id: "shade",
@@ -28,8 +29,6 @@ const MODES = [
     name: "Exact shade",
     blurb: "Only one swatch is the real hex.",
     card: "bg-block-pink text-ink",
-    tagColor: "text-ink/60",
-    blurbColor: "text-ink/70",
   },
   {
     id: "fake",
@@ -37,8 +36,6 @@ const MODES = [
     name: "Real or fake",
     blurb: "Half of these logos are doctored.",
     card: "bg-block-yellow text-ink",
-    tagColor: "text-ink/60",
-    blurbColor: "text-ink/70",
   },
   {
     id: "draw",
@@ -46,102 +43,134 @@ const MODES = [
     name: "Draw",
     blurb: "Sketch it from memory. Get scored.",
     card: "bg-block-green text-paper",
-    tagColor: "text-paper/60",
-    blurbColor: "text-paper/75",
   },
 ];
 
-// A steady sample keeps the calibration strip chunky at any dataset size.
-const STRIP_STEP = Math.max(1, Math.ceil(brands.length / 22));
-const STRIP = brands.filter((_, i) => i % STRIP_STEP === 0);
+/** Spectrum order: hues first (reds wrap to the front), then neutrals light → dark. */
+function spectrumKey(hex: string) {
+  const { h, s, l } = hexToHsl(hex);
+  return s < 0.12 ? 1000 - l : (h + 20) % 360;
+}
+const SPECTRUM = [...brands].sort(
+  (a, b) => spectrumKey(a.colors[0].hex) - spectrumKey(b.colors[0].hex),
+);
+// An even sample of the roster, so the strip reads as a spectrum of real
+// brand colors at any dataset size. The intro pours its tiles into these chips.
+const STRIP_COUNT = 22;
+const STRIP = Array.from(
+  { length: STRIP_COUNT },
+  (_, i) => SPECTRUM[Math.floor(((i + 0.5) * SPECTRUM.length) / STRIP_COUNT)],
+);
+
+// Runs before first paint: hides the static page while the once-per-session
+// intro is pending, so it never flashes. Mirrors the checks in Intro.tsx.
+const INTRO_GATE = `try{if(!sessionStorage.getItem("brandr:introSeen")&&!matchMedia("(prefers-reduced-motion: reduce)").matches&&!/[?&]nointro/.test(location.search))document.documentElement.classList.add("intro")}catch(e){}`;
 
 export default function Home() {
   return (
-    <div className="home-screen mx-auto flex h-dvh w-full max-w-md flex-col overflow-hidden px-4 pt-8 pb-4 sm:pt-10">
+    <>
+      <script dangerouslySetInnerHTML={{ __html: INTRO_GATE }} />
       <Intro />
-      <header className="home-header shrink-0">
-        <p className="home-eyebrow text-ink-muted text-[11px] font-bold tracking-[0.25em] uppercase">
-          A brand memory test
-        </p>
-        <h1 className="home-title mt-1 text-5xl font-extrabold tracking-tight sm:text-6xl">
-          Brandr
-        </h1>
-        {/* Calibration strip: a sample of the roster, by real primary color. */}
-        <div
-          className="calibration-strip mt-4 flex h-2.5 gap-[3px]"
-          aria-hidden
+      <div className="home-screen app-sheet mx-auto flex h-dvh w-full max-w-md flex-col overflow-hidden px-4 pt-6 pb-4">
+        <header className="home-header shrink-0">
+          <div className="home-ticket text-ink-muted flex items-center justify-between font-mono text-[10.5px] tracking-[0.14em] uppercase">
+            <span>A brand memory test</span>
+            <span>{brands.length} brands · 4 tests</span>
+          </div>
+          <h1 className="home-title mt-3 text-[64px] leading-[0.9] font-black tracking-[-0.045em] font-stretch-expanded">
+            Brandr
+          </h1>
+          {/* Calibration strip: the roster's real primary colors, in spectrum order. */}
+          <div
+            className="calibration-strip text-ink mt-4 flex items-center gap-2"
+            aria-hidden
+          >
+            <RegMark className="h-3.5 w-3.5" />
+            <div className="calibration-chips flex h-3 flex-1 gap-[3px]">
+              {STRIP.map((b, i) => (
+                <span
+                  key={b.id}
+                  data-color={b.colors[0].hex}
+                  className="calibration-chip animate-chip-wave flex-1 rounded-full"
+                  style={{
+                    backgroundColor: b.colors[0].hex,
+                    animationDelay: `${i * 90}ms`,
+                  }}
+                />
+              ))}
+            </div>
+            <RegMark className="h-3.5 w-3.5" />
+          </div>
+          <p className="home-tagline text-ink-muted mt-4 text-[15px] leading-relaxed [@media(max-height:760px)]:hidden">
+            You&apos;ve seen these logos ten thousand times. This measures what
+            actually stuck.
+          </p>
+        </header>
+
+        {/* Rows share the spare height but never shrink below their content
+            (1fr = minmax(auto, 1fr)); short phones scroll the grid instead. */}
+        <section
+          className="mode-grid mt-5 grid min-h-0 flex-1 grid-cols-2 grid-rows-[minmax(auto,0.8fr)_1fr_1fr] gap-3 overflow-y-auto"
+          aria-label="Pick a mode"
         >
-          {STRIP.map((b, i) => (
-            <span
-              key={b.id}
-              className="calibration-chip animate-chip-wave flex-1 rounded-full"
-              style={{
-                backgroundColor: b.colors[0].hex,
-                animationDelay: `${i * 110}ms`,
-              }}
-            />
-          ))}
-        </div>
-        <p className="home-tagline text-ink-muted mt-4 text-base leading-relaxed">
-          You&apos;ve seen these logos ten thousand times. This measures what
-          actually stuck.
-        </p>
-      </header>
-
-      <section
-        className="mode-grid mt-5 grid min-h-0 flex-1 grid-cols-2 content-start gap-3 overflow-y-auto"
-        aria-label="Pick a mode"
-      >
-        {MODES.map((m) => (
-          <Link
-            key={m.id}
-            href={`/play?mode=${m.id}`}
-            className={`mode-card pressable flex min-h-32 flex-col justify-between rounded-3xl p-4 ${m.card} ${
-              m.wide ? "col-span-2 min-h-24" : ""
-            }`}
-          >
-            <span
-              className={`mode-card-tag text-[10px] font-bold tracking-[0.22em] uppercase ${m.tagColor}`}
+          {MODES.map((m, i) => (
+            <Link
+              key={m.id}
+              href={`/play?mode=${m.id}`}
+              className={`mode-card pressable animate-rise flex flex-col rounded-[28px] p-4 ${m.card} ${
+                m.wide ? "col-span-2" : ""
+              }`}
+              style={{ animationDelay: `${60 + i * 70}ms` }}
             >
-              {m.tag}
-            </span>
-            <span className="mode-card-body">
-              <span className="mode-card-name block text-xl leading-tight font-extrabold tracking-tight">
-                {m.name}
+              <span className="mode-card-head flex items-start justify-between gap-2">
+                <span className="mode-card-tag font-mono text-[10px] tracking-[0.16em] uppercase opacity-70">
+                  {m.tag}
+                </span>
+                {m.wide ? (
+                  <span className="mode-card-go bg-paper text-ink grid h-8 w-8 place-items-center rounded-full">
+                    <ArrowIcon />
+                  </span>
+                ) : (
+                  <ModeArt mode={m.id} />
+                )}
               </span>
-              <span
-                className={`mode-card-blurb mt-1 block text-[13px] leading-snug ${m.blurbColor}`}
-              >
-                {m.blurb}
+              {m.wide && <ModeArt mode="mixed" />}
+              <span className="mode-card-body mt-auto block">
+                <span className="mode-card-name block text-[22px] leading-[1.05] font-extrabold tracking-[-0.02em] font-stretch-semi-expanded">
+                  {m.name}
+                </span>
+                <span className="mode-card-blurb mt-1 block text-[13px] leading-snug opacity-75">
+                  {m.blurb}
+                </span>
               </span>
-            </span>
-          </Link>
-        ))}
-      </section>
+            </Link>
+          ))}
+        </section>
 
-      <footer className="home-footer text-ink-muted mt-4 shrink-0 text-[11px] leading-relaxed">
-        <p className="legal-note">
-          A memory game, not an affiliation. All marks belong to their owners.{" "}
-          <a
-            href="mailto:hellosaurabhchandra@gmail.com?subject=Brandr%20takedown%20request"
-            className="underline underline-offset-2"
-          >
-            Takedown requests
-          </a>
-          .
-        </p>
-        <p className="maker-credit text-ink mt-1.5 font-semibold">
-          Made by{" "}
-          <a
-            href="https://hellosaurabhchandra.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline underline-offset-2"
-          >
-            Saurabh
-          </a>
-        </p>
-      </footer>
-    </div>
+        <footer className="home-footer border-rule text-ink-muted mt-4 flex shrink-0 items-end justify-between gap-6 border-t pt-3 text-[11px] leading-relaxed">
+          <p className="legal-note">
+            A memory game, not an affiliation. All marks belong to their owners.{" "}
+            <a
+              href="mailto:hellosaurabhchandra@gmail.com?subject=Brandr%20takedown%20request"
+              className="underline underline-offset-2"
+            >
+              Takedown requests
+            </a>
+            .
+          </p>
+          <p className="maker-credit shrink-0 font-mono text-[10px] tracking-[0.12em] uppercase">
+            Made by{" "}
+            <a
+              href="https://hellosaurabhchandra.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-ink font-semibold underline underline-offset-2"
+            >
+              Saurabh
+            </a>
+          </p>
+        </footer>
+      </div>
+    </>
   );
 }
