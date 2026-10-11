@@ -81,7 +81,7 @@ export default function Home() {
     <>
       <script dangerouslySetInnerHTML={{ __html: INTRO_GATE }} />
       <Intro />
-      <div className="home-screen app-sheet mx-auto flex h-dvh w-full max-w-md flex-col overflow-hidden px-4 pt-6 pb-4">
+      <div className="home-screen app-sheet mx-auto flex h-dvh w-full max-w-md flex-col overflow-hidden px-4 pt-6">
         <header className="home-header shrink-0">
           <div className="home-ticket text-ink-muted flex items-center justify-between font-mono text-[10.5px] tracking-[0.14em] uppercase">
             <span>A brand memory test</span>
@@ -119,84 +119,88 @@ export default function Home() {
           </p>
         </header>
 
-        {/* Rows share the spare height but never shrink below their content
-            (1fr = minmax(auto, 1fr)); short phones scroll the grid instead. */}
-        <section
-          className="mode-grid mt-5 grid min-h-0 flex-1 grid-cols-2 grid-rows-[minmax(auto,0.8fr)_1fr_1fr_minmax(auto,0.7fr)] gap-3 overflow-y-auto"
-          aria-label="Pick a mode"
-        >
-          {MODES.map((m, i) => (
-            <Link
-              key={m.id}
-              href={`/play?mode=${m.id}`}
-              className={`mode-card pressable animate-rise relative flex flex-col rounded-[28px] p-4 ${m.card} ${
-                m.wide ? "col-span-2" : ""
-              }`}
-              style={{ animationDelay: `${60 + i * 70}ms` }}
-            >
-              <span className="mode-card-head flex items-start justify-between gap-2">
-                <span className="mode-card-labels flex items-center gap-2">
-                  <span className="mode-card-tag font-mono text-[10px] tracking-[0.16em] uppercase opacity-70">
-                    {m.tag}
-                  </span>
-                  {m.isNew && (
-                    <span className="mode-card-new bg-ink text-paper rounded-full px-2 py-0.5 font-mono text-[9px] font-semibold tracking-[0.16em] uppercase">
-                      New
+        {/* One scroll region for the cards and the footer: the footer sits at
+            the end of the content, never pinned over it. Rows share the spare
+            height but never shrink below their content (1fr = minmax(auto, 1fr)). */}
+        <div className="home-scroll -mx-4 mt-5 flex min-h-0 flex-1 flex-col overflow-y-auto px-4 pb-4">
+          <section
+            className="mode-grid grid flex-1 grid-cols-2 grid-rows-[minmax(auto,0.8fr)_1fr_1fr_minmax(auto,0.7fr)] gap-3"
+            aria-label="Pick a mode"
+          >
+            {MODES.map((m, i) => (
+              <Link
+                key={m.id}
+                href={`/play?mode=${m.id}`}
+                className={`mode-card pressable animate-rise relative flex flex-col rounded-[28px] p-4 ${m.card} ${
+                  m.wide ? "col-span-2" : ""
+                }`}
+                style={{ animationDelay: `${60 + i * 70}ms` }}
+              >
+                <span className="mode-card-head flex items-start justify-between gap-2">
+                  <span className="mode-card-labels flex items-center gap-2">
+                    <span className="mode-card-tag font-mono text-[10px] tracking-[0.16em] uppercase opacity-70">
+                      {m.tag}
                     </span>
+                    {m.isNew && (
+                      <span className="mode-card-new bg-ink text-paper rounded-full px-2 py-0.5 font-mono text-[9px] font-semibold tracking-[0.16em] uppercase">
+                        New
+                      </span>
+                    )}
+                  </span>
+                  {m.id === "mixed" ? (
+                    <span className="mode-card-go bg-paper text-ink grid h-8 w-8 place-items-center rounded-full">
+                      <ArrowIcon />
+                    </span>
+                  ) : (
+                    !m.wide && <ModeArt mode={m.id} />
                   )}
                 </span>
-                {m.id === "mixed" ? (
-                  <span className="mode-card-go bg-paper text-ink grid h-8 w-8 place-items-center rounded-full">
-                    <ArrowIcon />
+                {m.id === "mixed" && <ModeArt mode="mixed" />}
+                {/* Wide mode cards set their art beside the copy, not above it. */}
+                {m.wide && m.id !== "mixed" && (
+                  <span className="mode-card-art absolute top-1/2 right-5 -translate-y-1/2">
+                    <ModeArt mode={m.id} />
                   </span>
-                ) : (
-                  !m.wide && <ModeArt mode={m.id} />
                 )}
-              </span>
-              {m.id === "mixed" && <ModeArt mode="mixed" />}
-              {/* Wide mode cards set their art beside the copy, not above it. */}
-              {m.wide && m.id !== "mixed" && (
-                <span className="mode-card-art absolute top-1/2 right-5 -translate-y-1/2">
-                  <ModeArt mode={m.id} />
+                <span
+                  className={`mode-card-body mt-auto block ${m.wide && m.id !== "mixed" ? "pr-20" : ""}`}
+                >
+                  <span className="mode-card-name block text-[20px] leading-[1.05] font-extrabold tracking-[-0.02em] font-stretch-semi-expanded">
+                    {m.name}
+                  </span>
+                  <span className="mode-card-blurb mt-1 block text-[13px] leading-snug opacity-75">
+                    {m.blurb}
+                  </span>
                 </span>
-              )}
-              <span
-                className={`mode-card-body mt-auto block ${m.wide && m.id !== "mixed" ? "pr-20" : ""}`}
-              >
-                <span className="mode-card-name block text-[20px] leading-[1.05] font-extrabold tracking-[-0.02em] font-stretch-semi-expanded">
-                  {m.name}
-                </span>
-                <span className="mode-card-blurb mt-1 block text-[13px] leading-snug opacity-75">
-                  {m.blurb}
-                </span>
-              </span>
-            </Link>
-          ))}
-        </section>
+              </Link>
+            ))}
+          </section>
 
-        <footer className="home-footer border-rule text-ink-muted mt-4 flex shrink-0 items-end justify-between gap-6 border-t pt-3 text-[11px] leading-relaxed">
-          <p className="legal-note">
-            A memory game, not an affiliation. All marks belong to their owners.{" "}
-            <a
-              href="mailto:hellosaurabhchandra@gmail.com?subject=Brandr%20takedown%20request"
-              className="underline underline-offset-2"
-            >
-              Takedown requests
-            </a>
-            .
-          </p>
-          <p className="maker-credit shrink-0 font-mono text-[10px] tracking-[0.12em] uppercase">
-            Made by{" "}
-            <a
-              href="https://hellosaurabhchandra.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-ink font-semibold underline underline-offset-2"
-            >
-              Saurabh
-            </a>
-          </p>
-        </footer>
+          <footer className="home-footer border-rule text-ink-muted mt-4 flex shrink-0 items-end justify-between gap-6 border-t pt-3 text-[11px] leading-relaxed">
+            <p className="legal-note">
+              A memory game, not an affiliation. All marks belong to their
+              owners.{" "}
+              <a
+                href="mailto:hellosaurabhchandra@gmail.com?subject=Brandr%20takedown%20request"
+                className="underline underline-offset-2"
+              >
+                Takedown requests
+              </a>
+              .
+            </p>
+            <p className="maker-credit shrink-0 font-mono text-[10px] tracking-[0.12em] uppercase">
+              Made by{" "}
+              <a
+                href="https://hellosaurabhchandra.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-ink font-semibold underline underline-offset-2"
+              >
+                Saurabh
+              </a>
+            </p>
+          </footer>
+        </div>
       </div>
     </>
   );
