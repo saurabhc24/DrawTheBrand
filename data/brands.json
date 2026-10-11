@@ -2586,5 +2586,1037 @@
       }
     ],
     "funFact": "DHL is Dalsey, Hillblom and Lynn — three founders who began by flying shipping papers from San Francisco to Honolulu."
+  },
+  {
+    "id": "facebook",
+    "name": "Facebook",
+    "category": "global-tech",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "facebook.com",
+    "assets": {
+      "logoFull": "/logos/facebook.svg"
+    },
+    "colors": [
+      {
+        "hex": "#0866FF",
+        "name": "Facebook Blue",
+        "proportion": 0.85
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.15
+      }
+    ],
+    "funFact": "Facebook is blue reportedly because Mark Zuckerberg is red–green colorblind — blue is the color he sees best.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "pinterest",
+    "name": "Pinterest",
+    "category": "global-tech",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "pinterest.com",
+    "assets": {
+      "logoFull": "/logos/pinterest.svg"
+    },
+    "colors": [
+      {
+        "hex": "#E60023",
+        "name": "Pinterest Red",
+        "proportion": 0.85
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.15
+      }
+    ],
+    "funFact": "The tail of Pinterest's 'P' is drawn as the point of a pin — fitting for an app built on pinning ideas.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "reddit",
+    "name": "Reddit",
+    "category": "global-tech",
+    "region": "global",
+    "difficulty": "medium",
+    "domain": "reddit.com",
+    "assets": {
+      "logoFull": "/logos/reddit.svg"
+    },
+    "colors": [
+      {
+        "hex": "#FF4500",
+        "name": "OrangeRed",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "Reddit's alien mascot is called Snoo — a play on 'what's new?'",
+    "excludeFromModes": []
+  },
+  {
+    "id": "telegram",
+    "name": "Telegram",
+    "category": "global-tech",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "telegram.org",
+    "assets": {
+      "logoFull": "/logos/telegram.svg"
+    },
+    "colors": [
+      {
+        "hex": "#2AABEE",
+        "name": "Telegram Blue",
+        "proportion": 0.85
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.15
+      }
+    ],
+    "funFact": "Telegram's founders, brothers Pavel and Nikolai Durov, had earlier built VK, Russia's biggest social network.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "android",
+    "name": "Android",
+    "category": "global-tech",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "android.com",
+    "assets": {
+      "logoFull": "/logos/android.svg"
+    },
+    "colors": [
+      {
+        "hex": "#A4C639",
+        "name": "Android Green",
+        "proportion": 0.95
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.05
+      }
+    ],
+    "funFact": "Android's green robot was reportedly inspired by the stick figures on restroom doors.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "intel",
+    "name": "Intel",
+    "category": "global-tech",
+    "region": "global",
+    "difficulty": "medium",
+    "domain": "intel.com",
+    "assets": {
+      "logoFull": "/logos/intel.svg"
+    },
+    "colors": [
+      {
+        "hex": "#0068B5",
+        "name": "Intel Blue",
+        "proportion": 0.9
+      },
+      {
+        "hex": "#04C7FD",
+        "name": "Energy Blue",
+        "proportion": 0.1
+      }
+    ],
+    "funFact": "Intel's founders nearly named it 'Moore Noyce' after themselves — until it sounded too much like 'more noise'.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "nvidia",
+    "name": "NVIDIA",
+    "category": "global-tech",
+    "region": "global",
+    "difficulty": "medium",
+    "domain": "nvidia.com",
+    "assets": {
+      "logoFull": "/logos/nvidia.svg"
+    },
+    "colors": [
+      {
+        "hex": "#76B900",
+        "name": "NVIDIA Green",
+        "proportion": 0.45
+      },
+      {
+        "hex": "#000000",
+        "name": "Black",
+        "proportion": 0.55
+      }
+    ],
+    "funFact": "NVIDIA's name comes from 'invidia', Latin for envy — a fitting match for its green-eyed logo.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "adobe",
+    "name": "Adobe",
+    "category": "global-tech",
+    "region": "global",
+    "difficulty": "medium",
+    "domain": "adobe.com",
+    "assets": {
+      "logoFull": "/logos/adobe.svg"
+    },
+    "colors": [
+      {
+        "hex": "#EB1000",
+        "name": "Adobe Red",
+        "proportion": 0.9
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.1
+      }
+    ],
+    "funFact": "Adobe is named after Adobe Creek, the stream that ran behind co-founder John Warnock's house.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "subway",
+    "name": "Subway",
+    "category": "global-food",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "subway.com",
+    "assets": {
+      "logoFull": "/logos/subway.svg"
+    },
+    "colors": [
+      {
+        "hex": "#008938",
+        "name": "Subway Green",
+        "proportion": 0.55
+      },
+      {
+        "hex": "#F2B700",
+        "name": "Subway Yellow",
+        "proportion": 0.45
+      }
+    ],
+    "funFact": "Subway started in 1965 when 17-year-old Fred DeLuca borrowed $1,000 to open a sandwich shop and pay for college.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "lays",
+    "name": "Lay's",
+    "category": "global-food",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "lays.com",
+    "assets": {
+      "logoFull": "/logos/lays.svg"
+    },
+    "colors": [
+      {
+        "hex": "#DA1A1B",
+        "name": "Lay's Red",
+        "proportion": 0.5
+      },
+      {
+        "hex": "#FDCC00",
+        "name": "Lay's Yellow",
+        "proportion": 0.45
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.05
+      }
+    ],
+    "funFact": "Lay's goes by other names abroad — the same banner logo appears on Walkers in the UK and Sabritas in Mexico.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "kitkat",
+    "name": "KitKat",
+    "category": "global-food",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "kitkat.com",
+    "assets": {
+      "logoFull": "/logos/kitkat.svg"
+    },
+    "colors": [
+      {
+        "hex": "#BB1122",
+        "name": "KitKat Red",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "In Japan, KitKat sounds like 'kitto katsu' — 'you will surely win' — so students get them for luck before exams.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "pringles",
+    "name": "Pringles",
+    "category": "global-food",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "pringles.com",
+    "assets": {
+      "logoFull": "/logos/pringles.svg"
+    },
+    "colors": [
+      {
+        "hex": "#C10C1A",
+        "name": "Pringles Red",
+        "proportion": 0.5
+      },
+      {
+        "hex": "#1C1C1A",
+        "name": "Mr. P Black",
+        "proportion": 0.45
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.05
+      }
+    ],
+    "funFact": "Fredric Baur, who designed the Pringles can, was so proud of it that part of his ashes were buried in one.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "ford",
+    "name": "Ford",
+    "category": "global-auto",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "ford.com",
+    "assets": {
+      "logoFull": "/logos/ford.svg"
+    },
+    "colors": [
+      {
+        "hex": "#00095B",
+        "name": "Ford Blue",
+        "proportion": 0.85
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.15
+      }
+    ],
+    "funFact": "Henry Ford famously said customers could have a Model T in any color 'so long as it is black'.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "lamborghini",
+    "name": "Lamborghini",
+    "category": "global-auto",
+    "region": "global",
+    "difficulty": "medium",
+    "domain": "lamborghini.com",
+    "assets": {
+      "logoFull": "/logos/lamborghini.svg"
+    },
+    "colors": [
+      {
+        "hex": "#CBA13A",
+        "name": "Lamborghini Gold",
+        "proportion": 0.4
+      },
+      {
+        "hex": "#000000",
+        "name": "Black",
+        "proportion": 0.6
+      }
+    ],
+    "funFact": "Lamborghini made tractors first — Ferruccio Lamborghini turned to sports cars after a run-in with Enzo Ferrari.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "walmart",
+    "name": "Walmart",
+    "category": "global-retail",
+    "region": "global",
+    "difficulty": "medium",
+    "domain": "walmart.com",
+    "assets": {
+      "logoFull": "/logos/walmart.svg"
+    },
+    "colors": [
+      {
+        "hex": "#007DC3",
+        "name": "Walmart Blue",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FDBB30",
+        "name": "Spark Yellow",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "Walmart's 2008 logo swapped the old 'WAL★MART' star for the yellow spark — and dropped the hyphen.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "disney",
+    "name": "Disney",
+    "category": "global-media",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "disney.com",
+    "assets": {
+      "logoFull": "/logos/disney.svg"
+    },
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Disney Black",
+        "proportion": 1
+      }
+    ],
+    "funFact": "The Disney logo is based on Walt Disney's signature — but the stylized script looks little like his real handwriting.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "natgeo",
+    "name": "National Geographic",
+    "category": "global-media",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "nationalgeographic.com",
+    "assets": {
+      "logoFull": "/logos/natgeo.svg"
+    },
+    "colors": [
+      {
+        "hex": "#FFCC00",
+        "name": "Border Yellow",
+        "proportion": 0.35
+      },
+      {
+        "hex": "#000000",
+        "name": "Black",
+        "proportion": 0.65
+      }
+    ],
+    "funFact": "National Geographic was founded in 1888 by 33 men who met in Washington, D.C., to spread geographic knowledge.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "emirates",
+    "name": "Emirates",
+    "category": "global-travel",
+    "region": "global",
+    "difficulty": "medium",
+    "domain": "emirates.com",
+    "assets": {
+      "logoFull": "/logos/emirates.svg"
+    },
+    "colors": [
+      {
+        "hex": "#D71A21",
+        "name": "Emirates Red",
+        "proportion": 0.9
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.1
+      }
+    ],
+    "funFact": "Emirates began flying in 1985 with just two planes, both leased from Pakistan International Airlines.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "ebay",
+    "name": "eBay",
+    "category": "global-retail",
+    "region": "global",
+    "difficulty": "easy",
+    "domain": "ebay.com",
+    "assets": {
+      "logoFull": "/logos/ebay.svg"
+    },
+    "colors": [
+      {
+        "hex": "#F12C2D",
+        "name": "eBay Red",
+        "proportion": 0.25
+      },
+      {
+        "hex": "#0968F6",
+        "name": "eBay Blue",
+        "proportion": 0.25
+      },
+      {
+        "hex": "#FFBC13",
+        "name": "eBay Yellow",
+        "proportion": 0.25
+      },
+      {
+        "hex": "#93C822",
+        "name": "eBay Green",
+        "proportion": 0.25
+      }
+    ],
+    "funFact": "The first item ever sold on eBay was a broken laser pointer — for $14.83, to a collector of broken laser pointers.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "rayban",
+    "name": "Ray-Ban",
+    "category": "global-fashion",
+    "region": "global",
+    "difficulty": "medium",
+    "domain": "ray-ban.com",
+    "assets": {
+      "logoFull": "/logos/rayban.svg"
+    },
+    "colors": [
+      {
+        "hex": "#ED1D24",
+        "name": "Ray-Ban Red",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "Ray-Ban made its first aviators in the 1930s for US pilots — named for lenses that 'ban' the sun's rays.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "thumsup",
+    "name": "Thums Up",
+    "category": "indian-food",
+    "region": "indian",
+    "difficulty": "easy",
+    "assets": {
+      "logoFull": "/logos/thumsup.svg"
+    },
+    "colors": [
+      {
+        "hex": "#FE002F",
+        "name": "Thums Up Red",
+        "proportion": 0.75
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.15
+      },
+      {
+        "hex": "#111444",
+        "name": "Navy",
+        "proportion": 0.1
+      }
+    ],
+    "funFact": "Thums Up launched in 1977 after Coca-Cola left India; Coca-Cola bought it in 1993, and it still outsells Coke there.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "frooti",
+    "name": "Frooti",
+    "category": "indian-food",
+    "region": "indian",
+    "difficulty": "easy",
+    "assets": {
+      "logoFull": "/logos/frooti.svg"
+    },
+    "colors": [
+      {
+        "hex": "#1E613A",
+        "name": "Frooti Green",
+        "proportion": 0.85
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.15
+      }
+    ],
+    "funFact": "Frooti launched in 1985 in a green Tetra Pak — a mango drink in a pocket-sized pack was a novelty in India then.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "tanishq",
+    "name": "Tanishq",
+    "category": "indian-legacy",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "tanishq.co.in",
+    "assets": {
+      "logoFull": "/logos/tanishq.svg"
+    },
+    "colors": [
+      {
+        "hex": "#0A0A0D",
+        "name": "Tanishq Black",
+        "proportion": 1
+      }
+    ],
+    "funFact": "Tanishq put karat meters in its stores so customers could test the purity of gold they had bought elsewhere.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "axisbank",
+    "name": "Axis Bank",
+    "category": "indian-finance",
+    "region": "indian",
+    "difficulty": "easy",
+    "domain": "axisbank.com",
+    "assets": {
+      "logoFull": "/logos/axisbank.svg"
+    },
+    "colors": [
+      {
+        "hex": "#800000",
+        "name": "Axis Burgundy",
+        "proportion": 0.9
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.1
+      }
+    ],
+    "funFact": "Axis Bank was called UTI Bank until 2007, when it renamed itself to stop being confused with other UTI firms.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "kotak",
+    "name": "Kotak Mahindra Bank",
+    "category": "indian-finance",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "kotak.com",
+    "assets": {
+      "logoFull": "/logos/kotak.svg"
+    },
+    "colors": [
+      {
+        "hex": "#EC1C24",
+        "name": "Kotak Red",
+        "proportion": 0.45
+      },
+      {
+        "hex": "#003974",
+        "name": "Kotak Blue",
+        "proportion": 0.55
+      }
+    ],
+    "funFact": "In 2003 Kotak Mahindra Finance became the first non-banking finance company in India to turn into a bank.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "bankofbaroda",
+    "name": "Bank of Baroda",
+    "category": "indian-finance",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "bankofbaroda.in",
+    "assets": {
+      "logoFull": "/logos/bankofbaroda.svg"
+    },
+    "colors": [
+      {
+        "hex": "#F26522",
+        "name": "Baroda Orange",
+        "proportion": 0.9
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.1
+      }
+    ],
+    "funFact": "Bank of Baroda was founded in 1908 by Maharaja Sayajirao Gaekwad III; its logo is the 'Baroda Sun'.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "indianoil",
+    "name": "IndianOil",
+    "category": "indian-legacy",
+    "region": "indian",
+    "difficulty": "easy",
+    "domain": "iocl.com",
+    "assets": {
+      "logoFull": "/logos/indianoil.svg"
+    },
+    "colors": [
+      {
+        "hex": "#F37022",
+        "name": "IndianOil Orange",
+        "proportion": 0.55
+      },
+      {
+        "hex": "#02164F",
+        "name": "IndianOil Blue",
+        "proportion": 0.35
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.1
+      }
+    ],
+    "funFact": "IndianOil was formed in 1964 by merging Indian Refineries Ltd with the Indian Oil Company.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "bpcl",
+    "name": "Bharat Petroleum",
+    "category": "indian-legacy",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "bharatpetroleum.in",
+    "assets": {
+      "logoFull": "/logos/bpcl.svg"
+    },
+    "colors": [
+      {
+        "hex": "#FFDE00",
+        "name": "BPCL Yellow",
+        "proportion": 0.52
+      },
+      {
+        "hex": "#007DC6",
+        "name": "BPCL Blue",
+        "proportion": 0.48
+      }
+    ],
+    "funFact": "Bharat Petroleum began as Burmah-Shell and was nationalised and renamed in 1976.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "tvs",
+    "name": "TVS",
+    "category": "indian-auto",
+    "region": "indian",
+    "difficulty": "easy",
+    "domain": "tvsmotor.com",
+    "assets": {
+      "logoFull": "/logos/tvs.svg"
+    },
+    "colors": [
+      {
+        "hex": "#183883",
+        "name": "TVS Blue",
+        "proportion": 0.6
+      },
+      {
+        "hex": "#E62D38",
+        "name": "TVS Red",
+        "proportion": 0.4
+      }
+    ],
+    "funFact": "TVS stands for T. V. Sundram Iyengar, who started a bus service in Madurai in 1911.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "byjus",
+    "name": "Byju's",
+    "category": "indian-tech",
+    "region": "indian",
+    "difficulty": "easy",
+    "domain": "byjus.com",
+    "assets": {
+      "logoFull": "/logos/byjus.svg"
+    },
+    "colors": [
+      {
+        "hex": "#813588",
+        "name": "Byju's Purple",
+        "proportion": 0.85
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.15
+      }
+    ],
+    "funFact": "Byju's is named after founder Byju Raveendran, an engineer whose exam-prep classes grew so big he taught in stadiums.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "groww",
+    "name": "Groww",
+    "category": "indian-finance",
+    "region": "indian",
+    "difficulty": "hard",
+    "domain": "groww.in",
+    "assets": {
+      "logoFull": "/logos/groww.svg"
+    },
+    "colors": [
+      {
+        "hex": "#5367FF",
+        "name": "Groww Blue",
+        "proportion": 0.45
+      },
+      {
+        "hex": "#00D8A5",
+        "name": "Groww Green",
+        "proportion": 0.3
+      },
+      {
+        "hex": "#444444",
+        "name": "Wordmark Grey",
+        "proportion": 0.25
+      }
+    ],
+    "funFact": "Groww was founded by four ex-Flipkart employees, and in 2023 it overtook Zerodha as India's largest broker by active clients.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "rapido",
+    "name": "Rapido",
+    "category": "indian-travel",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "rapido.bike",
+    "assets": {
+      "logoFull": "/logos/rapido.svg"
+    },
+    "colors": [
+      {
+        "hex": "#FFCA20",
+        "name": "Rapido Yellow",
+        "proportion": 0.8
+      },
+      {
+        "hex": "#000000",
+        "name": "Black",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "Rapido started in Bengaluru in 2015 as a bike-taxi app — two wheels slip through traffic that cars can't.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "bookmyshow",
+    "name": "BookMyShow",
+    "category": "indian-media",
+    "region": "indian",
+    "difficulty": "easy",
+    "domain": "bookmyshow.com",
+    "assets": {
+      "logoFull": "/logos/bookmyshow.svg"
+    },
+    "colors": [
+      {
+        "hex": "#E9324C",
+        "name": "BookMyShow Red",
+        "proportion": 0.55
+      },
+      {
+        "hex": "#4A414F",
+        "name": "Charcoal",
+        "proportion": 0.45
+      }
+    ],
+    "funFact": "BookMyShow's parent is Bigtree Entertainment — its founder dreamed up the idea in 1999 under a tree in South Africa.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "dmart",
+    "name": "DMart",
+    "category": "indian-food",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "dmartindia.com",
+    "assets": {
+      "logoFull": "/logos/dmart.svg"
+    },
+    "colors": [
+      {
+        "hex": "#206B33",
+        "name": "DMart Green",
+        "proportion": 0.9
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.1
+      }
+    ],
+    "funFact": "DMart's founder Radhakishan Damani was a stock-market investor; the chain's 2017 listing made him one of India's richest people.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "patanjali",
+    "name": "Patanjali",
+    "category": "indian-legacy",
+    "region": "indian",
+    "difficulty": "easy",
+    "domain": "patanjaliayurved.net",
+    "assets": {
+      "logoFull": "/logos/patanjali.svg"
+    },
+    "colors": [
+      {
+        "hex": "#AB2B30",
+        "name": "Patanjali Red",
+        "proportion": 0.6
+      },
+      {
+        "hex": "#8CC53D",
+        "name": "Leaf Green",
+        "proportion": 0.2
+      },
+      {
+        "hex": "#F57F1E",
+        "name": "Saffron",
+        "proportion": 0.2
+      }
+    ],
+    "funFact": "Patanjali was co-founded in 2006 by yoga guru Baba Ramdev and Acharya Balkrishna.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "ccd",
+    "name": "Café Coffee Day",
+    "category": "indian-food",
+    "region": "indian",
+    "difficulty": "easy",
+    "domain": "cafecoffeeday.com",
+    "assets": {
+      "logoFull": "/logos/ccd.svg"
+    },
+    "colors": [
+      {
+        "hex": "#C4002B",
+        "name": "CCD Red",
+        "proportion": 0.85
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.15
+      }
+    ],
+    "funFact": "Café Coffee Day opened its first café in Bengaluru in 1996 — selling internet time along with coffee.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "spicejet",
+    "name": "SpiceJet",
+    "category": "indian-travel",
+    "region": "indian",
+    "difficulty": "medium",
+    "domain": "spicejet.com",
+    "assets": {
+      "logoFull": "/logos/spicejet.svg"
+    },
+    "colors": [
+      {
+        "hex": "#EB1C23",
+        "name": "SpiceJet Red",
+        "proportion": 0.6
+      },
+      {
+        "hex": "#F8B517",
+        "name": "Spice Yellow",
+        "proportion": 0.4
+      }
+    ],
+    "funFact": "SpiceJet grew out of ModiLuft, a 1990s airline backed by Lufthansa, relaunched as a low-cost carrier in 2005.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "tseries",
+    "name": "T-Series",
+    "category": "indian-media",
+    "region": "indian",
+    "difficulty": "easy",
+    "domain": "tseries.com",
+    "assets": {
+      "logoFull": "/logos/tseries.svg"
+    },
+    "colors": [
+      {
+        "hex": "#EF1A26",
+        "name": "T-Series Red",
+        "proportion": 0.85
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.15
+      }
+    ],
+    "funFact": "T-Series began selling cassettes in Delhi; in 2019 its YouTube channel overtook PewDiePie as the world's most subscribed.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "doordarshan",
+    "name": "Doordarshan",
+    "category": "indian-media",
+    "region": "indian",
+    "difficulty": "medium",
+    "assets": {
+      "logoFull": "/logos/doordarshan.svg"
+    },
+    "colors": [
+      {
+        "hex": "#0180C8",
+        "name": "DD Blue",
+        "proportion": 0.85
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White",
+        "proportion": 0.15
+      }
+    ],
+    "funFact": "Doordarshan began in 1959 as an experimental broadcast from a makeshift studio in Delhi.",
+    "excludeFromModes": []
+  },
+  {
+    "id": "rupay",
+    "name": "RuPay",
+    "category": "indian-finance",
+    "region": "indian",
+    "difficulty": "hard",
+    "domain": "rupay.co.in",
+    "assets": {
+      "logoFull": "/logos/rupay.svg"
+    },
+    "colors": [
+      {
+        "hex": "#1B3281",
+        "name": "RuPay Blue",
+        "proportion": 0.7
+      },
+      {
+        "hex": "#F47920",
+        "name": "RuPay Orange",
+        "proportion": 0.15
+      },
+      {
+        "hex": "#008C44",
+        "name": "RuPay Green",
+        "proportion": 0.15
+      }
+    ],
+    "funFact": "RuPay's name blends 'Rupee' and 'Payment' — India's own card network, launched in 2012.",
+    "excludeFromModes": []
   }
 ]

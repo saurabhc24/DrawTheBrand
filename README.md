@@ -25,7 +25,7 @@ npm run build   # fully static — deploys to Vercel as-is
 
 ## How it's put together
 
-- **One dataset drives everything** — [data/brands.json](data/brands.json) holds ~105 brands
+- **One dataset drives everything** — [data/brands.json](data/brands.json) holds ~145 brands
   (roughly half Indian, half global). Mode eligibility is derived from which fields a brand has
   ([lib/data.ts](lib/data.ts)), never special-cased. Add a brand to the JSON and it appears
   in every mode it qualifies for.
