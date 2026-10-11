@@ -8,4 +8,4 @@ export const SITE_URL =
 export const SITE_NAME = "Brandr";
 
 export const SITE_DESCRIPTION =
-  "A brand memory game. You recognize every logo instantly — but can you name Cadbury's exact purple, spot a doctored swoosh, or draw the McDonald's arches from memory? 100+ Indian and global brands, four game modes, five seconds a round.";
+  "A brand memory game. You recognize every logo instantly — but can you name Cadbury's exact purple, spot a doctored swoosh, or draw the McDonald's arches from memory? 100+ Indian and global brands, five game modes, a clock on every round.";

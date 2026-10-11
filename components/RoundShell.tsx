@@ -9,6 +9,7 @@ export const MODE_META: Record<PlayableMode, { label: string; dot: string }> = {
   shade: { label: "Exact shade", dot: "bg-block-pink" },
   fake: { label: "Real or fake", dot: "bg-block-yellow" },
   draw: { label: "Draw from memory", dot: "bg-block-green" },
+  focus: { label: "Focus", dot: "bg-block-olive" },
 };
 
 const pad = (n: number) => String(n).padStart(2, "0");

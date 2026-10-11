@@ -1,4 +1,4 @@
-import { hexToHsl, shadeSwatches } from "./color";
+import { colorDistance, hexToHsl, shadeSwatches } from "./color";
 import { getBrandsForMode, getBrandsForPack } from "./data";
 import { createRng, pick, shuffle, type Rng } from "./rng";
 import {
@@ -70,6 +70,25 @@ function pickOptions(answer: Brand, pool: Brand[], rng: Rng): Brand[] {
   return shuffle([answer, ...distractors], rng);
 }
 
+/**
+ * Focus-mode distractors share the answer's dominant color, so a blurred
+ * red-and-yellow blob can't give McDonald's away: the call has to come from
+ * shape. Three of the eight nearest colors, so lookalike sets still vary.
+ */
+function pickLookalikes(answer: Brand, pool: Brand[], rng: Rng): Brand[] {
+  const hex = answer.colors[0].hex;
+  const nearest = pool
+    .filter((b) => b.id !== answer.id)
+    .sort(
+      (a, b) =>
+        colorDistance(hex, a.colors[0].hex) -
+        colorDistance(hex, b.colors[0].hex),
+    )
+    .slice(0, 8);
+  const distractors = shuffle(nearest, rng).slice(0, OPTION_COUNT - 1);
+  return shuffle([answer, ...distractors], rng);
+}
+
 function buildRound(
   brand: Brand,
   mode: PlayableMode,
@@ -79,6 +98,9 @@ function buildRound(
   const round: Round = { mode, brand };
   if (mode === "colors") {
     round.options = pickOptions(brand, pool, rng);
+  }
+  if (mode === "focus") {
+    round.options = pickLookalikes(brand, pool, rng);
   }
   if (mode === "shade") {
     round.swatches = shadeSwatches(brand.colors[0].hex, rng);

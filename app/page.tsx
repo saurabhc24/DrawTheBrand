@@ -6,13 +6,14 @@ import { RegMark } from "@/components/RegMark";
 import { hexToHsl } from "@/lib/color";
 import { brands } from "@/lib/data";
 import { DEFAULT_ROUNDS } from "@/lib/session";
+import { PLAYABLE_MODES } from "@/lib/types";
 
 const MODES = [
   {
     id: "mixed",
     tag: `Mix · ${DEFAULT_ROUNDS} rounds`,
     name: "Mixed",
-    blurb: "All four tests, shuffled. The full exam.",
+    blurb: "Every test, shuffled. The full exam.",
     card: "bg-ink text-paper",
     wide: true,
   },
@@ -43,6 +44,15 @@ const MODES = [
     name: "Draw",
     blurb: "Sketch it from memory. Get scored.",
     card: "bg-block-green text-paper",
+  },
+  {
+    id: "focus",
+    tag: "Mode E",
+    name: "Focus",
+    blurb: "Call the logo before it sharpens. Early calls score more.",
+    card: "bg-block-olive text-ink",
+    wide: true,
+    isNew: true,
   },
 ];
 
@@ -75,7 +85,9 @@ export default function Home() {
         <header className="home-header shrink-0">
           <div className="home-ticket text-ink-muted flex items-center justify-between font-mono text-[10.5px] tracking-[0.14em] uppercase">
             <span>A brand memory test</span>
-            <span>{brands.length} brands · 4 tests</span>
+            <span>
+              {brands.length} brands · {PLAYABLE_MODES.length} tests
+            </span>
           </div>
           <h1 className="home-title mt-3 text-[64px] leading-[0.9] font-black tracking-[-0.045em] font-stretch-expanded">
             Brandr
@@ -101,7 +113,7 @@ export default function Home() {
             </div>
             <RegMark className="h-3.5 w-3.5" />
           </div>
-          <p className="home-tagline text-ink-muted mt-4 text-[15px] leading-relaxed [@media(max-height:760px)]:hidden">
+          <p className="home-tagline text-ink-muted mt-4 text-[15px] leading-relaxed [@media(max-height:900px)]:hidden">
             You&apos;ve seen these logos ten thousand times. This measures what
             actually stuck.
           </p>
@@ -110,33 +122,48 @@ export default function Home() {
         {/* Rows share the spare height but never shrink below their content
             (1fr = minmax(auto, 1fr)); short phones scroll the grid instead. */}
         <section
-          className="mode-grid mt-5 grid min-h-0 flex-1 grid-cols-2 grid-rows-[minmax(auto,0.8fr)_1fr_1fr] gap-3 overflow-y-auto"
+          className="mode-grid mt-5 grid min-h-0 flex-1 grid-cols-2 grid-rows-[minmax(auto,0.8fr)_1fr_1fr_minmax(auto,0.7fr)] gap-3 overflow-y-auto"
           aria-label="Pick a mode"
         >
           {MODES.map((m, i) => (
             <Link
               key={m.id}
               href={`/play?mode=${m.id}`}
-              className={`mode-card pressable animate-rise flex flex-col rounded-[28px] p-4 ${m.card} ${
+              className={`mode-card pressable animate-rise relative flex flex-col rounded-[28px] p-4 ${m.card} ${
                 m.wide ? "col-span-2" : ""
               }`}
               style={{ animationDelay: `${60 + i * 70}ms` }}
             >
               <span className="mode-card-head flex items-start justify-between gap-2">
-                <span className="mode-card-tag font-mono text-[10px] tracking-[0.16em] uppercase opacity-70">
-                  {m.tag}
+                <span className="mode-card-labels flex items-center gap-2">
+                  <span className="mode-card-tag font-mono text-[10px] tracking-[0.16em] uppercase opacity-70">
+                    {m.tag}
+                  </span>
+                  {m.isNew && (
+                    <span className="mode-card-new bg-ink text-paper rounded-full px-2 py-0.5 font-mono text-[9px] font-semibold tracking-[0.16em] uppercase">
+                      New
+                    </span>
+                  )}
                 </span>
-                {m.wide ? (
+                {m.id === "mixed" ? (
                   <span className="mode-card-go bg-paper text-ink grid h-8 w-8 place-items-center rounded-full">
                     <ArrowIcon />
                   </span>
                 ) : (
-                  <ModeArt mode={m.id} />
+                  !m.wide && <ModeArt mode={m.id} />
                 )}
               </span>
-              {m.wide && <ModeArt mode="mixed" />}
-              <span className="mode-card-body mt-auto block">
-                <span className="mode-card-name block text-[22px] leading-[1.05] font-extrabold tracking-[-0.02em] font-stretch-semi-expanded">
+              {m.id === "mixed" && <ModeArt mode="mixed" />}
+              {/* Wide mode cards set their art beside the copy, not above it. */}
+              {m.wide && m.id !== "mixed" && (
+                <span className="mode-card-art absolute top-1/2 right-5 -translate-y-1/2">
+                  <ModeArt mode={m.id} />
+                </span>
+              )}
+              <span
+                className={`mode-card-body mt-auto block ${m.wide && m.id !== "mixed" ? "pr-20" : ""}`}
+              >
+                <span className="mode-card-name block text-[20px] leading-[1.05] font-extrabold tracking-[-0.02em] font-stretch-semi-expanded">
                   {m.name}
                 </span>
                 <span className="mode-card-blurb mt-1 block text-[13px] leading-snug opacity-75">

@@ -93,13 +93,15 @@ export function RevealScreen({
   const verdict =
     mode === "draw" && score != null
       ? `${score}/100`
-      : result.timedOut
-        ? "Time's up"
-        : correct
-          ? "Correct"
-          : skipped
-            ? "Skipped"
-            : "Not quite";
+      : mode === "focus" && correct && score != null
+        ? `+${score} pts`
+        : result.timedOut
+          ? "Time's up"
+          : correct
+            ? "Correct"
+            : skipped
+              ? "Skipped"
+              : "Not quite";
   const [region, sector] = brand.category.split("-");
 
   return (

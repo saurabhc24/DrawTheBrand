@@ -5,7 +5,7 @@ import { PlayClient } from "./PlayClient";
 export const metadata: Metadata = {
   title: "Play",
   description:
-    "Ten rounds against the clock: name brands from their palettes, pick exact hex shades from memory, call out doctored logos, and sketch marks freehand.",
+    "Ten rounds against the clock: name brands from their palettes, pick exact hex shades from memory, call out doctored logos, sketch marks freehand, and name blurred logos before they sharpen.",
   alternates: { canonical: "/play" },
 };
 

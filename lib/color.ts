@@ -98,6 +98,17 @@ export function shadeSwatches(trueHex: string, rng: Rng): string[] {
   return shuffle([trueHex.toUpperCase(), ...candidates.map(hslToHex)], rng);
 }
 
+/** Straight-line RGB distance between two hexes (0 = identical). */
+export function colorDistance(a: string, b: string): number {
+  const channel = (hex: string, i: number) =>
+    parseInt(hex.replace("#", "").slice(i, i + 2), 16);
+  return Math.hypot(
+    channel(a, 0) - channel(b, 0),
+    channel(a, 2) - channel(b, 2),
+    channel(a, 4) - channel(b, 4),
+  );
+}
+
 /** Pick a readable text color (paper ink or white) for a given background. */
 export function inkOn(hex: string): string {
   const { l } = hexToHsl(hex);

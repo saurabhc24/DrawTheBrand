@@ -18,7 +18,7 @@ export type BrandCategory =
   | "indian-media";
 
 export type GameMode =
-  "draw" | "crop" | "wordmark" | "shade" | "colors" | "fake";
+  "draw" | "crop" | "wordmark" | "shade" | "colors" | "fake" | "focus";
 
 export type BrandColor = {
   hex: string;
@@ -53,7 +53,13 @@ export type Brand = {
 };
 
 /** Modes that are actually playable. */
-export const PLAYABLE_MODES = ["colors", "shade", "fake", "draw"] as const;
+export const PLAYABLE_MODES = [
+  "colors",
+  "shade",
+  "fake",
+  "draw",
+  "focus",
+] as const;
 export type PlayableMode = (typeof PLAYABLE_MODES)[number];
 
 export type Pack = "all" | "indian" | "global";
@@ -74,7 +80,7 @@ export type FakeSpec = {
 export type Round = {
   mode: PlayableMode;
   brand: Brand;
-  /** 4 brand options (colors mode). Includes the answer, pre-shuffled. */
+  /** 4 brand options (colors and focus modes). Includes the answer, pre-shuffled. */
   options?: Brand[];
   /** 4 hex swatches (shade mode). Includes the true hex, pre-shuffled. */
   swatches?: string[];
@@ -89,8 +95,9 @@ export type RoundResult = {
   skipped: boolean;
   /** What the player picked: a brand id or a hex, depending on mode. */
   picked?: string;
-  /** Draw mode: the sketch as a PNG data URL, and its 0–100 similarity score. */
+  /** Draw mode: the sketch as a PNG data URL. */
   drawing?: string;
+  /** Draw: 0–100 similarity. Focus: points for a correct call (earlier = more). */
   score?: number;
   /** Fake mode: what was shown — null means the real mark was shown. */
   shownFake?: FakeSpec | null;

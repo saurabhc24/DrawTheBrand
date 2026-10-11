@@ -50,7 +50,7 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Brandr — a brand memory test with four game modes",
+        alt: "Brandr — the brand memory test: wordmark, brand-color strip, and game modes",
       },
     ],
   },

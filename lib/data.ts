@@ -20,6 +20,9 @@ export function isEligible(brand: Brand, mode: GameMode): boolean {
       return brand.colors.length >= 1;
     case "colors":
       return brand.colors.length >= 2;
+    case "focus":
+      // Any logo can be blurred; distractors come from the pool.
+      return !!brand.assets.logoFull;
     case "fake":
       // Fakes are generated procedurally from the real asset, so any brand
       // with a logo qualifies; hand-made fakeVariants remain a future override.

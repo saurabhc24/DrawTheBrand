@@ -2,6 +2,9 @@ import { brands } from "@/lib/data";
 
 /** Four near-identical magentas: the shade-mode problem in miniature. */
 const SHADES = ["#C2185B", "#CC2468", "#B71456", "#C91E62"];
+/** A four-point sparkle: a stand-in logo for the focus art. */
+const SPARKLE =
+  "M16 2C17 11 21 15 30 16C21 17 17 21 16 30C15 21 11 17 2 16C11 15 15 11 16 2Z";
 /** A swoosh-ish scribble, in the 64×48 px box the draw art renders at 1:1. */
 const SCRIBBLE = "M6 34 C 15 44, 33 38, 58 9 C 43 27, 27 35, 17 31";
 const TICKER = brands.filter((_, i) => i % 3 === 0);
@@ -17,7 +20,7 @@ export function ModeArt({ mode }: { mode: string }) {
       // A ticker of the roster, each name keyed by its real primary color.
       return (
         <span
-          className="mixed-art -mx-4 my-auto flex overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)] py-3"
+          className="mixed-art -mx-4 my-auto flex overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)] py-2"
           aria-hidden
         >
           <span className="mixed-art-track animate-marquee flex shrink-0 items-center gap-5 pr-5 font-mono text-[11px] tracking-[0.12em] whitespace-nowrap uppercase">
@@ -110,6 +113,32 @@ export function ModeArt({ mode }: { mode: string }) {
             className="draw-art-pen bg-block-yellow absolute top-0 left-0 h-2.5 w-2.5 animate-[pen_3.6s_ease-in-out_infinite] rounded-full shadow-[0_0_0_2px_var(--color-block-green)]"
             style={{ offsetPath: `path("${SCRIBBLE}")`, offsetRotate: "0deg" }}
           />
+        </span>
+      );
+    case "focus":
+      // An autofocus box hunting, then locking on as the mark sharpens.
+      return (
+        <span
+          className="focus-art relative grid h-16 w-16 place-items-center"
+          aria-hidden
+        >
+          <svg
+            viewBox="0 0 64 64"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="focus-art-brackets absolute inset-0 h-full w-full animate-[af-lock_3.6s_ease-in-out_infinite]"
+          >
+            <path d="M4 18V4h14M46 4h14v14M60 46v14H46M18 60H4V46" />
+          </svg>
+          <svg
+            viewBox="0 0 32 32"
+            className="focus-art-mark h-8 w-8 animate-[focus-blur_3.6s_ease-in-out_infinite]"
+          >
+            <path d={SPARKLE} fill="currentColor" />
+          </svg>
         </span>
       );
     default:

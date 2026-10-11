@@ -8,9 +8,11 @@ Live modes: **Palette** (name the brand from proportional color blocks), **Exact
 or fake** (spot the doctored logo — fakes are generated procedurally from the real asset
 via seeded hue shifts and proportion squeezes, [lib/fake.ts](lib/fake.ts)), and **Draw
 from memory** (sketch the logo; scored 0–100 against the real mark via a
-position/scale-normalized, edge-based chamfer similarity — [lib/drawScore.ts](lib/drawScore.ts)).
-Plus Mixed sessions. Every round runs on a clock — 5 s for guess rounds, 30 s for
-drawing. Wordmark mode is data-ready but not yet built; the earlier Close-up (crop)
+position/scale-normalized, edge-based chamfer similarity — [lib/drawScore.ts](lib/drawScore.ts)),
+and **Focus** (the real logo pulls into focus from a heavy blur; the distractors share its
+dominant color, so the call comes from shape — earlier calls score more,
+[components/modes/FocusRound.tsx](components/modes/FocusRound.tsx)). Plus Mixed sessions.
+Every round runs on a clock — 5 s for guess rounds, 8 s for focus, 30 s for drawing. Wordmark mode is data-ready but not yet built; the earlier Close-up (crop)
 mode was retired in favor of Real or fake.
 
 ## Run it

@@ -10,6 +10,7 @@ import { ColorsRound } from "@/components/modes/ColorsRound";
 import { ShadeRound } from "@/components/modes/ShadeRound";
 import { FakeRound } from "@/components/modes/FakeRound";
 import { DrawRound } from "@/components/modes/DrawRound";
+import { FocusRound, focusPoints } from "@/components/modes/FocusRound";
 import { DRAW_PASS_SCORE } from "@/lib/drawScore";
 import { buildSession } from "@/lib/session";
 import type {
@@ -20,15 +21,19 @@ import type {
   Session,
 } from "@/lib/types";
 
-const VALID_MODES = ["colors", "shade", "fake", "draw", "mixed"];
+const VALID_MODES = ["colors", "shade", "fake", "draw", "focus", "mixed"];
 const VALID_PACKS = ["all", "indian", "global"];
 
-/** Round clock per mode. Guess modes are snap decisions; drawing needs longer. */
+/**
+ * Round clock per mode. Guess modes are snap decisions; drawing needs longer;
+ * focus outlasts its 6 s pull, so a sharp logo can still be called.
+ */
 const TIMER_SECONDS: Record<PlayableMode, number> = {
   colors: 5,
   shade: 5,
   fake: 5,
   draw: 30,
+  focus: 8,
 };
 
 /** How long right/wrong shows on the question itself before the reveal. */
@@ -173,8 +178,8 @@ export function PlayClient() {
     buzz(outcome.correct ? 14 : [24, 60, 24]);
   };
 
-  const answer = (picked: string, correct: boolean) => {
-    settle({ correct, skipped: false, picked });
+  const answer = (picked: string, correct: boolean, score?: number) => {
+    settle({ correct, skipped: false, picked, score });
     setPhase("feedback");
   };
 
@@ -276,6 +281,15 @@ export function PlayClient() {
           onPick={(hex) =>
             answer(hex, hex === round.brand.colors[0].hex.toUpperCase())
           }
+        />
+      ) : round.mode === "focus" ? (
+        <FocusRound
+          round={round}
+          answered={answered}
+          onPick={(id, elapsedMs) => {
+            const correct = id === round.brand.id;
+            answer(id, correct, correct ? focusPoints(elapsedMs) : 0);
+          }}
         />
       ) : round.mode === "draw" ? (
         <DrawRound

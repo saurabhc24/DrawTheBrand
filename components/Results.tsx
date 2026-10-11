@@ -55,6 +55,7 @@ const MODE_NAMES: Record<PlayableMode | "mixed", string> = {
   shade: "Exact shade",
   fake: "Real or fake",
   draw: "Draw",
+  focus: "Focus",
 };
 
 /** Ease a number up from zero; instant for reduced-motion users. */
@@ -96,6 +97,14 @@ export function Results({
   const total = results.length;
   const accuracy = total ? Math.round((correct / total) * 100) : 0;
   const tier = TIERS.find((t) => correct / Math.max(1, total) >= t.min)!;
+  // Focus sessions bank points for early calls; they replace accuracy, which
+  // only repeats the score.
+  const points =
+    mode === "focus"
+      ? results.reduce((sum, r) => sum + (r.score ?? 0), 0)
+      : null;
+  const label =
+    points == null ? MODE_NAMES[mode] : `${MODE_NAMES[mode]} · ${points} pts`;
   const shown = useCountUp(correct);
   const [card, setCard] = useState<File | null>(null);
   const [shareNote, setShareNote] = useState("");
@@ -103,7 +112,7 @@ export function Results({
   // Render the share card up front: the share sheet must open inside the tap
   // (Safari drops the user gesture across slow async work).
   useEffect(() => {
-    renderShareCard({ results, ...tier, label: MODE_NAMES[mode] })
+    renderShareCard({ results, ...tier, label })
       .then((blob) =>
         setCard(new File([blob], "brandr-result.png", { type: "image/png" })),
       )
@@ -115,7 +124,7 @@ export function Results({
     const grid = results
       .map((r) => (r.correct ? "🟩" : r.skipped || r.timedOut ? "⬜" : "🟥"))
       .join("");
-    const text = `${SITE_NAME} ${correct}/${total} — ${tier.title}\n${grid}\n${SITE_URL}`;
+    const text = `${SITE_NAME} ${MODE_NAMES[mode]} ${correct}/${total}${points == null ? "" : ` · ${points} pts`} — ${tier.title}\n${grid}\n${SITE_URL}`;
     try {
       if (card && navigator.canShare?.({ files: [card] })) {
         await navigator.share({ files: [card], text });
@@ -200,10 +209,10 @@ export function Results({
           </div>
           <div className="accuracy-card bg-block-pink text-ink flex min-h-24 flex-col justify-between rounded-3xl p-4">
             <span className="accuracy-card-label font-mono text-[10px] tracking-[0.16em] uppercase opacity-60">
-              Accuracy
+              {points == null ? "Accuracy" : "Points"}
             </span>
             <span className="accuracy-card-value self-end text-4xl font-black font-stretch-expanded">
-              {accuracy}%
+              {points == null ? `${accuracy}%` : points}
             </span>
           </div>
         </div>
@@ -235,13 +244,15 @@ export function Results({
               >
                 {r.mode === "draw" && r.score != null
                   ? `${r.score}/100`
-                  : r.correct
-                    ? "Got it"
-                    : r.timedOut
-                      ? "Time"
-                      : r.skipped
-                        ? "Skip"
-                        : "Miss"}
+                  : r.mode === "focus" && r.correct && r.score != null
+                    ? `+${r.score} pts`
+                    : r.correct
+                      ? "Got it"
+                      : r.timedOut
+                        ? "Time"
+                        : r.skipped
+                          ? "Skip"
+                          : "Miss"}
               </span>
             </li>
           ))}
